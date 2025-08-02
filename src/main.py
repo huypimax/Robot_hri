@@ -104,6 +104,9 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
-    widget.resize(1920, 1080)
+    # widget.resize(1920, 1080)
+    screen = QApplication.primaryScreen()
+    size = screen.availableGeometry().size()
+    widget.resize(size.width(), size.height())
     widget.show()
     sys.exit(app.exec())
