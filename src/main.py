@@ -38,7 +38,7 @@ class MainWindow(QMainWindow):
         self._animate_prompt("I'm hearing", self.ui.prompt_qna, duration_ms=5000, callback_after=self._stop_listening)
 
     def _stop_listening(self):
-        self._animate_prompt("Answering", self.ui.prompt_qna, duration_ms=5000, callback_after=self._stop_listening)
+        self._animate_prompt("Answering", self.ui.prompt_qna, duration_ms=5000)
 
 
     # ----------------------------
@@ -80,7 +80,7 @@ class MainWindow(QMainWindow):
     def go_home(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_main)
 
-    def _animate_prompt(self, base_text: str, label_widget, duration_ms=5000, callback_after=None):
+    def _animate_prompt(self, base_text: str, label_widget, duration_ms, callback_after=None):
         """
         Hiệu ứng động "..." sau base_text
         """
