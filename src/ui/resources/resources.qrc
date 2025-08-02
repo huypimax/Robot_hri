@@ -3,6 +3,7 @@
     <file>robot/floating-minimal-robot.PNG</file>
   </qresource>
   <qresource prefix="icon">
+    <file>icon/basic-ui_17055247.png</file>
     <file>icon/chat_14359920.png</file>
     <file>icon/speaker.png</file>
     <file>icon/microphone.png</file>
