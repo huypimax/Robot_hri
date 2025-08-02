@@ -52,24 +52,24 @@ def welcome():
 def get_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("🎤 Calibrating noise (1.0s)...")
+        print("🎤 Calibrating background noise (1s)...")
         r.adjust_for_ambient_noise(source, duration=1.0)
-        print("🎤 Listening...")
+        print("🎤 Listening for your command...")
+
         try:
-            audio = r.listen(source, timeout=5, phrase_time_limit=8)
+            audio = r.listen(source, timeout=10, phrase_time_limit=10)
             query = r.recognize_google(audio, language="en-US")
-            print("You:", query)
+            print("You said:", query)
             return query
         except sr.UnknownValueError:
-            speak("Sorry, I didn't catch that.")
+            speak("Sorry, I didn't understand.")
         except sr.RequestError:
-            speak("Speech service is unavailable.")
-        except sr.WaitTimeoutError:
-            speak("Are you still there?")
+            speak("Speech service error. Please check your internet.")
         except Exception as e:
-            print("🎤 Error:", e)
-            speak("Something went wrong while listening.")
-    return ""
+            print("❌ Error:", e)
+            speak("Something went wrong.")
+        return ""       
+
 
 
 # === GỬI ĐẾN CHATGPT ===
