@@ -345,7 +345,7 @@ class Ui_MainWindow(object):
         self.widget_10 = QtWidgets.QWidget(parent=self.widget_9)
         self.widget_10.setObjectName("widget_10")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.widget_10)
-        self.verticalLayout_5.setContentsMargins(30, 10, 30, 30)
+        self.verticalLayout_5.setContentsMargins(30, 10, 30, 10)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.widget_11 = QtWidgets.QWidget(parent=self.widget_10)
         self.widget_11.setObjectName("widget_11")
@@ -401,6 +401,7 @@ class Ui_MainWindow(object):
 "}")
         self.widget_15.setObjectName("widget_15")
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.widget_15)
+        self.horizontalLayout_10.setContentsMargins(30, 30, 30, 30)
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem9)
@@ -484,7 +485,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
