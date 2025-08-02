@@ -39,7 +39,7 @@ font-family:  &quot;Roboto&quot;;
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_main">
        <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -94,7 +94,7 @@ font-family:  &quot;Roboto&quot;;
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>300</height>
+                     <height>250</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -230,14 +230,14 @@ color: rgb(0, 41, 77);</string>
                      <widget class="QPushButton" name="btn_qna">
                       <property name="minimumSize">
                        <size>
-                        <width>300</width>
-                        <height>300</height>
+                        <width>250</width>
+                        <height>250</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>300</width>
-                        <height>300</height>
+                        <width>250</width>
+                        <height>250</height>
                        </size>
                       </property>
                       <property name="styleSheet">
@@ -293,14 +293,14 @@ color: rgb(0, 41, 77);</string>
                      <widget class="QPushButton" name="btn_navi">
                       <property name="minimumSize">
                        <size>
-                        <width>300</width>
-                        <height>300</height>
+                        <width>250</width>
+                        <height>250</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>300</width>
-                        <height>300</height>
+                        <width>250</width>
+                        <height>250</height>
                        </size>
                       </property>
                       <property name="styleSheet">
@@ -488,7 +488,7 @@ border-radius:  100px;
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>300</height>
+                     <height>200</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -617,14 +617,14 @@ border-radius:  30px;
                   <widget class="QPushButton" name="btn_speaker">
                    <property name="minimumSize">
                     <size>
-                     <width>300</width>
-                     <height>300</height>
+                     <width>250</width>
+                     <height>250</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>300</width>
-                     <height>300</height>
+                     <width>250</width>
+                     <height>250</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -652,14 +652,14 @@ border-radius:  30px;
                   <widget class="QPushButton" name="btn_micro">
                    <property name="minimumSize">
                     <size>
-                     <width>300</width>
-                     <height>300</height>
+                     <width>250</width>
+                     <height>250</height>
                     </size>
                    </property>
                    <property name="maximumSize">
                     <size>
-                     <width>300</width>
-                     <height>300</height>
+                     <width>250</width>
+                     <height>250</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -826,7 +826,7 @@ border-radius:  100px;
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>300</height>
+                     <height>200</height>
                     </size>
                    </property>
                    <property name="styleSheet">
@@ -957,14 +957,14 @@ border-radius:  30px;
                     <widget class="QPushButton" name="btn_room_b">
                      <property name="minimumSize">
                       <size>
-                       <width>300</width>
-                       <height>150</height>
+                       <width>250</width>
+                       <height>125</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>300</width>
-                       <height>150</height>
+                       <width>250</width>
+                       <height>125</height>
                       </size>
                      </property>
                      <property name="font">
@@ -996,14 +996,14 @@ border-radius:  30px;
                     <widget class="QPushButton" name="btn_room_a">
                      <property name="minimumSize">
                       <size>
-                       <width>300</width>
-                       <height>150</height>
+                       <width>250</width>
+                       <height>125</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>300</width>
-                       <height>150</height>
+                       <width>250</width>
+                       <height>125</height>
                       </size>
                      </property>
                      <property name="font">
@@ -1035,14 +1035,14 @@ border-radius:  30px;
                     <widget class="QPushButton" name="btn_room_c">
                      <property name="minimumSize">
                       <size>
-                       <width>300</width>
-                       <height>150</height>
+                       <width>250</width>
+                       <height>125</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>300</width>
-                       <height>150</height>
+                       <width>250</width>
+                       <height>125</height>
                       </size>
                      </property>
                      <property name="font">
@@ -1074,14 +1074,14 @@ border-radius:  30px;
                     <widget class="QPushButton" name="btn_room_d">
                      <property name="minimumSize">
                       <size>
-                       <width>300</width>
-                       <height>150</height>
+                       <width>250</width>
+                       <height>125</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>300</width>
-                       <height>150</height>
+                       <width>250</width>
+                       <height>125</height>
                       </size>
                      </property>
                      <property name="font">

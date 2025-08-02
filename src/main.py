@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
         """
         Hiệu ứng động "..." sau base_text
         """
-        dots = ["", ".", "..", "..."]
+        dots = [".", "..", "..."]
         index = 0
         timer = QTimer(self)
 
@@ -98,7 +98,6 @@ class MainWindow(QMainWindow):
 
         # Sau duration_ms thì stop hiệu ứng và gọi callback nếu có
         QTimer.singleShot(duration_ms, lambda: (timer.stop(), callback_after() if callback_after else None))
-
 
 
 if __name__ == "__main__":
