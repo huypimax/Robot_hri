@@ -1,6 +1,6 @@
 # Author: Fablab Team
 # Date: 7/30/2025
-# Voice-based receptionist assistant: AIko (Gemini-powered)
+# Voice-based receptionist assistant: AIko (Openai-powered)
 
 import datetime
 import openai
