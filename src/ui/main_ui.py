@@ -48,7 +48,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setContentsMargins(30, 30, 30, 30)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.widget = QtWidgets.QWidget(parent=self.widget_2)
-        self.widget.setMinimumSize(QtCore.QSize(0, 300))
+        self.widget.setMinimumSize(QtCore.QSize(0, 250))
         self.widget.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -108,8 +108,8 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtWidgets.QVBoxLayout(self.widget_16)
         self.verticalLayout.setObjectName("verticalLayout")
         self.btn_qna = QtWidgets.QPushButton(parent=self.widget_16)
-        self.btn_qna.setMinimumSize(QtCore.QSize(300, 300))
-        self.btn_qna.setMaximumSize(QtCore.QSize(300, 300))
+        self.btn_qna.setMinimumSize(QtCore.QSize(250, 250))
+        self.btn_qna.setMaximumSize(QtCore.QSize(250, 250))
         self.btn_qna.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -139,8 +139,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.widget_17)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.btn_navi = QtWidgets.QPushButton(parent=self.widget_17)
-        self.btn_navi.setMinimumSize(QtCore.QSize(300, 300))
-        self.btn_navi.setMaximumSize(QtCore.QSize(300, 300))
+        self.btn_navi.setMinimumSize(QtCore.QSize(250, 250))
+        self.btn_navi.setMaximumSize(QtCore.QSize(250, 250))
         self.btn_navi.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -219,7 +219,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setContentsMargins(30, 30, 30, 30)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.widget_7 = QtWidgets.QWidget(parent=self.widget_6)
-        self.widget_7.setMinimumSize(QtCore.QSize(0, 300))
+        self.widget_7.setMinimumSize(QtCore.QSize(0, 200))
         self.widget_7.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -272,8 +272,8 @@ class Ui_MainWindow(object):
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_7.addItem(spacerItem5)
         self.btn_speaker = QtWidgets.QPushButton(parent=self.widget_14)
-        self.btn_speaker.setMinimumSize(QtCore.QSize(300, 300))
-        self.btn_speaker.setMaximumSize(QtCore.QSize(300, 300))
+        self.btn_speaker.setMinimumSize(QtCore.QSize(250, 250))
+        self.btn_speaker.setMaximumSize(QtCore.QSize(250, 250))
         self.btn_speaker.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -286,8 +286,8 @@ class Ui_MainWindow(object):
         self.btn_speaker.setObjectName("btn_speaker")
         self.horizontalLayout_7.addWidget(self.btn_speaker)
         self.btn_micro = QtWidgets.QPushButton(parent=self.widget_14)
-        self.btn_micro.setMinimumSize(QtCore.QSize(300, 300))
-        self.btn_micro.setMaximumSize(QtCore.QSize(300, 300))
+        self.btn_micro.setMinimumSize(QtCore.QSize(250, 250))
+        self.btn_micro.setMaximumSize(QtCore.QSize(250, 250))
         self.btn_micro.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -353,7 +353,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setContentsMargins(30, 30, 30, 30)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.widget_12 = QtWidgets.QWidget(parent=self.widget_11)
-        self.widget_12.setMinimumSize(QtCore.QSize(0, 300))
+        self.widget_12.setMinimumSize(QtCore.QSize(0, 200))
         self.widget_12.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -409,8 +409,8 @@ class Ui_MainWindow(object):
         self.gridLayout.setSpacing(30)
         self.gridLayout.setObjectName("gridLayout")
         self.btn_room_b = QtWidgets.QPushButton(parent=self.widget_15)
-        self.btn_room_b.setMinimumSize(QtCore.QSize(300, 150))
-        self.btn_room_b.setMaximumSize(QtCore.QSize(300, 150))
+        self.btn_room_b.setMinimumSize(QtCore.QSize(250, 125))
+        self.btn_room_b.setMaximumSize(QtCore.QSize(250, 125))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(25)
@@ -425,8 +425,8 @@ class Ui_MainWindow(object):
         self.btn_room_b.setObjectName("btn_room_b")
         self.gridLayout.addWidget(self.btn_room_b, 0, 1, 1, 1)
         self.btn_room_a = QtWidgets.QPushButton(parent=self.widget_15)
-        self.btn_room_a.setMinimumSize(QtCore.QSize(300, 150))
-        self.btn_room_a.setMaximumSize(QtCore.QSize(300, 150))
+        self.btn_room_a.setMinimumSize(QtCore.QSize(250, 125))
+        self.btn_room_a.setMaximumSize(QtCore.QSize(250, 125))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(25)
@@ -441,8 +441,8 @@ class Ui_MainWindow(object):
         self.btn_room_a.setObjectName("btn_room_a")
         self.gridLayout.addWidget(self.btn_room_a, 0, 0, 1, 1)
         self.btn_room_c = QtWidgets.QPushButton(parent=self.widget_15)
-        self.btn_room_c.setMinimumSize(QtCore.QSize(300, 150))
-        self.btn_room_c.setMaximumSize(QtCore.QSize(300, 150))
+        self.btn_room_c.setMinimumSize(QtCore.QSize(250, 125))
+        self.btn_room_c.setMaximumSize(QtCore.QSize(250, 125))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(25)
@@ -457,8 +457,8 @@ class Ui_MainWindow(object):
         self.btn_room_c.setObjectName("btn_room_c")
         self.gridLayout.addWidget(self.btn_room_c, 1, 0, 1, 1)
         self.btn_room_d = QtWidgets.QPushButton(parent=self.widget_15)
-        self.btn_room_d.setMinimumSize(QtCore.QSize(300, 150))
-        self.btn_room_d.setMaximumSize(QtCore.QSize(300, 150))
+        self.btn_room_d.setMinimumSize(QtCore.QSize(250, 125))
+        self.btn_room_d.setMaximumSize(QtCore.QSize(250, 125))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(25)
@@ -485,7 +485,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
