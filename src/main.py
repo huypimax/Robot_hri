@@ -13,6 +13,8 @@ class MainWindow(QMainWindow):
         apply_custom_fonts(self.ui)
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_main)
 
+        self.current_room = "A"
+
         self.ui.btn_qna.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_qna))
         self.ui.btn_navi.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_navi))
         self.ui.btn_home_qna.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_main))
@@ -28,6 +30,10 @@ class MainWindow(QMainWindow):
         self.ui.prompt_qna.setText("I'm hearing...")
 
     def start_navigation(self, room: str):
+        if room == self.current_room:
+            self.ui.prompt_navi.setText("You are already here!!!")
+            return
+        
         self._set_navigation_buttons_enabled(False)
         self.ui.prompt_navi.setText(f"Heading to room {room}... Please follow me!")
 
@@ -35,8 +41,13 @@ class MainWindow(QMainWindow):
         QTimer.singleShot(5000, lambda: self.finish_navigation(room))
 
     def finish_navigation(self, room: str):
+        self.current_room = room 
         self._set_navigation_buttons_enabled(True)
-        self.ui.prompt_navi.setText(f"Arrived at room {room}. Ready for next destination.")
+        self.ui.prompt_navi.setText(f"Arrived at room {room}! Ready for next destination.")
+        QTimer.singleShot(5000, self.back_to_main_page) #delay 5s de quay ve main_page 
+
+    def back_to_main_page(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_main)
 
     def _set_navigation_buttons_enabled(self, enabled: bool):
         self.ui.btn_micro.setEnabled(enabled)
