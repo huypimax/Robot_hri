@@ -16,10 +16,9 @@ class MainWindow(QMainWindow):
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_main)
 
-        # --- Logic điều hướng ---
-        self.current_room = ""
         self.mqtt_handler = MQTTHandler(self.on_robot_status_update)
 
+        # --- Logic điều hướng ---
 
         self.ui.btn_qna.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_qna))
         self.ui.btn_navi.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page_navi))
@@ -32,6 +31,7 @@ class MainWindow(QMainWindow):
         self.ui.btn_room_b.clicked.connect(lambda: self.handle_go_to("B"))
         self.ui.btn_room_c.clicked.connect(lambda: self.handle_go_to("C"))
         self.ui.btn_room_d.clicked.connect(lambda: self.handle_go_to("D"))
+
 
     # ----------------------------
     # Micro - I'm hearing... hiệu ứng
@@ -69,12 +69,31 @@ class MainWindow(QMainWindow):
         # Tự động quay về main sau 5 giây
         QTimer.singleShot(10000, self.go_home)
 
+    def on_robot_status_update(self, location):
+        if self.mqtt_handler.current_target == location:
+            self.ui.prompt_navi.setText(f"Arrived at room {location}. Ready for next destination.")
+            # Tự động quay về main sau 10 giây
+            QTimer.singleShot(10000, self.go_home)
+
+    def handle_go_to(self, room):
+        if self.mqtt_handler.current_position == room:
+            self.ui.prompt_navi.setText("You are already here!!!")
+        else:
+            self._set_navigation_buttons_enabled(False)
+            self._animate_prompt(
+                base_text=f"Heading to room {room}",
+                label_widget=self.ui.prompt_navi,
+                duration_ms=5000,  # mô phỏng thời gian di chuyển
+        )
+            self.mqtt_handler.send_destination(room)
+
+
     # ----------------------------
     # Tiện ích chung
     # ----------------------------
 
     def _set_navigation_buttons_enabled(self, enabled: bool):
-        self.ui.btn_micro.setEnabled(enabled)
+        # self.ui.btn_micro.setEnabled(enabled)
         self.ui.btn_room_a.setEnabled(enabled)
         self.ui.btn_room_b.setEnabled(enabled)
         self.ui.btn_room_c.setEnabled(enabled)
@@ -101,17 +120,6 @@ class MainWindow(QMainWindow):
 
         # Sau duration_ms thì stop hiệu ứng và gọi callback nếu có
         QTimer.singleShot(duration_ms, lambda: (timer.stop(), callback_after() if callback_after else None))
-
-    def on_robot_status_update(self, location):
-        if self.mqtt_handler.current_target == location:
-            self.ui.prompt_navi.setText(f"Arrived at room {location}. Ready for next destination.")
-
-    def handle_go_to(self, room):
-        if self.mqtt_handler.current_position == room:
-            self.ui.prompt_navi.setText("You are already here!!!")
-        else:
-            self.ui.prompt_navi.setText(f"Heading to room {room}...")
-            self.mqtt_handler.send_destination(room)
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@
 
 import datetime
 import openai
+from openai import OpenAI
 from gtts import gTTS
 from playsound import playsound
 import speech_recognition as sr
@@ -11,7 +12,7 @@ import os
 
 ASSISTANT_NAME = "AIko"
 
-openai.api_key = "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"
+client = OpenAI(api_key="OPENAI_API_KEY")  # ← thay bằng key thật
 
 # === NGỮ CẢNH ===
 initial_context = [
@@ -73,19 +74,24 @@ def get_command():
 
 
 # === GỬI ĐẾN CHATGPT ===
-def ask_chatgpt(prompt):
+def ask_chatgpt(prompt: str) -> str:
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Model rẻ, đủ tốt
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",  # hoặc "gpt-4" nếu bạn có quyền
             messages=[
-                {"role": "system", "content": "You are AIko, a friendly receptionist assistant created by Fablab. Keep answers short and relevant (max 2 sentences)."},
-                {"role": "user", "content": prompt}
+                {
+                    "role": "system",
+                    "content": "You are AIko, a friendly receptionist assistant created by Fablab. Keep answers short and relevant (max 2 sentences)."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
             ],
             max_tokens=100,
-            temperature=0.7,
+            temperature=0.7
         )
-        reply = response['choices'][0]['message']['content']
-        return reply.strip()
+        return response.choices[0].message.content.strip()
     except Exception as e:
         print("❌ OpenAI error:", e)
         return "Sorry, I can't get a response right now."
@@ -95,22 +101,32 @@ def ask_chatgpt(prompt):
 def check_faq(query: str):
     query = query.lower()
 
-    if "ho chi minh university of Technology" in query or "bach khoa" in query or "bach khoa university" in query or "ho chi minh university" in query:
+    if any(kw in query for kw in [
+        "ho chi minh university of technology", "bach khoa", 
+        "bach khoa university", "ho chi minh university"
+    ]):
         return ("Ho Chi Minh City University of Technology, also known as Bách Khoa, "
-            "is one of Vietnam’s top technical universities. It offers advanced training "
-            "in engineering, technology, and innovation, and is part of the Vietnam National University system.")
+                "is one of Vietnam’s top technical universities. It offers advanced training "
+                "in engineering, technology, and innovation, and is part of the Vietnam National University system.")
 
-    elif "fablab" in query or "innovation lab" in query or "robotics lab" in query or "fab lab" in query or "the lab" in query or "innovation laboratory" in query: 
+    elif any(kw in query for kw in [
+        "fablab", "innovation lab", "robotics lab", 
+        "fab lab", "the lab", "innovation laboratory"
+    ]):
         return "Fablab is an innovation lab at Ho Chi Minh University of Technology, supporting students in robotics, AI, and creative projects."
 
-    elif "who created you" in query or "your creator" in query or "who made you" in query or "who built you" in query or "who developed you" in query or "who designed you" in query or "who creates you":
-        return "I was created by a group of students from Fablab, including members from Electrical, Mechanical, and Computer Science departments."
+    elif any(kw in query for kw in [
+        "who created you", "your creator", "who made you", "who built you", 
+        "who developed you", "who designed you", "who creates you"
+    ]):
+        return "I was created by a group of students from Fablab laboratory, including members from Electrical, Mechanical, and Computer Science departments."
 
-    elif "your name" in query:
+    elif any(kw in query for kw in [
+        "what's your name", "what is your name", "your name", "who are you"
+    ]):
         return "My name is AIko, your friendly receptionist assistant."
-
-    return None
-
+    else:
+        return None
 
 
 # === MAIN LOOP ===

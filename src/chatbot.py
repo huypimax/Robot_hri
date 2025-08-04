@@ -4,9 +4,10 @@
 
 import datetime
 import google.generativeai as genai
-from gtts import gTTS
-from playsound import playsound
+import playsound
 import speech_recognition as sr
+import asyncio
+import edge_tts
 import os
 
 ASSISTANT_NAME = "AIko"
@@ -14,26 +15,24 @@ ASSISTANT_NAME = "AIko"
 # === CẤU HÌNH GEMINI ===
 api_key = "AIzaSyCsnVbGzLouYNPXIJxnYdmQFa2BrRo1uqA"  # ← thay bằng key thật
 genai.configure(api_key=api_key)
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.0-flash")
 
 # === NGỮ CẢNH ===
 initial_context = [
-    {"role": "user", "parts": [{"text": "You are a virtual assistant named AIko, created by Fablab."}]},
-    {"role": "model", "parts": [{"text": "Okay. My name is AIko, created by Fablab."}]},
-    {"role": "user", "parts": [{"text": "You give concise answers, max 30 words. Answer directly, no extra."}]},
-    {"role": "model", "parts": [{"text": "Understood. I will be brief and direct."}]},
+    {"role": "user", "parts": [{"text": "You are a helpful, concise virtual assistant named AIko, created by Fablab."}]},
+    {"role": "model", "parts": [{"text": "Understood. I'm AIko, created by Fablab."}]},
+    {"role": "user", "parts": [{"text": "When answering, use 1–2 full sentences, clear and friendly tone. No bullet points or keywords only."}]},
+    {"role": "model", "parts": [{"text": "Okay. I will respond in short, clear sentences."}]}
 ]
 
 
-# === PHÁT ÂM THANH ===
-def speak(text):
+async def speak(text):
     print(f"{ASSISTANT_NAME}: {text}")
     try:
-        tts = gTTS(text=text, lang="en", slow=False)
-        filename = "temp.mp3"
-        tts.save(filename)
-        playsound(filename)
-        os.remove(filename)
+        communicate = edge_tts.Communicate(text, voice="en-US-GuyNeural", rate="-10%")
+        await communicate.save("tts.mp3")
+        playsound.playsound("tts.mp3")
+        os.remove("tts.mp3")
     except Exception as e:
         print("🔊 Error playing sound:", e)
 
@@ -47,8 +46,8 @@ def welcome():
         greet = "Good afternoon"
     else:
         greet = "Good evening"
-    speak(f"{greet}! I'm AIko, your receptionist assistant.")
-    speak("How can I help you?")
+    asyncio.run(speak(f"{greet}! I'm AIko, your receptionist assistant."))
+    asyncio.run(speak("How can I help you?"))
 
 
 # === NHẬN LỆNH BẰNG GIỌNG NÓI ===
@@ -59,19 +58,19 @@ def get_command():
         r.adjust_for_ambient_noise(source, duration=1.0)
         print("🎤 Listening...")
         try:
-            audio = r.listen(source, timeout=5, phrase_time_limit=8)
+            audio = r.listen(source, timeout=6, phrase_time_limit=10)
             query = r.recognize_google(audio, language="en-US")
             print("You:", query)
             return query
         except sr.UnknownValueError:
-            speak("Sorry, I didn't catch that.")
+            asyncio.run(speak("Hmm, I didn't quite catch that. Could you please repeat?"))
         except sr.RequestError:
-            speak("Speech service is unavailable.")
+            asyncio.run(speak("Speech service is unavailable."))
         except sr.WaitTimeoutError:
-            speak("Are you still there?")
+            asyncio.run(speak("Are you still there?"))
         except Exception as e:
             print("🎤 Error:", e)
-            speak("Something went wrong while listening.")
+            asyncio.run(speak("Something went wrong while listening."))
     return ""
 
 
@@ -90,21 +89,34 @@ def ask_gemini(prompt):
 def check_faq(query: str):
     query = query.lower()
 
-    if "ho chi minh university of Technology" in query or "bach khoa" in query or "bach khoa university" in query or "ho chi minh university" in query:
+    if any(kw in query for kw in [
+        "ho chi minh university of technology", "bach khoa", 
+        "bach khoa university", "ho chi minh university"
+    ]):
         return ("Ho Chi Minh City University of Technology, also known as Bách Khoa, "
-            "is one of Vietnam’s top technical universities. It offers advanced training "
-            "in engineering, technology, and innovation, and is part of the Vietnam National University system.")
+                "is one of Vietnam’s top technical universities. It offers advanced training "
+                "in engineering, technology, and innovation, and is part of the Vietnam National University system.")
 
-    elif "fablab" in query or "innovation lab" in query or "robotics lab" in query or "fab lab" in query or "the lab" in query or "innovation laboratory" in query: 
+    elif any(kw in query for kw in [
+        "fablab", "innovation lab", "robotics lab", 
+        "fab lab", "the lab", "innovation laboratory"
+    ]):
         return "Fablab is an innovation lab at Ho Chi Minh University of Technology, supporting students in robotics, AI, and creative projects."
 
-    elif "who created you" in query or "your creator" in query or "who made you" in query or "who built you" in query or "who developed you" in query or "who designed you" in query or "who creates you":
-        return "I was created by a group of students from Fablab, including members from Electrical, Mechanical, and Computer Science departments."
+    elif any(kw in query for kw in [
+        "who created you", "your creator", "who made you", "who built you", 
+        "who developed you", "who designed you", "who creates you"
+    ]):
+        return "I was created by a group of students from Fablab laboratory, including members from Electrical, Mechanical, and Computer Science departments."
 
-    elif "your name" in query:
+    elif any(kw in query for kw in [
+        "what's your name", "what is your name", "your name", "who are you"
+    ]):
         return "My name is AIko, your friendly receptionist assistant."
-
-    return None
+    elif any(kw in query for kw in ["help", "what can you do", "what are your functions"]):
+        return ("I can answer questions, tell the time, and guide you with basic information. Just ask me anything.")
+    else:
+        return None
 
 
 
@@ -113,21 +125,36 @@ if __name__ == "__main__":
     welcome()
     while True:
         query = get_command().lower()
+        last_reply = ""
 
         if not query:
             continue
 
         if any(kw in query for kw in ["quit", "exit", "stop", "thank you", "bye"]):
-            speak("You're welcome. Goodbye.")
+            asyncio.run(speak("You're welcome. Goodbye."))
             break
 
         elif "time" in query:
             current_time = datetime.datetime.now().strftime("%I:%M %p")
-            speak(f"It is {current_time}.")
+            asyncio.run(speak(f"It is {current_time}."))\
+            
+        elif "date" in query or "day" in query:
+            now = datetime.datetime.now()
+            date_str = now.strftime("%A, %B %d, %Y")  # Friday, August 02, 2025
+            asyncio.run(speak(f"Today is {date_str}."))
+
+
+        elif any(kw in query for kw in ["repeat", "repeat that", "say it again"]):
+            if last_reply:
+                asyncio.run(speak(last_reply))
+            else:
+                asyncio.run(speak("I haven't said anything yet."))
+
         else:
             faq_answer = check_faq(query)
             if faq_answer:
-                speak(faq_answer)
+                asyncio.run(speak(faq_answer))
             else:
                 reply = ask_gemini(query)
-                speak(reply)
+                last_reply = reply
+                asyncio.run(speak(reply))
