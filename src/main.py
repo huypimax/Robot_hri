@@ -104,13 +104,13 @@ class MainWindow(QMainWindow):
 
     def on_robot_status_update(self, location):
         if self.mqtt_handler.current_target == location:
-            self.prompt_navi.setText(f"Arrived at room {location}. Ready for next destination.")
+            self.ui.prompt_navi.setText(f"Arrived at room {location}. Ready for next destination.")
 
     def handle_go_to(self, room):
         if self.mqtt_handler.current_position == room:
-            self.prompt_navi.setText("You are already here!!!")
+            self.ui.prompt_navi.setText("You are already here!!!")
         else:
-            self.prompt_navi.setText("Heading to room {room}...")
+            self.ui.prompt_navi.setText(f"Heading to room {room}...")
             self.mqtt_handler.send_destination(room)
 
 

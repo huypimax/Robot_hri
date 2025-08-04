@@ -1,7 +1,7 @@
 # mqtt_client.py
 import paho.mqtt.client as mqtt
 
-BROKER_ADDRESS = "10.128.73.236"  # IP máy Xavier
+BROKER_ADDRESS = "192.168.1.8"  
 BROKER_PORT = 1883
 TOPIC_COMMAND = "robot/move"
 TOPIC_STATUS = "robot/status/location"
@@ -27,4 +27,9 @@ class MQTTHandler:
     def send_destination(self, dest: str):
         if dest.upper() in ["A", "B", "C", "D"]:
             self.current_target = dest.upper()
-            self.client.publish(TOPIC_COMMAND, dest.upper())
+            result = self.client.publish(TOPIC_COMMAND, dest.upper())
+            status = result[0]
+            if status == 0:
+                print(f"✅ Sent move command to room {dest.upper()}")
+            else:
+                print(f"❌ Failed to send move command to room {dest.upper()}, status={status}")
