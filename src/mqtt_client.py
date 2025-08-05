@@ -1,7 +1,7 @@
 # mqtt_client.py
 import paho.mqtt.client as mqtt
 
-BROKER_ADDRESS = "10.128.48.69"  
+BROKER_ADDRESS = "192.168.0.120"  
 BROKER_PORT = 1883
 TOPIC_COMMAND = "robot/move"
 TOPIC_STATUS = "robot/status/location"

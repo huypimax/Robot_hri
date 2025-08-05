@@ -58,12 +58,12 @@ def get_command():
         r.adjust_for_ambient_noise(source, duration=1.0)
         print("🎤 Listening...")
         try:
-            audio = r.listen(source, timeout=6, phrase_time_limit=10)
+            audio = r.listen(source, timeout=5, phrase_time_limit=10)
             query = r.recognize_google(audio, language="en-US")
             print("You:", query)
             return query
         except sr.UnknownValueError:
-            asyncio.run(speak("Hmm, I didn't quite catch that. Could you please repeat?"))
+            asyncio.run(speak("Sorry, I didn't catch that."))
         except sr.RequestError:
             asyncio.run(speak("Speech service is unavailable."))
         except sr.WaitTimeoutError:
@@ -113,8 +113,6 @@ def check_faq(query: str):
         "what's your name", "what is your name", "your name", "who are you"
     ]):
         return "My name is AIko, your friendly receptionist assistant."
-    elif any(kw in query for kw in ["help", "what can you do", "what are your functions"]):
-        return ("I can answer questions, tell the time, and guide you with basic information. Just ask me anything.")
     else:
         return None
 
@@ -125,7 +123,6 @@ if __name__ == "__main__":
     welcome()
     while True:
         query = get_command().lower()
-        last_reply = ""
 
         if not query:
             continue
@@ -136,25 +133,12 @@ if __name__ == "__main__":
 
         elif "time" in query:
             current_time = datetime.datetime.now().strftime("%I:%M %p")
-            asyncio.run(speak(f"It is {current_time}."))\
-            
-        elif "date" in query or "day" in query:
-            now = datetime.datetime.now()
-            date_str = now.strftime("%A, %B %d, %Y")  # Friday, August 02, 2025
-            asyncio.run(speak(f"Today is {date_str}."))
-
-
-        elif any(kw in query for kw in ["repeat", "repeat that", "say it again"]):
-            if last_reply:
-                asyncio.run(speak(last_reply))
-            else:
-                asyncio.run(speak("I haven't said anything yet."))
-
+            asyncio.run(speak(f"It is {current_time}."))
         else:
             faq_answer = check_faq(query)
             if faq_answer:
                 asyncio.run(speak(faq_answer))
             else:
                 reply = ask_gemini(query)
-                last_reply = reply
                 asyncio.run(speak(reply))
+
