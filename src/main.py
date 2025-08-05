@@ -23,11 +23,13 @@ class MainWindow(QMainWindow):
         apply_custom_fonts(self.ui)
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_main)
+        self.ui.prompt_qna.setText("Press the microphone button to start a conversation.")
 
         self.mqtt_handler = MQTTHandler(self.on_robot_status_update)
         self.bot = AIkoBot()
 
         self.btn_speaker_timer = QTimer()
+        self.btn_speaker_timer.setSingleShot(True)
         self.btn_speaker_timer.timeout.connect(lambda: self.SetStyleSheetForbtn("btn_speaker", "#ffffff")) 
         self.inactivity_timer = QTimer(self)
         self.inactivity_timer.setInterval(20000)  
@@ -60,6 +62,7 @@ class MainWindow(QMainWindow):
 
     def get_response(self, query: str):
         self.SetStyleSheetForbtn("btn_micro", "#ffffff")  
+        self.SetStyleSheetForbtn("btn_speaker", "#69ff3d")
         if not query:
             self.continue_conversation()
         else:
@@ -69,10 +72,11 @@ class MainWindow(QMainWindow):
             self.response_thread.start()
 
     def answer(self, text: str):
-        self.ui.btn_speaker.setEnabled(True)
-        self.SetStyleSheetForbtn("btn_speaker", "#69ff3d")
-        self.ui.prompt_qna.setText("Answering...")
+        #self.ui.btn_speaker.setEnabled(True)
+        #self.SetStyleSheetForbtn("btn_speaker", "#69ff3d")
+        self.ui.btn_micro.setEnabled(False)
         self.reset_inactivity_timer()
+        self.ui.prompt_qna.setText(text)
         if text == "You're welcome. Goodbye.":
             print(f"AIko: {text}")
             self.speak_thread = SpeakThread(text)
@@ -87,6 +91,7 @@ class MainWindow(QMainWindow):
             self.speak_thread.start()
 
     def continue_conversation(self):
+        self.ui.btn_micro.setEnabled(True)
         self.handle_micro()
 
     def start_navigation(self, room: str):
