@@ -264,7 +264,7 @@ class Ui_MainWindow(object):
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_6.addWidget(self.label_3)
         self.prompt_qna = QtWidgets.QLabel(parent=self.widget_7)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.prompt_qna.sizePolicy().hasHeightForWidth())
@@ -277,6 +277,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.prompt_qna.setFont(font)
+        self.prompt_qna.setScaledContents(False)
+        self.prompt_qna.setWordWrap(True)
         self.prompt_qna.setObjectName("prompt_qna")
         self.horizontalLayout_6.addWidget(self.prompt_qna)
         self.horizontalLayout_6.setStretch(0, 1)
@@ -507,7 +509,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

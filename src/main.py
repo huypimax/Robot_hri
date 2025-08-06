@@ -93,8 +93,8 @@ class MainWindow(QMainWindow):
         #self.SetStyleSheetForbtn("btn_speaker", "#69ff3d")
         self.ui.btn_micro.setEnabled(False)
         self.reset_inactivity_timer()
-        # self.ui.prompt_qna.setText(text)
-        self.ui.prompt_qna.setText("Answering...")
+        self.ui.prompt_qna.setText(text)
+        # self.ui.prompt_qna.setText("Answering...")
         if text == "You're welcome. Goodbye.":
             print(f"AIko: {text}")
             self.speak_thread = SpeakThread(text)
