@@ -25,19 +25,15 @@ class MainWindow(QMainWindow):
 
         self.current_room = ""
         self.micro_loop = False
+        self.silent_count = 0
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_main)
-        self.ui.prompt_qna.setText("Press the microphone button to start a conversation.")
-        self.applyShadow([self.ui.btn_qna, self.ui.btn_navi, self.ui.btn_micro, self.ui.btn_speaker,
-                          self.ui.btn_room_a, self.ui.btn_room_b, self.ui.btn_room_c, self.ui.btn_room_d, self.ui.widget,
-                          self.ui.widget_12, self.ui.widget_7, self.ui.btn_home_qna, self.ui.btn_home_navi])
+        self.applyShadow([self.ui.btn_qna, self.ui.btn_navi, self.ui.btn_micro, self.ui.btn_speaker, self.ui.widget,
+                          self.ui.widget_12, self.ui.widget_7, self.ui.widget_19, self.ui.widget_18,self.ui.btn_room_a, self.ui.btn_room_b, self.ui.btn_room_c, self.ui.btn_room_d])
 
         # self.mqtt_handler = MQTTHandler(self.on_robot_status_update)
         # self.bot = AIkoBot()
 
-        self.btn_speaker_timer = QTimer()
-        self.btn_speaker_timer.setSingleShot(True)
-        self.btn_speaker_timer.timeout.connect(lambda: self.SetStyleSheetForbtn("btn_speaker", "#ffffff")) 
         self.inactivity_timer = QTimer(self)
         self.inactivity_timer.setInterval(20000)  
         self.inactivity_timer.setSingleShot(True)
@@ -45,8 +41,8 @@ class MainWindow(QMainWindow):
 
         # --- Logic điều hướng ---
 
-        self.ui.btn_qna.clicked.connect(lambda: [self.handle_btn_qna(), self.ui.stackedWidget.setCurrentWidget(self.ui.page_qna), self.reset_inactivity_timer(), self.ui.btn_home_qna.setEnabled(False), self.ui.btn_micro.setEnabled(False)])
-        self.ui.btn_navi.clicked.connect(lambda: [self.handle_btn_navi(), self.ui.stackedWidget.setCurrentWidget(self.ui.page_navi), self.reset_inactivity_timer(), self.ui.btn_home_navi.setEnabled(False), self.ui.btn_room_a.setEnabled(False), self.ui.btn_room_b.setEnabled(False), self.ui.btn_room_c.setEnabled(False), self.ui.btn_room_d.setEnabled(False), self.ui.prompt_navi.setText("Where do you want to go?")])
+        self.ui.btn_qna.clicked.connect(lambda: [self.handle_btn_qna(), self.ui.stackedWidget.setCurrentWidget(self.ui.page_qna), self.ui.prompt_qna.setText("Press the microphone button to start a conversation."), self.reset_inactivity_timer(), self.ui.btn_home_qna.setEnabled(False), self.ui.btn_micro.setEnabled(False)])
+        self.ui.btn_navi.clicked.connect(lambda: [self.handle_btn_navi(), self.ui.stackedWidget.setCurrentWidget(self.ui.page_navi), self.reset_inactivity_timer(), self.ui.btn_home_navi.setEnabled(False), self._set_navigation_buttons_enabled(False), self.set_color_btn_room("#ffffff"), self.ui.prompt_navi.setText("Where do you want to go?")])
         self.ui.btn_home_qna.clicked.connect(lambda: self.go_to_main_page())
         self.ui.btn_home_navi.clicked.connect(lambda: self.go_to_main_page())
 
@@ -58,30 +54,41 @@ class MainWindow(QMainWindow):
         # self.ui.btn_room_c.clicked.connect(lambda: [self.handle_go_to("C"), self.SetStyleSheetForbtn("btn_room_c", "#69ff3d")])
         # self.ui.btn_room_d.clicked.connect(lambda: [self.handle_go_to("D"), self.SetStyleSheetForbtn("btn_room_d", "#69ff3d")])
 
-        self.ui.btn_room_a.clicked.connect(lambda: [self.start_navigation("A"), self.SetStyleSheetForbtn("btn_room_a", "#69ff3d"), self.inactivity_timer.stop()])
-        self.ui.btn_room_b.clicked.connect(lambda: [self.start_navigation("B"), self.SetStyleSheetForbtn("btn_room_b", "#69ff3d"), self.inactivity_timer.stop()])
-        self.ui.btn_room_c.clicked.connect(lambda: [self.start_navigation("C"), self.SetStyleSheetForbtn("btn_room_c", "#69ff3d"), self.inactivity_timer.stop()])
-        self.ui.btn_room_d.clicked.connect(lambda: [self.start_navigation("D"), self.SetStyleSheetForbtn("btn_room_d", "#69ff3d"), self.inactivity_timer.stop()])
+        self.ui.btn_room_a.clicked.connect(lambda: [self.start_navigation("A"), self.SetStyleSheetForbtn("btn_room_a", "#69ff3d"), self.inactivity_timer.stop(), self.ui.btn_home_navi.setEnabled(False)])
+        self.ui.btn_room_b.clicked.connect(lambda: [self.start_navigation("B"), self.SetStyleSheetForbtn("btn_room_b", "#69ff3d"), self.inactivity_timer.stop(), self.ui.btn_home_navi.setEnabled(False)])
+        self.ui.btn_room_c.clicked.connect(lambda: [self.start_navigation("C"), self.SetStyleSheetForbtn("btn_room_c", "#69ff3d"), self.inactivity_timer.stop(), self.ui.btn_home_navi.setEnabled(False)])
+        self.ui.btn_room_d.clicked.connect(lambda: [self.start_navigation("D"), self.SetStyleSheetForbtn("btn_room_d", "#69ff3d"), self.inactivity_timer.stop(), self.ui.btn_home_navi.setEnabled(False)])
 
     def handle_micro(self):
         if self.micro_loop == False:
             self.micro_loop = True
+            self.silent_count = 0
             self.listen()
 
     def listen(self):
         self.SetStyleSheetForbtn("btn_micro", "#69ff3d")  
         self.SetStyleSheetForbtn("btn_speaker", "#ffffff")  
+        self.reset_inactivity_timer()
         self.ui.prompt_qna.setText("Listening...")
         self.listen_thread = ListenThread()
         self.listen_thread.finished.connect(self.get_response)
-        self.listen_thread.finished.connect(lambda: [self.cleanup_thread(self.listen_thread), self.ui.btn_micro.setEnabled(False)])
+        self.listen_thread.finished.connect(lambda: [self.cleanup_thread(self.listen_thread), self.ui.btn_micro.setEnabled(False), self.SetStyleSheetForbtn("btn_micro", "#ffffff"), self.SetStyleSheetForbtn("btn_speaker", "#69ff3d")])
         self.listen_thread.start()
 
     def get_response(self, query: str):
-        self.SetStyleSheetForbtn("btn_micro", "#ffffff")  
-        self.SetStyleSheetForbtn("btn_speaker", "#69ff3d")
         if not query:
             self.continue_conversation()
+        elif query == "Are you still there?" or query == "Hmm, I didn't quite catch that. Could you please repeat?" or query == "Something went wrong while listening." or query == "Speech service is unavailable.":
+            print(f"AIko: {query}")
+            self.silent_count += 1
+            if self.silent_count >= 3:
+                self.ui.prompt_qna.setText("No response detected. Returning to main menu.")
+                self.micro_loop = False
+                self.go_to_main_page()
+            else:
+                self.speak_thread = SpeakThread(query)
+                self.speak_thread.finished.connect(lambda: [self.cleanup_thread(self.speak_thread), self.listen()])
+                self.speak_thread.start()
         else:
             self.response_thread = ResponseThread(query)
             self.response_thread.finished.connect(self.answer)
@@ -117,7 +124,7 @@ class MainWindow(QMainWindow):
         if room == self.current_room:
             self.ui.prompt_navi.setText("You are already here!!!")
             self.speak_thread = SpeakThread("You are already here!!!")
-            self.speak_thread.finished.connect(lambda: [self.cleanup_thread(self.speak_thread), self.SetStyleSheetForbtn("btn_room_a", "#ffffff"), self.SetStyleSheetForbtn("btn_room_b", "#ffffff"), self.SetStyleSheetForbtn("btn_room_c", "#ffffff"), self.SetStyleSheetForbtn("btn_room_d", "#ffffff")])
+            self.speak_thread.finished.connect(lambda: [self.cleanup_thread(self.speak_thread), self.set_color_btn_room("#ffffff"), self.ui.btn_home_navi.setEnabled(True), self.reset_inactivity_timer()])
             self.speak_thread.start()
             return
 
@@ -126,14 +133,15 @@ class MainWindow(QMainWindow):
         self.speak_thread.finished.connect(lambda: [self._animate_prompt(base_text=f"Heading to room {room}",
                                                                         label_widget=self.ui.prompt_navi,
                                                                         duration_ms=5000,  
-                                                                        callback_after=self._arrive_at(room))])
+                                                                        callback_after=lambda: self._arrive_at(room))])
         self.speak_thread.start()
 
     def _arrive_at(self, room: str):
         self.current_room = room
         self.speak_thread = SpeakThread(f"We have arrived at room {room}")
-        self.speak_thread.finished.connect(lambda: [self.ui.btn_home_navi.setEnabled(True), self._set_navigation_buttons_enabled(True), self.ui.prompt_navi.setText(f"Arrived at room {room}. Ready for next destination."), self.SetStyleSheetForbtn("btn_room_a", "#ffffff"), self.SetStyleSheetForbtn("btn_room_b", "#ffffff"), self.SetStyleSheetForbtn("btn_room_c", "#ffffff"), self.SetStyleSheetForbtn("btn_room_d", "#ffffff")])
+        self.speak_thread.finished.connect(lambda: [self.ui.btn_home_navi.setEnabled(True), self._set_navigation_buttons_enabled(True), self.ui.prompt_navi.setText(f"Arrived at room {room}. Ready for next destination."), self.set_color_btn_room("#ffffff")])
         self.reset_inactivity_timer()
+        self.speak_thread.start()
         # # Tự động quay về main sau 5 giây
         # QTimer.singleShot(10000, self.go_to_main_page)        
 
@@ -170,6 +178,7 @@ class MainWindow(QMainWindow):
         self.SetStyleSheetForbtn("btn_room_b", "ffffff")
         self.SetStyleSheetForbtn("btn_room_c", "ffffff")
         self.SetStyleSheetForbtn("btn_room_d", "ffffff")
+        self.ui.btn_home_navi.setEnabled(True)
 
     def reset_inactivity_timer(self):
         self.inactivity_timer.stop()
@@ -207,38 +216,43 @@ class MainWindow(QMainWindow):
 
     def handle_btn_qna(self):
         self.SetStyleSheetForbtn("btn_speaker", "#69ff3d")
-        self.btn_speaker_timer.start(7000)
         self.welcome_thread = WelcomeThread()
-        self.welcome_thread.finished.connect(lambda: [self.cleanup_thread(self.welcome_thread), self.ui.btn_home_qna.setEnabled(True), self.ui.btn_micro.setEnabled(True)])
+        self.welcome_thread.finished.connect(lambda: [self.cleanup_thread(self.welcome_thread), self.ui.btn_home_qna.setEnabled(True), self.ui.btn_micro.setEnabled(True), self.SetStyleSheetForbtn("btn_speaker", "#ffffff")])
         self.welcome_thread.start()
 
     def handle_btn_navi(self):
         self.speak_thread = SpeakThread("Where do you want to go?")
-        self.speak_thread.finished.connect(lambda: [self.cleanup_thread(self.speak_thread), self.ui.btn_room_a.setEnabled(True), self.ui.btn_room_b.setEnabled(True), self.ui.btn_room_c.setEnabled(True), self.ui.btn_room_d.setEnabled(True)])
+        self.speak_thread.finished.connect(lambda: [self.cleanup_thread(self.speak_thread), self.ui.btn_room_a.setEnabled(True), self.ui.btn_room_b.setEnabled(True), self.ui.btn_room_c.setEnabled(True), self.ui.btn_room_d.setEnabled(True), self.ui.btn_home_navi.setEnabled(True)])
         self.speak_thread.start()
 
-    def SetStyleSheetForbtn(self, btn, background_color):
-        #Style cho nút btnEmployeeWorking
+    def set_color_btn_room(self, color):
+        self.SetStyleSheetForbtn("btn_room_a", color)
+        self.SetStyleSheetForbtn("btn_room_b", color)
+        self.SetStyleSheetForbtn("btn_room_c", color)
+        self.SetStyleSheetForbtn("btn_room_d", color)
+
+    def SetStyleSheetForbtn(self, btn, background_color, text_color="black", hover_background="#ffffff"):
         button = getattr(self.ui, btn)
         button.setStyleSheet(f"""
-                QPushButton#{btn} {{
-                    border-radius: 15px;
-                    border-color: white;
-                    background-color: {background_color};  /* Màu nền mới */
-                    color: white;
-                    text-align: center;
-                    font-family: Inter, sans-serif;
-                }}
+            QPushButton#{btn} {{
+                border-radius: 30px;
+                border-color: white;
+                background-color: {background_color};
+                color: {text_color};
+                text-align: center;
+                font-family: Inter, sans-serif;
+            }}
 
-                QPushButton#{btn}:hover {{
-                    background-color: #ffffff;  /* Màu nền khi hover */
-                }}
+            QPushButton#{btn}:hover {{
+                background-color: {hover_background};
+            }}
 
-                QPushButton#{btn}:pressed {{
-                    padding-left: 5px;
-                    padding-top: 5px;
-                }}
-                """)                         
+            QPushButton#{btn}:pressed {{
+                padding-left: 5px;
+                padding-top: 5px;
+            }}
+        """)
+
 
     def cleanup_thread(self, thread):
         if thread is not None:
