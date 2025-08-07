@@ -14,7 +14,7 @@ from ui.resources import resources_rc
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1597, 902)
+        MainWindow.resize(1174, 639)
         MainWindow.setStyleSheet("*{\n"
 "background-color: rgb(240, 246, 255);\n"
 "font-family:  \"Roboto\";\n"
@@ -82,7 +82,6 @@ class Ui_MainWindow(object):
         font.setFamily("Roboto")
         font.setPointSize(20)
         font.setBold(True)
-        font.setWeight(75)
         self.prompt_main.setFont(font)
         self.prompt_main.setObjectName("prompt_main")
         self.horizontalLayout_2.addWidget(self.prompt_main)
@@ -107,6 +106,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.widget_16.sizePolicy().hasHeightForWidth())
         self.widget_16.setSizePolicy(sizePolicy)
+        self.widget_16.setLayoutDirection(QtCore.Qt.LayoutDirection.RightToLeft)
         self.widget_16.setStyleSheet("\n"
 "color: rgb(0, 41, 77);")
         self.widget_16.setObjectName("widget_16")
@@ -137,7 +137,6 @@ class Ui_MainWindow(object):
         font.setFamily("Roboto")
         font.setPointSize(15)
         font.setBold(True)
-        font.setWeight(75)
         self.label_2.setFont(font)
         self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_2.setObjectName("label_2")
@@ -149,6 +148,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.widget_17.sizePolicy().hasHeightForWidth())
         self.widget_17.setSizePolicy(sizePolicy)
+        self.widget_17.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         self.widget_17.setStyleSheet("\n"
 "color: rgb(0, 41, 77);")
         self.widget_17.setObjectName("widget_17")
@@ -179,7 +179,6 @@ class Ui_MainWindow(object):
         font.setFamily("Roboto")
         font.setPointSize(15)
         font.setBold(True)
-        font.setWeight(75)
         self.label_5.setFont(font)
         self.label_5.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_5.setObjectName("label_5")
@@ -202,6 +201,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.widget_5)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.widget_19 = QtWidgets.QWidget(parent=self.widget_5)
+        self.widget_19.setMaximumSize(QtCore.QSize(16777215, 80))
         self.widget_19.setObjectName("widget_19")
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.widget_19)
         self.horizontalLayout_13.setContentsMargins(30, -1, -1, 15)
@@ -213,7 +213,6 @@ class Ui_MainWindow(object):
         font.setFamily("Roboto")
         font.setPointSize(25)
         font.setBold(True)
-        font.setWeight(75)
         self.btn_home_qna.setFont(font)
         self.btn_home_qna.setStyleSheet("\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -241,7 +240,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setContentsMargins(10, 0, 10, 10)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.widget_7 = QtWidgets.QWidget(parent=self.widget_6)
-        self.widget_7.setMinimumSize(QtCore.QSize(0, 200))
+        self.widget_7.setMinimumSize(QtCore.QSize(0, 300))
         self.widget_7.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -275,7 +274,6 @@ class Ui_MainWindow(object):
         font.setFamily("Roboto")
         font.setPointSize(20)
         font.setBold(True)
-        font.setWeight(75)
         self.prompt_qna.setFont(font)
         self.prompt_qna.setScaledContents(False)
         self.prompt_qna.setWordWrap(True)
@@ -290,8 +288,8 @@ class Ui_MainWindow(object):
 "}")
         self.widget_14.setObjectName("widget_14")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.widget_14)
-        self.horizontalLayout_7.setContentsMargins(30, 30, 30, 30)
-        self.horizontalLayout_7.setSpacing(78)
+        self.horizontalLayout_7.setContentsMargins(30, 100, 30, 30)
+        self.horizontalLayout_7.setSpacing(100)
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_7.addItem(spacerItem5)
@@ -327,8 +325,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.addItem(spacerItem6)
         self.verticalLayout_3.addWidget(self.widget_14)
         self.verticalLayout_7.addWidget(self.widget_8)
-        spacerItem7 = QtWidgets.QSpacerItem(20, 42, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 42, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Preferred)
         self.verticalLayout_7.addItem(spacerItem7)
+        self.verticalLayout_7.setStretch(0, 1)
+        self.verticalLayout_7.setStretch(1, 3)
+        self.verticalLayout_7.setStretch(2, 1)
         self.verticalLayout_4.addWidget(self.widget_5)
         self.stackedWidget.addWidget(self.page_qna)
         self.page_navi = QtWidgets.QWidget()
@@ -340,6 +341,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.widget_9)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.widget_18 = QtWidgets.QWidget(parent=self.widget_9)
+        self.widget_18.setMaximumSize(QtCore.QSize(16777215, 80))
         self.widget_18.setObjectName("widget_18")
         self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.widget_18)
         self.horizontalLayout_12.setContentsMargins(30, -1, -1, 15)
@@ -351,7 +353,6 @@ class Ui_MainWindow(object):
         font.setFamily("Roboto")
         font.setPointSize(25)
         font.setBold(True)
-        font.setWeight(75)
         self.btn_home_navi.setFont(font)
         self.btn_home_navi.setStyleSheet("\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -377,7 +378,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setContentsMargins(10, 0, 10, 10)
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.widget_12 = QtWidgets.QWidget(parent=self.widget_11)
-        self.widget_12.setMinimumSize(QtCore.QSize(0, 200))
+        self.widget_12.setMinimumSize(QtCore.QSize(0, 300))
         self.widget_12.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
 "border-radius:  30px;\n"
@@ -411,7 +412,6 @@ class Ui_MainWindow(object):
         font.setFamily("Roboto")
         font.setPointSize(20)
         font.setBold(True)
-        font.setWeight(75)
         self.prompt_navi.setFont(font)
         self.prompt_navi.setObjectName("prompt_navi")
         self.horizontalLayout_9.addWidget(self.prompt_navi)
@@ -425,21 +425,21 @@ class Ui_MainWindow(object):
 "}")
         self.widget_15.setObjectName("widget_15")
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.widget_15)
-        self.horizontalLayout_10.setContentsMargins(10, 10, 10, 10)
+        self.horizontalLayout_10.setContentsMargins(10, 80, 10, 10)
+        self.horizontalLayout_10.setSpacing(50)
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_10.addItem(spacerItem9)
         self.gridLayout = QtWidgets.QGridLayout()
-        self.gridLayout.setSpacing(10)
+        self.gridLayout.setSpacing(30)
         self.gridLayout.setObjectName("gridLayout")
         self.btn_room_b = QtWidgets.QPushButton(parent=self.widget_15)
-        self.btn_room_b.setMinimumSize(QtCore.QSize(200, 80))
+        self.btn_room_b.setMinimumSize(QtCore.QSize(200, 100))
         self.btn_room_b.setMaximumSize(QtCore.QSize(250, 125))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(20)
+        font.setPointSize(15)
         font.setBold(True)
-        font.setWeight(75)
         self.btn_room_b.setFont(font)
         self.btn_room_b.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
@@ -449,13 +449,12 @@ class Ui_MainWindow(object):
         self.btn_room_b.setObjectName("btn_room_b")
         self.gridLayout.addWidget(self.btn_room_b, 0, 1, 1, 1)
         self.btn_room_a = QtWidgets.QPushButton(parent=self.widget_15)
-        self.btn_room_a.setMinimumSize(QtCore.QSize(200, 80))
+        self.btn_room_a.setMinimumSize(QtCore.QSize(200, 100))
         self.btn_room_a.setMaximumSize(QtCore.QSize(250, 125))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(20)
+        font.setPointSize(15)
         font.setBold(True)
-        font.setWeight(75)
         self.btn_room_a.setFont(font)
         self.btn_room_a.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
@@ -465,13 +464,12 @@ class Ui_MainWindow(object):
         self.btn_room_a.setObjectName("btn_room_a")
         self.gridLayout.addWidget(self.btn_room_a, 0, 0, 1, 1)
         self.btn_room_c = QtWidgets.QPushButton(parent=self.widget_15)
-        self.btn_room_c.setMinimumSize(QtCore.QSize(200, 80))
+        self.btn_room_c.setMinimumSize(QtCore.QSize(200, 100))
         self.btn_room_c.setMaximumSize(QtCore.QSize(250, 125))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(20)
+        font.setPointSize(15)
         font.setBold(True)
-        font.setWeight(75)
         self.btn_room_c.setFont(font)
         self.btn_room_c.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
@@ -481,13 +479,12 @@ class Ui_MainWindow(object):
         self.btn_room_c.setObjectName("btn_room_c")
         self.gridLayout.addWidget(self.btn_room_c, 1, 0, 1, 1)
         self.btn_room_d = QtWidgets.QPushButton(parent=self.widget_15)
-        self.btn_room_d.setMinimumSize(QtCore.QSize(200, 80))
+        self.btn_room_d.setMinimumSize(QtCore.QSize(200, 100))
         self.btn_room_d.setMaximumSize(QtCore.QSize(250, 125))
         font = QtGui.QFont()
         font.setFamily("Roboto")
-        font.setPointSize(20)
+        font.setPointSize(15)
         font.setBold(True)
-        font.setWeight(75)
         self.btn_room_d.setFont(font)
         self.btn_room_d.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 41, 77);\n"
@@ -501,15 +498,18 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.addItem(spacerItem10)
         self.verticalLayout_5.addWidget(self.widget_15)
         self.verticalLayout_8.addWidget(self.widget_10)
-        spacerItem11 = QtWidgets.QSpacerItem(20, 42, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        spacerItem11 = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.MinimumExpanding)
         self.verticalLayout_8.addItem(spacerItem11)
+        self.verticalLayout_8.setStretch(0, 1)
+        self.verticalLayout_8.setStretch(1, 3)
+        self.verticalLayout_8.setStretch(2, 1)
         self.verticalLayout_6.addWidget(self.widget_9)
         self.stackedWidget.addWidget(self.page_navi)
         self.horizontalLayout.addWidget(self.stackedWidget)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
