@@ -70,6 +70,7 @@ class MainWindow(QMainWindow):
         self.SetStyleSheetForbtn("btn_speaker", "#ffffff")  
         self.reset_inactivity_timer()
         self.ui.prompt_qna.setText("Listening...")
+        self.ui.btn_micro.setEnabled(True)
         self.listen_thread = ListenThread()
         self.listen_thread.finished.connect(self.get_response)
         self.listen_thread.finished.connect(lambda: [self.cleanup_thread(self.listen_thread), self.ui.btn_micro.setEnabled(False), self.SetStyleSheetForbtn("btn_micro", "#ffffff"), self.SetStyleSheetForbtn("btn_speaker", "#69ff3d")])
@@ -80,6 +81,7 @@ class MainWindow(QMainWindow):
             self.continue_conversation()
         elif query == "Are you still there?" or query == "Hmm, I didn't quite catch that. Could you please repeat?" or query == "Something went wrong while listening." or query == "Speech service is unavailable.":
             print(f"AIko: {query}")
+            self.ui.prompt_qna.setText(query)
             self.silent_count += 1
             if self.silent_count >= 3:
                 self.ui.prompt_qna.setText("No response detected. Returning to main menu.")
