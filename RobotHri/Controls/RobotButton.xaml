@@ -5,7 +5,7 @@
 
     <Border x:Name="ButtonBorder"
             BackgroundColor="{StaticResource PrimaryDarkBlue}"
-            StrokeShape="RoundRectangle 30"
+            StrokeShape="RoundRectangle 18"
             Stroke="Transparent"
             Padding="0"
             MinimumWidthRequest="{StaticResource ButtonMinWidth}"
@@ -13,10 +13,10 @@
 
 
         <Border.Shadow>
-            <Shadow Brush="#40000000"
-                    Offset="0,4"
-                    Radius="8"
-                    Opacity="0.4" />
+            <Shadow Brush="#2A000000"
+                    Offset="0,6"
+                    Radius="10"
+                    Opacity="0.34" />
         </Border.Shadow>
 
         <Grid>
@@ -24,9 +24,9 @@
             <Image x:Name="ButtonIcon"
                    HorizontalOptions="Start"
                    VerticalOptions="Center"
-                   Margin="16,0,0,0"
-                   WidthRequest="28"
-                   HeightRequest="28"
+                   Margin="14,0,0,0"
+                   WidthRequest="24"
+                   HeightRequest="24"
                    IsVisible="False" />
 
             <!-- Label -->
@@ -37,7 +37,7 @@
                    FontFamily="RobotoBold"
                    FontSize="{StaticResource FontSizeButton}"
                    HorizontalTextAlignment="Center"
-                   Padding="16,0" />
+                   Padding="14,0" />
         </Grid>
     </Border>
 </ContentView>

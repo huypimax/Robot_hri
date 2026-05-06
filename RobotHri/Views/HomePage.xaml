@@ -6,17 +6,48 @@
     x:Class="RobotHri.Views.HomePage"
     Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="*,Auto,*"
-          Padding="20,24">
+    <Grid RowDefinitions="Auto,*,Auto"
+          Padding="24,28">
+
+        <Grid>
+            <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
+                    WidthRequest="180"
+                    HeightRequest="180"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    TranslationX="-60"
+                    TranslationY="-70"
+                    Opacity="0.55"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="90" />
+                </Border.StrokeShape>
+            </Border>
+            <Border BackgroundColor="{StaticResource LightBlue}"
+                    WidthRequest="120"
+                    HeightRequest="120"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    TranslationX="36"
+                    TranslationY="45"
+                    Opacity="0.45"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="60" />
+                </Border.StrokeShape>
+            </Border>
+        </Grid>
+
         <Border Grid.Row="0"
                 Style="{StaticResource CardBorder}"
-                Padding="16">
+                Padding="18"
+                Margin="0,8,0,0">
             <Grid ColumnDefinitions="Auto,*,Auto"
-                  ColumnSpacing="16">
+                  ColumnSpacing="18">
                 <Image Grid.Column="0"
                        Source="robot_reception.png"
-                       WidthRequest="92"
-                       HeightRequest="92"
+                       WidthRequest="96"
+                       HeightRequest="96"
                        Aspect="AspectFit"
                        VerticalOptions="Center" />
                 <Label Grid.Column="1"
@@ -27,44 +58,55 @@
                        HorizontalTextAlignment="Center" />
                 <Image Grid.Column="2"
                        Source="logo_fablab.png"
-                       WidthRequest="72"
-                       HeightRequest="72"
+                       WidthRequest="76"
+                       HeightRequest="76"
                        Aspect="AspectFit"
                        VerticalOptions="Center" />
             </Grid>
         </Border>
 
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="2"
               ColumnDefinitions="*,*"
-              ColumnSpacing="20"
+              ColumnSpacing="24"
               HorizontalOptions="Center"
-              Margin="0,24,0,0">
+              Margin="0,26,0,0">
             <Border Grid.Column="0"
                     Style="{StaticResource CardBorder}"
-                    WidthRequest="130"
-                    HeightRequest="130">
-                <Button Text="YES"
-                        Clicked="OnYesClicked"
-                        FontFamily="RobotoBold"
-                        FontSize="{StaticResource FontSizeTitleMedium}"
-                        TextColor="{StaticResource PrimaryDarkBlue}"
-                        BackgroundColor="Transparent"
-                        CornerRadius="18" />
+                    WidthRequest="150"
+                    HeightRequest="150"
+                    Padding="12">
+                <VerticalStackLayout Spacing="8"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+                    <Label Text="✔"
+                           FontSize="36"
+                           TextColor="{StaticResource PrimaryDarkBlue}"
+                           HorizontalOptions="Center" />
+                    <Button Text="YES"
+                            Clicked="OnYesClicked"
+                            Style="{StaticResource PrimaryButton}"
+                            WidthRequest="112" />
+                </VerticalStackLayout>
             </Border>
 
             <Border Grid.Column="1"
                     Style="{StaticResource CardBorder}"
-                    WidthRequest="130"
-                    HeightRequest="130">
-                <Button Text="NO, THANK YOU!"
-                        Clicked="OnNoClicked"
-                        FontFamily="RobotoBold"
-                        FontSize="{StaticResource FontSizeBody}"
-                        TextColor="{StaticResource TextDark}"
-                        BackgroundColor="Transparent"
-                        CornerRadius="18"
-                        LineBreakMode="WordWrap"
-                        Padding="12,8" />
+                    WidthRequest="150"
+                    HeightRequest="150"
+                    Padding="12">
+                <VerticalStackLayout Spacing="8"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+                    <Label Text="✖"
+                           FontSize="36"
+                           TextColor="{StaticResource DangerRed}"
+                           HorizontalOptions="Center" />
+                    <Button Text="NO, THANK YOU!"
+                            Clicked="OnNoClicked"
+                            Style="{StaticResource SoftButton}"
+                            WidthRequest="118"
+                            LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
             </Border>
         </Grid>
     </Grid>

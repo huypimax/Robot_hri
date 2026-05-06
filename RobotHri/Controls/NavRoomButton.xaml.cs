@@ -70,11 +70,14 @@ namespace RobotHri.Controls
         private void UpdateActiveState(bool active)
         {
             RoomBorder.BackgroundColor = active
-                ? Color.FromArgb("#00294D")
-                : Colors.White;
+                ? Color.FromArgb("#F37021")
+                : Color.FromArgb("#FFF1E8");
+            RoomBorder.Stroke = active
+                ? Color.FromArgb("#F37021")
+                : Color.FromArgb("#33F37021");
             RoomLabel.TextColor = active
                 ? Colors.White
-                : Color.FromArgb("#00294D");
+                : Color.FromArgb("#4A220A");
         }
     }
 }

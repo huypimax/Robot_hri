@@ -10,7 +10,7 @@
     Shell.NavBarIsVisible="False">
 
     <Grid RowDefinitions="Auto,*"
-          BackgroundColor="{StaticResource PageBackground}">
+          Padding="12,8,12,12">
 
         <!-- ── Header ── -->
         <c:HeaderLayout Grid.Row="0"
@@ -25,7 +25,7 @@
         ════════════════════════════════════════════════════════ -->
         <ScrollView Grid.Row="1"
                     IsVisible="{Binding IsDetailVisible, Converter={x:Static vm:InverseBoolConverter.Instance}}">
-            <VerticalStackLayout Spacing="16" Padding="20,16">
+            <VerticalStackLayout Spacing="14" Padding="8,14">
 
                 <c:PromptLabel Text="{Binding PromptText}" />
 
@@ -35,7 +35,7 @@
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectDeviceCommand}" CommandParameter="ifm" />
                     </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="140,*" HeightRequest="110">
+                    <Grid ColumnDefinitions="130,*" HeightRequest="108">
                         <Image Grid.Column="0"
                                Source="lab_ifm.png"
                                Aspect="AspectFill"
@@ -60,7 +60,7 @@
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectDeviceCommand}" CommandParameter="plc" />
                     </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="140,*" HeightRequest="110">
+                    <Grid ColumnDefinitions="130,*" HeightRequest="108">
                         <Image Grid.Column="0"
                                Source="lab_plc.png"
                                Aspect="AspectFill" />
@@ -84,7 +84,7 @@
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectDeviceCommand}" CommandParameter="step" />
                     </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="140,*" HeightRequest="110">
+                    <Grid ColumnDefinitions="130,*" HeightRequest="108">
                         <Image Grid.Column="0"
                                Source="lab_step.png"
                                Aspect="AspectFill" />
@@ -108,7 +108,7 @@
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SelectDeviceCommand}" CommandParameter="hmi" />
                     </Border.GestureRecognizers>
-                    <Grid ColumnDefinitions="140,*" HeightRequest="110">
+                    <Grid ColumnDefinitions="130,*" HeightRequest="108">
                         <Image Grid.Column="0"
                                Source="lab_hmi.png"
                                Aspect="AspectFill" />
@@ -135,7 +135,7 @@
         <Grid Grid.Row="1"
               ColumnDefinitions="2*,3*"
               IsVisible="{Binding IsDetailVisible}"
-              Padding="16,12,16,12">
+              Padding="8,12,8,8">
 
             <!-- ── Left column: device image ── -->
             <Border Grid.Column="0"

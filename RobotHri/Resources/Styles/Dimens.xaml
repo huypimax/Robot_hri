@@ -12,6 +12,7 @@
     <x:Double x:Key="FontSizeLanguage">13</x:Double>
     <x:Double x:Key="FontSizeButton">16</x:Double>
     <x:Double x:Key="FontSizeRoomLabel">15</x:Double>
+    <x:Double x:Key="FontSizeDisplay">32</x:Double>
 
     <!-- Corner radii -->
     <CornerRadius x:Key="CardCornerRadius">20</CornerRadius>
@@ -35,6 +36,9 @@
     <x:Double x:Key="ButtonMinWidth">120</x:Double>
     <x:Double x:Key="ButtonMinHeight">50</x:Double>
     <x:Double x:Key="ButtonHeight">52</x:Double>
+    <x:Double x:Key="PopupWidth">320</x:Double>
+    <x:Double x:Key="PopupButtonWidth">150</x:Double>
+    <x:Double x:Key="PopupButtonHeight">40</x:Double>
 
     <!-- Nav room button -->
     <x:Double x:Key="NavRoomMinWidth">160</x:Double>

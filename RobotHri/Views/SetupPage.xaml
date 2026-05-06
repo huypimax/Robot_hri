@@ -8,15 +8,14 @@
     xmlns:models="clr-namespace:RobotHri.Models"
     x:Class="RobotHri.Views.SetupPage"
     x:DataType="vm:SetupViewModel"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="{StaticResource White}">
+    Shell.NavBarIsVisible="False">
 
     <!--
         Layout: [Sidebar (fixed 260 px) | Divider | Content (fills rest)]
         The sidebar contains the settings nav items and the exit button.
         The content area switches between Route, System, and placeholder panels.
     -->
-    <Grid>
+    <Grid Padding="12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource SetupSidebarWidth}" />
             <ColumnDefinition Width="1" />
@@ -26,7 +25,10 @@
         <!-- ════════════════════════════════════════════════
              LEFT SIDEBAR
         ════════════════════════════════════════════════ -->
-        <Grid Grid.Column="0"
+        <Border Grid.Column="0"
+                Style="{StaticResource CardBorder}"
+                Padding="0">
+            <Grid
               RowDefinitions="Auto,*,Auto,Auto"
               BackgroundColor="{StaticResource White}">
 
@@ -121,18 +123,22 @@
                            HeightRequest="{StaticResource ButtonHeight}"
                            Margin="{StaticResource SetupSidebarPadding}" />
 
-        </Grid>
+            </Grid>
+        </Border>
 
         <!-- ════ Vertical divider ════ -->
         <BoxView Grid.Column="1"
                  BackgroundColor="{StaticResource LightBlue}"
-                 VerticalOptions="Fill" />
+                 VerticalOptions="Fill"
+                 Margin="8,0" />
 
         <!-- ════════════════════════════════════════════════
              RIGHT CONTENT AREA
         ════════════════════════════════════════════════ -->
-        <ScrollView Grid.Column="2"
-                    BackgroundColor="{StaticResource PageBackground}">
+        <Border Grid.Column="2"
+                Style="{StaticResource CardBorder}"
+                Padding="0">
+            <ScrollView BackgroundColor="Transparent">
             <VerticalStackLayout Padding="{StaticResource SetupContentPadding}"
                                  Spacing="0">
 
@@ -416,7 +422,7 @@
                                                             Padding="8,3">
                                                         <Label Text="Chỉnh sửa"
                                                                TextColor="{StaticResource TextOnPrimary}"
-                                                               FontSize="11"
+                                                               FontSize="{StaticResource FontSizeCaption}"
                                                                HorizontalTextAlignment="Center" />
                                                     </Border>
                                                     <Border BackgroundColor="{StaticResource DangerRed}"
@@ -425,7 +431,7 @@
                                                             Padding="8,3">
                                                         <Label Text="Xóa"
                                                                TextColor="{StaticResource TextOnPrimary}"
-                                                               FontSize="11"
+                                                               FontSize="{StaticResource FontSizeCaption}"
                                                                HorizontalTextAlignment="Center" />
                                                     </Border>
                                                 </VerticalStackLayout>
@@ -545,14 +551,14 @@
                                     <RadioButton Value="B1"
                                                  IsChecked="{Binding IsMapB1Selected, Mode=TwoWay}"
                                                  GroupName="MapSelection" />
-                                    <Label Text="Map B1" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black" />
+                                    <Label Text="Map B1" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource TextDark}" />
                                 </HorizontalStackLayout>
 
                                 <HorizontalStackLayout Spacing="4" VerticalOptions="Center">
                                     <RadioButton Value="B2"
                                                  IsChecked="{Binding IsMapB2Selected, Mode=TwoWay}"
                                                  GroupName="MapSelection" />
-                                    <Label Text="Map B2" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black" />
+                                    <Label Text="Map B2" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource TextDark}" />
                                 </HorizontalStackLayout>
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
@@ -747,7 +753,7 @@
                                      Spacing="12"
                                      Margin="0,60,0,0">
                     <Label Text="🚧"
-                           FontSize="48"
+                           FontSize="{StaticResource FontSizeDisplay}"
                            HorizontalOptions="Center" />
                     <Label Text="{Binding ComingSoonText}"
                            Style="{StaticResource SubtitleLabel}"
@@ -756,7 +762,8 @@
                 </VerticalStackLayout>
 
             </VerticalStackLayout>
-        </ScrollView>
+            </ScrollView>
+        </Border>
 
     </Grid>
 </controls:BaseContentPage>

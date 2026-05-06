@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RobotHri.Controls.HeaderLayout">
 
-    <Grid BackgroundColor="{StaticResource PrimaryDarkBlue}"
+    <Grid Background="{StaticResource AppPageBackgroundBrush}"
           HeightRequest="{StaticResource HeaderHeight}"
           Padding="{StaticResource HeaderPadding}">
 
@@ -30,11 +30,11 @@
             </Border.GestureRecognizers>
             <HorizontalStackLayout Spacing="{StaticResource SmallSpacing}">
                 <Label Text="←"
-                       TextColor="White"
+                       TextColor="{StaticResource PrimaryDarkBlue}"
                        FontSize="{StaticResource FontSizeTitleLarge}"
                        VerticalOptions="Center" />
                 <Label x:Name="BackLabel"
-                       TextColor="White"
+                       TextColor="{StaticResource PrimaryDarkBlue}"
                        FontFamily="RobotoRegular"
                        FontSize="{StaticResource FontSizeBody}"
                        VerticalOptions="Center" />
@@ -46,7 +46,7 @@
                Grid.Column="1"
                HorizontalOptions="Center"
                VerticalOptions="Center"
-               TextColor="White"
+               TextColor="{StaticResource PrimaryDarkBlue}"
                FontFamily="RobotoBold"
                FontSize="{StaticResource FontSizeHeaderTitle}"
                HorizontalTextAlignment="Center" />
@@ -54,11 +54,11 @@
         <!-- Language button (right) -->
         <Border x:Name="LanguageButton"
                 Grid.Column="2"
-                BackgroundColor="{StaticResource OverlayLight}"
+                BackgroundColor="{StaticResource PrimaryDarkBlue}"
                 Padding="12,6"
                 VerticalOptions="Center">
             <Border.Stroke>
-                <SolidColorBrush Color="{StaticResource BorderLight}" />
+                <SolidColorBrush Color="#33FFFFFF" />
             </Border.Stroke>
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="20" />
@@ -68,7 +68,7 @@
                 <TapGestureRecognizer x:Name="LanguageTap" />
             </Border.GestureRecognizers>
             <Label x:Name="LanguageLabel"
-                   TextColor="White"
+                   TextColor="{StaticResource TextOnPrimary}"
                    FontFamily="RobotoBold"
                    FontSize="{StaticResource FontSizeLanguage}" />
         </Border>

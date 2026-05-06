@@ -5,9 +5,12 @@
     <!-- ======== Brand Colors ======== -->
     <!-- Changed to Thai Duong orange theme -->
     <Color x:Key="PrimaryDarkBlue">#F37021</Color>
+    <Color x:Key="PrimaryDarkBlueSoft">#FFF1E8</Color>
     <Color x:Key="LightBlue">#FFE5D9</Color>
     <Color x:Key="HoverBg">#FFF0E6</Color>
-    <Color x:Key="PageBackground">#FFF7F2</Color>
+    <Color x:Key="PageBackground">#FFFDFB</Color>
+    <Color x:Key="PageBackgroundTop">#FFFFFFFF</Color>
+    <Color x:Key="PageBackgroundBottom">#FFF9F6</Color>
     <Color x:Key="White">#FFFFFF</Color>
     <Color x:Key="SuccessGreen">#2ECC71</Color>
     <Color x:Key="DangerRed">#AC0000</Color>
@@ -23,12 +26,20 @@
     <Color x:Key="ShadowColor">#40000000</Color>
     <Color x:Key="OverlayLight">#1AFFFFFF</Color>
     <Color x:Key="BorderLight">#40FFFFFF</Color>
+    <Color x:Key="CardBorderColor">#33F37021</Color>
 
     <!-- Brushes for shadows and borders -->
     <SolidColorBrush x:Key="CardShadowBrush" Color="#20000000" />
     <SolidColorBrush x:Key="ButtonShadowBrush" Color="#40000000" />
     <SolidColorBrush x:Key="OverlayLightBrush" Color="{StaticResource OverlayLight}" />
     <SolidColorBrush x:Key="BorderLightBrush" Color="{StaticResource BorderLight}" />
+    <SolidColorBrush x:Key="CardBorderBrush" Color="{StaticResource CardBorderColor}" />
+
+    <LinearGradientBrush x:Key="AppPageBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource PageBackgroundTop}" Offset="0.0" />
+        <GradientStop Color="{StaticResource PageBackground}" Offset="0.45" />
+        <GradientStop Color="{StaticResource PageBackgroundBottom}" Offset="1.0" />
+    </LinearGradientBrush>
 
     <!-- Time-settings tab accent colors -->
     <Color x:Key="TimeTabWaitingColor">#F0A800</Color>

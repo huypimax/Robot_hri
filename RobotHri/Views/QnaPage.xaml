@@ -10,7 +10,7 @@
     Shell.NavBarIsVisible="False">
 
     <Grid RowDefinitions="Auto,*,Auto,Auto"
-          BackgroundColor="{StaticResource PageBackground}">
+          Padding="12,8,12,10">
 
         <!-- Header -->
         <c:HeaderLayout Grid.Row="0"
@@ -22,19 +22,22 @@
 
         <!-- Robot avatar + Response area -->
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Spacing="20"
-                                 Padding="24,24,24,12"
+            <VerticalStackLayout Spacing="18"
+                                 Padding="12,18,12,12"
                                  HorizontalOptions="Center">
 
                 <!-- Robot face placeholder -->
                 <Border Style="{StaticResource CardBorder}"
                         HorizontalOptions="Center"
-                        WidthRequest="180"
-                        HeightRequest="180">
+                        WidthRequest="220"
+                        HeightRequest="220"
+                        Padding="20">
                     <VerticalStackLayout HorizontalOptions="Center"
                                         VerticalOptions="Center">
-                        <Label Text="🤖"
-                               FontSize="80"
+                        <Image Source="robot_reception.png"
+                               WidthRequest="120"
+                               HeightRequest="120"
+                               Aspect="AspectFit"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
                         <!-- Listening indicator -->
@@ -56,10 +59,10 @@
         <!-- Mic button -->
         <Border Grid.Row="2"
                 HorizontalOptions="Center"
-                Margin="0,0,0,16"
-                WidthRequest="80"
-                HeightRequest="80"
-                StrokeShape="RoundRectangle 40"
+                Margin="0,4,0,16"
+                WidthRequest="84"
+                HeightRequest="84"
+                StrokeShape="RoundRectangle 42"
                 Stroke="Transparent">
             <Border.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ToggleMicCommand}" />
@@ -77,11 +80,11 @@
                 </DataTrigger>
             </Border.Triggers>
             <Border.Shadow>
-                <Shadow Brush="#40000000" Offset="0,4" Radius="10" Opacity="0.5" />
+                <Shadow Brush="#33000000" Offset="0,6" Radius="12" Opacity="0.4" />
             </Border.Shadow>
             <Label FontFamily="RobotoBold"
-                   FontSize="32"
-                   TextColor="White"
+                   FontSize="{StaticResource FontSizeDisplay}"
+                   TextColor="{StaticResource TextOnPrimary}"
                    HorizontalOptions="Center"
                    VerticalOptions="Center">
                 <Label.Triggers>
@@ -105,7 +108,7 @@
                                Spacing="16"
                                Margin="0,0,0,24">
             <Label Text="🔊"
-                   FontSize="18"
+                   FontSize="{StaticResource FontSizeTitleMedium}"
                    VerticalOptions="Center" />
             <Label Text="AIko is ready"
                    Style="{StaticResource SubtitleLabel}"

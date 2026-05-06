@@ -9,7 +9,8 @@
     x:DataType="vm:MainViewModel"
     Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,Auto,*,Auto">
+    <Grid RowDefinitions="Auto,Auto,*,Auto"
+          Padding="12,8,12,12">
 
         <!-- Header -->
         <c:HeaderLayout Grid.Row="0"
@@ -21,14 +22,16 @@
         <!-- Welcome banner -->
         <Border Grid.Row="1"
                 Style="{StaticResource CardBorder}"
-                Margin="20,14,20,0">
+                Margin="8,14,8,0">
             <Grid ColumnDefinitions="Auto,*"
-                  Padding="{StaticResource SmallSpacing}">
-                <Label Grid.Column="0"
-                       Text="🤖"
-                       FontSize="{StaticResource FontSizeTitle}"
+                  Padding="6">
+                <Image Grid.Column="0"
+                       Source="robot_reception.png"
+                       WidthRequest="34"
+                       HeightRequest="34"
+                       Margin="0,0,12,0"
                        VerticalOptions="Center"
-                       Margin="0,0,16,0" />
+                       Aspect="AspectFit" />
                 <Label Grid.Column="1"
                        Text="{Binding WelcomeText}"
                        Style="{StaticResource SubtitleLabel}"
@@ -42,8 +45,8 @@
         <Grid Grid.Row="2"
               ColumnDefinitions="*,*"
               RowDefinitions="*"
-              ColumnSpacing="14"
-              Padding="20,14,20,0">
+              ColumnSpacing="16"
+              Padding="8,14,8,0">
 
             <!-- Navigation -->
             <Border Grid.Column="0"
@@ -53,14 +56,25 @@
                 </Border.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center"
                                      HorizontalOptions="Center"
-                                     Spacing="10"
+                                     Spacing="16"
                                      Padding="{StaticResource CardPadding}">
-                    <Label Text="🗺️"
-                           FontSize="44"
-                           HorizontalOptions="Center" />
+                    <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
+                            WidthRequest="92"
+                            HeightRequest="92"
+                            StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="46" />
+                        </Border.StrokeShape>
+                        <Image Source="icon_nav.png"
+                               WidthRequest="54"
+                               HeightRequest="54"
+                               Aspect="AspectFit"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
                     <Label Text="{Binding BtnNavigation}"
                            Style="{StaticResource TitleLabel}"
-                           FontSize="{StaticResource FontSizeTitleMedium}"
+                           FontSize="{StaticResource FontSizeTitleLarge}"
                            HorizontalOptions="Center"
                            HorizontalTextAlignment="Center" />
                 </VerticalStackLayout>
@@ -74,14 +88,23 @@
                 </Border.GestureRecognizers>
                 <VerticalStackLayout VerticalOptions="Center"
                                      HorizontalOptions="Center"
-                                     Spacing="10"
+                                     Spacing="16"
                                      Padding="{StaticResource CardPadding}">
-                    <Label Text="📦"
-                           FontSize="44"
-                           HorizontalOptions="Center" />
+                    <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
+                            WidthRequest="92"
+                            HeightRequest="92"
+                            StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="46" />
+                        </Border.StrokeShape>
+                        <Label Text="📦"
+                               FontSize="40"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
                     <Label Text="{Binding BtnDelivery}"
                            Style="{StaticResource TitleLabel}"
-                           FontSize="{StaticResource FontSizeTitleMedium}"
+                           FontSize="{StaticResource FontSizeTitleLarge}"
                            HorizontalOptions="Center"
                            HorizontalTextAlignment="Center" />
                 </VerticalStackLayout>

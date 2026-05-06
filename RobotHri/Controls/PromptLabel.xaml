@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RobotHri.Controls.PromptLabel">
 
-    <Border BackgroundColor="{StaticResource LightBlue}"
-            Stroke="Transparent"
+    <Border BackgroundColor="{StaticResource White}"
+            Stroke="{StaticResource CardBorderBrush}"
+            StrokeThickness="1"
             Padding="{StaticResource PromptPadding}">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
@@ -19,7 +20,7 @@
         <Label x:Name="PromptText"
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center"
-               TextColor="{StaticResource PrimaryDarkBlue}"
+               TextColor="{StaticResource TextDark}"
                FontFamily="RobotoRegular"
                FontSize="{StaticResource FontSizeTitleMedium}" />
     </Border>
