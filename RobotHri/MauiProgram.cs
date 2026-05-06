@@ -49,6 +49,7 @@ namespace RobotHri
             builder.Services.AddTransient<SetupViewModel>();
 
             // ── Views / Pages ─────────────────────────────────────
+            builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<QnaPage>();
             builder.Services.AddTransient<NaviPage>();

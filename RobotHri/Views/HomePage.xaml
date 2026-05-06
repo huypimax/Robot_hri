@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RobotHri.Controls.Base"
+    x:Class="RobotHri.Views.HomePage"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="*,Auto,*"
+          Padding="20,24">
+        <Border Grid.Row="0"
+                Style="{StaticResource CardBorder}"
+                Padding="16">
+            <Grid ColumnDefinitions="Auto,*,Auto"
+                  ColumnSpacing="16">
+                <Image Grid.Column="0"
+                       Source="robot_reception.png"
+                       WidthRequest="92"
+                       HeightRequest="92"
+                       Aspect="AspectFit"
+                       VerticalOptions="Center" />
+                <Label Grid.Column="1"
+                       Text="Do you need me to transport the goods for you?"
+                       Style="{StaticResource TitleLabel}"
+                       FontSize="{StaticResource FontSizeTitleMedium}"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+                <Image Grid.Column="2"
+                       Source="logo_fablab.png"
+                       WidthRequest="72"
+                       HeightRequest="72"
+                       Aspect="AspectFit"
+                       VerticalOptions="Center" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*"
+              ColumnSpacing="20"
+              HorizontalOptions="Center"
+              Margin="0,24,0,0">
+            <Border Grid.Column="0"
+                    Style="{StaticResource CardBorder}"
+                    WidthRequest="130"
+                    HeightRequest="130">
+                <Button Text="YES"
+                        Clicked="OnYesClicked"
+                        FontFamily="RobotoBold"
+                        FontSize="{StaticResource FontSizeTitleMedium}"
+                        TextColor="{StaticResource PrimaryDarkBlue}"
+                        BackgroundColor="Transparent"
+                        CornerRadius="18" />
+            </Border>
+
+            <Border Grid.Column="1"
+                    Style="{StaticResource CardBorder}"
+                    WidthRequest="130"
+                    HeightRequest="130">
+                <Button Text="NO, THANK YOU!"
+                        Clicked="OnNoClicked"
+                        FontFamily="RobotoBold"
+                        FontSize="{StaticResource FontSizeBody}"
+                        TextColor="{StaticResource TextDark}"
+                        BackgroundColor="Transparent"
+                        CornerRadius="18"
+                        LineBreakMode="WordWrap"
+                        Padding="12,8" />
+            </Border>
+        </Grid>
+    </Grid>
+</controls:BaseContentPage>

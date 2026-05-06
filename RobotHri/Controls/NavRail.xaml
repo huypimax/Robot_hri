@@ -45,7 +45,8 @@
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                     BackgroundColor="Transparent"
                     Stroke="Transparent"
-                    Padding="{StaticResource NavRailItemPadding}">
+                    Padding="{StaticResource NavRailItemPadding}"
+                    IsVisible="False">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer x:Name="QnaTap" />
                 </Border.GestureRecognizers>
@@ -93,7 +94,8 @@
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                     BackgroundColor="Transparent"
                     Stroke="Transparent"
-                    Padding="{StaticResource NavRailItemPadding}">
+                    Padding="{StaticResource NavRailItemPadding}"
+                    IsVisible="False">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer x:Name="LabTap" />
                 </Border.GestureRecognizers>
@@ -141,7 +143,8 @@
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                     BackgroundColor="Transparent"
                     Stroke="Transparent"
-                    Padding="{StaticResource NavRailItemPadding}">
+                    Padding="{StaticResource NavRailItemPadding}"
+                    IsVisible="False">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer x:Name="CheckinTap" />
                 </Border.GestureRecognizers>
@@ -158,6 +161,30 @@
                            FontSize="{StaticResource FontSizeBody}"
                            VerticalOptions="Center"
                            IsVisible="False" />
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Setup -->
+            <Border HeightRequest="{StaticResource NavRailItemHeight}"
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent"
+                    Padding="{StaticResource NavRailItemPadding}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentView}}, Path=BindingContext.NavigateSetupCommand}" />
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
+                                       VerticalOptions="Center">
+                    <Label Text="⚙️"
+                           FontSize="{StaticResource NavRailIconSize}"
+                           WidthRequest="{StaticResource NavRailIconWidth}"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Center" />
+                    <Label Text="Cài đặt"
+                           TextColor="{StaticResource TextOnPrimary}"
+                           FontFamily="RobotoRegular"
+                           FontSize="{StaticResource FontSizeBody}"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding Source={x:Reference MainText}, Path=IsVisible}" />
                 </HorizontalStackLayout>
             </Border>
 

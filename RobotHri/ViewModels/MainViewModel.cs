@@ -61,6 +61,7 @@ namespace RobotHri.ViewModels
         public Command NavigateLabCommand { get; }
         public Command NavigateDeliCommand { get; }
         public Command NavigateCheckinCommand { get; }
+        public Command NavigateSetupCommand { get; }
 
         public MainViewModel(ILocalizationService localization) : base(localization)
         {
@@ -71,6 +72,7 @@ namespace RobotHri.ViewModels
             NavigateDeliCommand   = new Command(async () => await NavigateSafeAsync("//deli"));
             NavigateCheckinCommand = new Command(async () =>
                 await Shell.Current.DisplayAlert("Check-in", "Coming soon", "OK"));
+            NavigateSetupCommand  = new Command(async () => await NavigateSafeAsync("//setup"));
 
             RefreshLocalizedProperties();
         }
