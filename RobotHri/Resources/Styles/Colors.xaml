@@ -7,6 +7,9 @@
     <Color x:Key="LightBlue">#D8E5FE</Color>
     <Color x:Key="HoverBg">#F0F6FF</Color>
     <Color x:Key="PageBackground">#EEF4FF</Color>
+    <Color x:Key="PrimaryDarkBlueSoft">#EAF0F6</Color>
+    <Color x:Key="PageBackgroundTop">#FFFFFF</Color>
+    <Color x:Key="PageBackgroundBottom">#EEF2F6</Color>
     <Color x:Key="White">#FFFFFF</Color>
     <Color x:Key="SuccessGreen">#2ECC71</Color>
     <Color x:Key="DangerRed">#AC0000</Color>
@@ -16,18 +19,26 @@
     <Color x:Key="TextDark">#00294D</Color>
     <Color x:Key="TextMuted">#6B7A8D</Color>
     <Color x:Key="TextOnPrimary">#FFFFFF</Color>
-    <Color x:Key="TextColor">#00294D</Color>
+    <Color x:Key="TextColor">#1F2A37</Color>
 
     <!-- ======== Shadow / Overlay ======== -->
     <Color x:Key="ShadowColor">#40000000</Color>
     <Color x:Key="OverlayLight">#1AFFFFFF</Color>
     <Color x:Key="BorderLight">#40FFFFFF</Color>
+    <Color x:Key="CardBorderColor">#1F00294D</Color>
 
     <!-- Brushes for shadows and borders -->
-    <SolidColorBrush x:Key="CardShadowBrush" Color="#20000000" />
-    <SolidColorBrush x:Key="ButtonShadowBrush" Color="#40000000" />
+    <SolidColorBrush x:Key="CardShadowBrush" Color="#1A00294D" />
+    <SolidColorBrush x:Key="ButtonShadowBrush" Color="#3300294D" />
     <SolidColorBrush x:Key="OverlayLightBrush" Color="{StaticResource OverlayLight}" />
     <SolidColorBrush x:Key="BorderLightBrush" Color="{StaticResource BorderLight}" />
+    <SolidColorBrush x:Key="CardBorderBrush" Color="{StaticResource CardBorderColor}" />
+
+    <LinearGradientBrush x:Key="AppPageBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource PageBackgroundTop}" Offset="0.0" />
+        <GradientStop Color="{StaticResource PageBackground}" Offset="0.45" />
+        <GradientStop Color="{StaticResource PageBackgroundBottom}" Offset="1.0" />
+    </LinearGradientBrush>
 
     <!-- Time-settings tab accent colors -->
     <Color x:Key="TimeTabWaitingColor">#F0A800</Color>

@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RobotHri.Controls.LoadingPopupView">
     <Border StrokeShape="RoundRectangle 10"
-            Stroke="Transparent"
-            BackgroundColor="{StaticResource PageBackground}"
+            Stroke="{StaticResource CardBorderBrush}"
+            StrokeThickness="1"
+            BackgroundColor="{StaticResource White}"
             HorizontalOptions="Center"
             VerticalOptions="Center"
-            WidthRequest="300"
+            WidthRequest="{StaticResource PopupWidth}"
             Padding="20">
         <VerticalStackLayout Spacing="15">
             <ActivityIndicator IsRunning="True"
@@ -16,16 +17,16 @@
             <Label Text="{Binding LoadingMessage}"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
-                   FontSize="Medium"
+                   FontSize="{StaticResource FontSizeSubtitle}"
                    TextColor="{StaticResource TextColor}" />
             <Button Text="Cancel"
                     Command="{Binding CancelNavigationCommand}"
                     HorizontalOptions="Center"
-                    WidthRequest="150"
-                    HeightRequest="40"
+                    WidthRequest="{StaticResource PopupButtonWidth}"
+                    HeightRequest="{StaticResource PopupButtonHeight}"
                     BackgroundColor="{StaticResource Primary}"
                     TextColor="{StaticResource White}"
-                    FontSize="16"
+                    FontSize="{StaticResource FontSizeButton}"
                     FontAttributes="Bold" />
         </VerticalStackLayout>
     </Border>

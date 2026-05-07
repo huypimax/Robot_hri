@@ -4,35 +4,36 @@
              x:Class="RobotHri.Controls.NotificationPopupView">
     <Border x:Name="PopupBorder"
             StrokeShape="RoundRectangle 15"
-            Stroke="Transparent"
-            BackgroundColor="{StaticResource PageBackground}"
+            Stroke="{StaticResource CardBorderBrush}"
+            StrokeThickness="1"
+            BackgroundColor="{StaticResource White}"
             HorizontalOptions="Center"
             VerticalOptions="Center"
-            MinimumWidthRequest="320"
+            MinimumWidthRequest="{StaticResource PopupWidth}"
             MaximumWidthRequest="600"
             Padding="25">
         <VerticalStackLayout Spacing="20">
             <Label Text="{Binding NotificationTitle}"
                    HorizontalOptions="Center"
-                   FontSize="22"
+                   FontSize="{StaticResource FontSizeTitleLarge}"
                    FontAttributes="Bold"
                    TextColor="{StaticResource TextColor}" />
             <ScrollView MaximumHeightRequest="400">
                 <Label Text="{Binding NotificationMessage}"
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"
-                       FontSize="16"
+                       FontSize="{StaticResource FontSizeSubtitle}"
                        TextColor="{StaticResource TextColor}"
                        LineHeight="1.2" />
             </ScrollView>
             <Button Text="{Binding OkButtonText}"
                     Command="{Binding DismissNotificationCommand}"
                     HorizontalOptions="Center"
-                    WidthRequest="150"
-                    HeightRequest="40"
+                    WidthRequest="{StaticResource PopupButtonWidth}"
+                    HeightRequest="{StaticResource PopupButtonHeight}"
                     BackgroundColor="{StaticResource Primary}"
                     TextColor="{StaticResource White}"
-                    FontSize="16"
+                    FontSize="{StaticResource FontSizeButton}"
                     FontAttributes="Bold"/>
         </VerticalStackLayout>
     </Border>

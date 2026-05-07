@@ -4,9 +4,9 @@
              x:Class="RobotHri.Controls.NavRoomButton">
 
     <Border x:Name="RoomBorder"
-            BackgroundColor="White"
-            Stroke="{StaticResource PrimaryDarkBlue}"
-            StrokeThickness="{StaticResource NavRoomStrokeThickness}"
+            BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
+            Stroke="{StaticResource CardBorderBrush}"
+            StrokeThickness="1"
             Padding="{StaticResource NavRoomPadding}"
             MinimumWidthRequest="{StaticResource NavRoomMinWidth}"
             MinimumHeightRequest="{StaticResource NavRoomMinHeight}">

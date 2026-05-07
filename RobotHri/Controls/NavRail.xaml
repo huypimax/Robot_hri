@@ -3,15 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RobotHri.Controls.NavRail">
 
-    <Grid x:Name="RailContainer"
-          BackgroundColor="{StaticResource PrimaryDarkBlue}"
+    <Border BackgroundColor="{StaticResource PrimaryDarkBlue}"
+            Stroke="#22FFFFFF"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 0,18,18,0"
+            Shadow="{Shadow Brush=#22000000, Offset='2,0', Radius=8, Opacity=0.35}">
+        <Grid x:Name="RailContainer"
+          BackgroundColor="Transparent"
           WidthRequest="{StaticResource NavRailCollapsedWidth}"
           VerticalOptions="Fill"
           IsClippedToBounds="True">
 
         <VerticalStackLayout Spacing="0" VerticalOptions="Start">
 
-            <!-- ☰  Main — toggles the rail open/closed; label reads "Main" -->
+            <!-- Menu toggle -->
             <Border HeightRequest="{StaticResource HeaderHeight}"
                     BackgroundColor="Transparent"
                     Stroke="Transparent"
@@ -21,13 +26,14 @@
                 </Border.GestureRecognizers>
                 <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
                                        VerticalOptions="Center">
-                    <Label Text="☰"
+                    <Label Text="&#xE700;"
+                           FontFamily="Segoe Fluent Icons"
                            FontSize="{StaticResource FontSizeTitleLarge}"
                            TextColor="{StaticResource TextOnPrimary}"
                            WidthRequest="{StaticResource NavRailIconWidth}"
                            HorizontalTextAlignment="Center"
                            VerticalOptions="Center" />
-                    <Label x:Name="MainText"
+                    <Label x:Name="MenuText"
                            TextColor="{StaticResource TextOnPrimary}"
                            FontFamily="RobotoBold"
                            FontSize="{StaticResource FontSizeHeaderTitle}"
@@ -36,27 +42,53 @@
                 </HorizontalStackLayout>
             </Border>
 
-            <!-- Divider -->
-            <BoxView HeightRequest="1"
-                     Color="{StaticResource BorderLight}"
-                     Margin="{StaticResource HeaderButtonPadding}" />
+            <!-- Setup -->
+            <Border HeightRequest="{StaticResource NavRailItemHeight}"
+            BackgroundColor="Transparent"
+            Stroke="Transparent"
+            Padding="{StaticResource NavRailItemPadding}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="SetupTap" />
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
+                        VerticalOptions="Center">
+                <Label Text="&#xE713;"
+                   FontFamily="Segoe Fluent Icons"
+                   FontSize="{StaticResource NavRailIconSize}"
+                   WidthRequest="{StaticResource NavRailIconWidth}"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center" />
+                <Label x:Name="SetupText"
+                   TextColor="{StaticResource TextOnPrimary}"
+                   FontFamily="RobotoRegular"
+                   FontSize="{StaticResource FontSizeBody}"
+                   VerticalOptions="Center"
+                   IsVisible="False" />
+                    </HorizontalStackLayout>
+                </Border>
 
-            <!-- QnA -->
+                <!-- Divider -->
+            <BoxView HeightRequest="1"
+                Color="{StaticResource BorderLight}"
+                Margin="{StaticResource HeaderButtonPadding}" />
+
+                <!-- Main -->
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                     BackgroundColor="Transparent"
                     Stroke="Transparent"
                     Padding="{StaticResource NavRailItemPadding}">
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer x:Name="QnaTap" />
+                    <TapGestureRecognizer x:Name="MainTap" />
                 </Border.GestureRecognizers>
                 <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
                                        VerticalOptions="Center">
-                    <Label Text="🎤"
+                    <Label Text="&#xE71D;"
+                           FontFamily="Segoe Fluent Icons"
                            FontSize="{StaticResource NavRailIconSize}"
                            WidthRequest="{StaticResource NavRailIconWidth}"
                            HorizontalTextAlignment="Center"
                            VerticalOptions="Center" />
-                    <Label x:Name="QnaText"
+                    <Label x:Name="MainPageText"
                            TextColor="{StaticResource TextOnPrimary}"
                            FontFamily="RobotoRegular"
                            FontSize="{StaticResource FontSizeBody}"
@@ -65,7 +97,32 @@
                 </HorizontalStackLayout>
             </Border>
 
-            <!-- Navigation -->
+             <!-- QnA -->
+            <Border HeightRequest="{StaticResource NavRailItemHeight}"
+                BackgroundColor="Transparent"
+                Stroke="Transparent"
+                Padding="{StaticResource NavRailItemPadding}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="QnaTap" />
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
+                        VerticalOptions="Center">
+                        <Label Text="&#xE8F2;"
+                        FontFamily="Segoe Fluent Icons"
+                        FontSize="{StaticResource NavRailIconSize}"
+                        WidthRequest="{StaticResource NavRailIconWidth}"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center" />
+                    <Label x:Name="QnaText"
+                        TextColor="{StaticResource TextOnPrimary}"
+                        FontFamily="RobotoRegular"
+                        FontSize="{StaticResource FontSizeBody}"
+                        VerticalOptions="Center"
+                        IsVisible="False" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- Navigation -->
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                     BackgroundColor="Transparent"
                     Stroke="Transparent"
@@ -75,7 +132,8 @@
                 </Border.GestureRecognizers>
                 <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
                                        VerticalOptions="Center">
-                    <Label Text="🗺️"
+                    <Label Text="&#xE707;"
+                           FontFamily="Segoe Fluent Icons"
                            FontSize="{StaticResource NavRailIconSize}"
                            WidthRequest="{StaticResource NavRailIconWidth}"
                            HorizontalTextAlignment="Center"
@@ -89,79 +147,57 @@
                 </HorizontalStackLayout>
             </Border>
 
-            <!-- Lab -->
+             <!-- Lab -->
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
-                    BackgroundColor="Transparent"
-                    Stroke="Transparent"
-                    Padding="{StaticResource NavRailItemPadding}">
+                BackgroundColor="Transparent"
+                Stroke="Transparent"
+                Padding="{StaticResource NavRailItemPadding}">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer x:Name="LabTap" />
                 </Border.GestureRecognizers>
                 <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
-                                       VerticalOptions="Center">
-                    <Label Text="🔬"
-                           FontSize="{StaticResource NavRailIconSize}"
-                           WidthRequest="{StaticResource NavRailIconWidth}"
-                           HorizontalTextAlignment="Center"
-                           VerticalOptions="Center" />
-                    <Label x:Name="LabText"
-                           TextColor="{StaticResource TextOnPrimary}"
-                           FontFamily="RobotoRegular"
-                           FontSize="{StaticResource FontSizeBody}"
-                           VerticalOptions="Center"
-                           IsVisible="False" />
-                </HorizontalStackLayout>
+                VerticalOptions="Center">
+                <Label Text="&#xE8F1;"
+                FontFamily="Segoe Fluent Icons"
+                FontSize="{StaticResource NavRailIconSize}"
+                WidthRequest="{StaticResource NavRailIconWidth}"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="Center" />
+                <Label x:Name="LabText"
+                TextColor="{StaticResource TextOnPrimary}"
+                FontFamily="RobotoRegular"
+                FontSize="{StaticResource FontSizeBody}"
+                VerticalOptions="Center"
+                IsVisible="False" />
+                    </HorizontalStackLayout>
             </Border>
 
             <!-- Delivery -->
-            <Border HeightRequest="{StaticResource NavRailItemHeight}"
-                    BackgroundColor="Transparent"
-                    Stroke="Transparent"
-                    Padding="{StaticResource NavRailItemPadding}">
-                <Border.GestureRecognizers>
-                    <TapGestureRecognizer x:Name="DeliTap" />
-                </Border.GestureRecognizers>
-                <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
-                                       VerticalOptions="Center">
-                    <Label Text="📦"
-                           FontSize="{StaticResource NavRailIconSize}"
-                           WidthRequest="{StaticResource NavRailIconWidth}"
-                           HorizontalTextAlignment="Center"
-                           VerticalOptions="Center" />
-                    <Label x:Name="DeliText"
-                           TextColor="{StaticResource TextOnPrimary}"
-                           FontFamily="RobotoRegular"
-                           FontSize="{StaticResource FontSizeBody}"
-                           VerticalOptions="Center"
-                           IsVisible="False" />
-                </HorizontalStackLayout>
-            </Border>
-
-            <!-- Check-in -->
-            <Border HeightRequest="{StaticResource NavRailItemHeight}"
-                    BackgroundColor="Transparent"
-                    Stroke="Transparent"
-                    Padding="{StaticResource NavRailItemPadding}">
-                <Border.GestureRecognizers>
-                    <TapGestureRecognizer x:Name="CheckinTap" />
-                </Border.GestureRecognizers>
-                <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
-                                       VerticalOptions="Center">
-                    <Label Text="🏷️"
-                           FontSize="{StaticResource NavRailIconSize}"
-                           WidthRequest="{StaticResource NavRailIconWidth}"
-                           HorizontalTextAlignment="Center"
-                           VerticalOptions="Center" />
-                    <Label x:Name="CheckinText"
-                           TextColor="{StaticResource TextOnPrimary}"
-                           FontFamily="RobotoRegular"
-                           FontSize="{StaticResource FontSizeBody}"
-                           VerticalOptions="Center"
-                           IsVisible="False" />
-                </HorizontalStackLayout>
-            </Border>
-
-        </VerticalStackLayout>
-    </Grid>
+                <Border HeightRequest="{StaticResource NavRailItemHeight}"
+                BackgroundColor="Transparent"
+                Stroke="Transparent"
+                Padding="{StaticResource NavRailItemPadding}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="DeliTap" />
+                    </Border.GestureRecognizers>
+                    <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
+                                    VerticalOptions="Center">
+                        <Label Text="&#xE7BF;"
+                        FontFamily="Segoe Fluent Icons"
+                        FontSize="{StaticResource NavRailIconSize}"
+                        WidthRequest="{StaticResource NavRailIconWidth}"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="Center" />
+                        <Label x:Name="DeliText"
+                        TextColor="{StaticResource TextOnPrimary}"
+                        FontFamily="RobotoRegular"
+                        FontSize="{StaticResource FontSizeBody}"
+                        VerticalOptions="Center"
+                        IsVisible="False" />
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </Border>
 
 </ContentView>

@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:RobotHri.Views"
        x:Class="RobotHri.AppShell"
+       FlyoutBehavior="Disabled"
        Shell.NavBarIsVisible="False"
        Shell.TabBarIsVisible="False">
 

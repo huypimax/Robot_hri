@@ -8,25 +8,30 @@
     xmlns:models="clr-namespace:RobotHri.Models"
     x:Class="RobotHri.Views.SetupPage"
     x:DataType="vm:SetupViewModel"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="{StaticResource White}">
+    Shell.NavBarIsVisible="False">
 
     <!--
         Layout: [Sidebar (fixed 260 px) | Divider | Content (fills rest)]
         The sidebar contains the settings nav items and the exit button.
         The content area switches between Route, System, and placeholder panels.
     -->
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{StaticResource SetupSidebarWidth}" />
-            <ColumnDefinition Width="1" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1" Padding="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource SetupSidebarWidth}" />
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
         <!-- ════════════════════════════════════════════════
              LEFT SIDEBAR
         ════════════════════════════════════════════════ -->
-        <Grid Grid.Column="0"
+        <Border Grid.Column="0"
+                Style="{StaticResource CardBorder}"
+                Padding="0">
+            <Grid
               RowDefinitions="Auto,*,Auto,Auto"
               BackgroundColor="{StaticResource White}">
 
@@ -43,62 +48,62 @@
             <ScrollView Grid.Row="1">
                 <VerticalStackLayout Spacing="0">
 
-                    <c:SettingsNavItem IconText="⊞"
+                    <c:SettingsNavItem IconText="&#xE713;"
                                        LabelText="{Binding NavBasicText}"
                                        IsSelected="{Binding IsBasicSelected}"
                                        Command="{Binding SelectBasicCommand}" />
 
-                    <c:SettingsNavItem IconText="🔊"
+                    <c:SettingsNavItem IconText="&#xE15D;"
                                        LabelText="{Binding NavSoundText}"
                                        IsSelected="{Binding IsSoundSelected}"
                                        Command="{Binding SelectSoundCommand}" />
 
-                    <c:SettingsNavItem IconText="🎙️"
+                    <c:SettingsNavItem IconText="&#xE720;"
                                        LabelText="{Binding NavVoiceText}"
                                        IsSelected="{Binding IsVoiceSelected}"
                                        Command="{Binding SelectVoiceCommand}" />
 
-                    <c:SettingsNavItem IconText="📋"
+                    <c:SettingsNavItem IconText="&#xE7BF;"
                                        LabelText="{Binding NavDeliveryText}"
                                        IsSelected="{Binding IsDeliverySelected}"
                                        Command="{Binding SelectDeliveryCommand}" />
 
-                    <c:SettingsNavItem IconText="🧭"
+                    <c:SettingsNavItem IconText="&#xE707;"
                                        LabelText="{Binding NavRouteText}"
                                        IsSelected="{Binding IsRouteSelected}"
                                        Command="{Binding SelectRouteCommand}" />
 
-                    <c:SettingsNavItem IconText="🕐"
+                    <c:SettingsNavItem IconText="&#xE823;"
                                        LabelText="{Binding NavTimeText}"
                                        IsSelected="{Binding IsTimeSelected}"
                                        Command="{Binding SelectTimeCommand}" />
 
-                    <c:SettingsNavItem IconText="🗺️"
+                    <c:SettingsNavItem IconText="&#xE7C3;"
                                        LabelText="{Binding NavMapText}"
                                        IsSelected="{Binding IsMapSelected}"
                                        Command="{Binding SelectMapCommand}" />
 
-                    <c:SettingsNavItem IconText="✨"
+                    <c:SettingsNavItem IconText="&#xE706;"
                                        LabelText="{Binding NavExpressionText}"
                                        IsSelected="{Binding IsExpressionSelected}"
                                        Command="{Binding SelectExpressionCommand}" />
 
-                    <c:SettingsNavItem IconText="ℹ️"
+                    <c:SettingsNavItem IconText="&#xE946;"
                                        LabelText="{Binding NavSystemText}"
                                        IsSelected="{Binding IsSystemSelected}"
                                        Command="{Binding SelectSystemCommand}" />
 
-                    <c:SettingsNavItem IconText="☰"
+                    <c:SettingsNavItem IconText="&#xE700;"
                                        LabelText="{Binding NavOtherText}"
                                        IsSelected="{Binding IsOtherSelected}"
                                        Command="{Binding SelectOtherCommand}" />
 
-                    <c:SettingsNavItem IconText="⬆"
+                    <c:SettingsNavItem IconText="&#xE74A;"
                                        LabelText="{Binding NavUpgradeText}"
                                        IsSelected="{Binding IsUpgradeSelected}"
                                        Command="{Binding SelectUpgradeCommand}" />
 
-                    <c:SettingsNavItem IconText="👤"
+                    <c:SettingsNavItem IconText="&#xE77B;"
                                        LabelText="{Binding NavDeveloperText}"
                                        IsSelected="{Binding IsDeveloperSelected}"
                                        Command="{Binding SelectDeveloperCommand}" />
@@ -111,7 +116,7 @@
                            ButtonStyle="Primary"
                            Command="{Binding SaveSettingsCommand}"
                            HeightRequest="{StaticResource ButtonHeight}"
-                           Margin="24,0,24,8" />
+                            Margin="{StaticResource SetupSidebarPadding}" />
 
             <!-- Exit button -->
             <c:RobotButton Grid.Row="3"
@@ -121,18 +126,22 @@
                            HeightRequest="{StaticResource ButtonHeight}"
                            Margin="{StaticResource SetupSidebarPadding}" />
 
-        </Grid>
+            </Grid>
+        </Border>
 
         <!-- ════ Vertical divider ════ -->
         <BoxView Grid.Column="1"
                  BackgroundColor="{StaticResource LightBlue}"
-                 VerticalOptions="Fill" />
+                 VerticalOptions="Fill"
+                 Margin="8,0" />
 
         <!-- ════════════════════════════════════════════════
              RIGHT CONTENT AREA
         ════════════════════════════════════════════════ -->
-        <ScrollView Grid.Column="2"
-                    BackgroundColor="{StaticResource PageBackground}">
+        <Border Grid.Column="2"
+                Style="{StaticResource CardBorder}"
+                Padding="0">
+            <ScrollView BackgroundColor="Transparent">
             <VerticalStackLayout Padding="{StaticResource SetupContentPadding}"
                                  Spacing="0">
 
@@ -154,23 +163,23 @@
                     <HorizontalStackLayout HorizontalOptions="Center"
                                            Spacing="20"
                                            Margin="0,0,0,8">
-                        <c:SettingsModeButton IconText="⚡"
+                        <c:SettingsModeButton IconText="&#xE945;"
                                               LabelText="{Binding BasicModeFast}"
                                               IsSelected="{Binding IsFastModeSelected}"
                                               Command="{Binding SelectFastModeCommand}" />
-                        <c:SettingsModeButton IconText="⊞"
+                        <c:SettingsModeButton IconText="&#xE8FD;"
                                               LabelText="{Binding BasicModeMulti}"
                                               IsSelected="{Binding IsMultiModeSelected}"
                                               Command="{Binding SelectMultiModeCommand}" />
-                        <c:SettingsModeButton IconText="📍"
+                        <c:SettingsModeButton IconText="&#xE707;"
                                               LabelText="{Binding BasicModeDirect}"
                                               IsSelected="{Binding IsDirectModeSelected}"
                                               Command="{Binding SelectDirectModeCommand}" />
-                        <c:SettingsModeButton IconText="🗺️"
+                        <c:SettingsModeButton IconText="&#xE7C3;"
                                               LabelText="{Binding BasicModeRoute}"
                                               IsSelected="{Binding IsRouteModeSelected}"
                                               Command="{Binding SelectRouteModeCommand}" />
-                        <c:SettingsModeButton IconText="⚙️"
+                        <c:SettingsModeButton IconText="&#xE713;"
                                               LabelText="{Binding BasicModeCustom}"
                                               IsSelected="{Binding IsCustomModeSelected}"
                                               Command="{Binding SelectCustomModeCommand}" />
@@ -416,7 +425,7 @@
                                                             Padding="8,3">
                                                         <Label Text="Chỉnh sửa"
                                                                TextColor="{StaticResource TextOnPrimary}"
-                                                               FontSize="11"
+                                                               FontSize="{StaticResource FontSizeCaption}"
                                                                HorizontalTextAlignment="Center" />
                                                     </Border>
                                                     <Border BackgroundColor="{StaticResource DangerRed}"
@@ -425,7 +434,7 @@
                                                             Padding="8,3">
                                                         <Label Text="Xóa"
                                                                TextColor="{StaticResource TextOnPrimary}"
-                                                               FontSize="11"
+                                                               FontSize="{StaticResource FontSizeCaption}"
                                                                HorizontalTextAlignment="Center" />
                                                     </Border>
                                                 </VerticalStackLayout>
@@ -545,14 +554,14 @@
                                     <RadioButton Value="B1"
                                                  IsChecked="{Binding IsMapB1Selected, Mode=TwoWay}"
                                                  GroupName="MapSelection" />
-                                    <Label Text="Map B1" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black" />
+                                    <Label Text="Map B1" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource TextDark}" />
                                 </HorizontalStackLayout>
 
                                 <HorizontalStackLayout Spacing="4" VerticalOptions="Center">
                                     <RadioButton Value="B2"
                                                  IsChecked="{Binding IsMapB2Selected, Mode=TwoWay}"
                                                  GroupName="MapSelection" />
-                                    <Label Text="Map B2" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black" />
+                                    <Label Text="Map B2" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource TextDark}" />
                                 </HorizontalStackLayout>
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
@@ -746,8 +755,9 @@
                                      HorizontalOptions="Center"
                                      Spacing="12"
                                      Margin="0,60,0,0">
-                    <Label Text="🚧"
-                           FontSize="48"
+                    <Label Text="&#xE814;"
+                           FontFamily="Segoe Fluent Icons"
+                           FontSize="{StaticResource FontSizeDisplay}"
                            HorizontalOptions="Center" />
                     <Label Text="{Binding ComingSoonText}"
                            Style="{StaticResource SubtitleLabel}"
@@ -756,7 +766,9 @@
                 </VerticalStackLayout>
 
             </VerticalStackLayout>
-        </ScrollView>
+            </ScrollView>
+        </Border>
 
+        </Grid>
     </Grid>
 </controls:BaseContentPage>

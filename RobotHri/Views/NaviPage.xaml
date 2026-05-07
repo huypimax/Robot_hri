@@ -14,8 +14,42 @@
         <vm:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="Auto,Auto,*"
-          BackgroundColor="{StaticResource PageBackground}">
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,Auto,*"
+              Padding="12,8,12,10">
+
+        <!-- Decorative background -->
+        <Grid Grid.RowSpan="3" InputTransparent="True">
+            <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
+                    WidthRequest="110"
+                    HeightRequest="110"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    TranslationX="-18"
+                    TranslationY="-24"
+                    Opacity="0.36"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="55" />
+                </Border.StrokeShape>
+            </Border>
+            <Border BackgroundColor="{StaticResource LightBlue}"
+                    WidthRequest="86"
+                    HeightRequest="86"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    TranslationX="14"
+                    TranslationY="22"
+                    Opacity="0.32"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="43" />
+                </Border.StrokeShape>
+            </Border>
+        </Grid>
 
         <!-- Header -->
         <c:HeaderLayout Grid.Row="0"
@@ -27,31 +61,49 @@
                         IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
 
         <!-- Prompt bar -->
-        <c:PromptLabel Grid.Row="1"
+        <Border Grid.Row="1"
+                Style="{StaticResource CardBorder}"
+                Padding="14,10"
+                Margin="8,12,8,0">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                <Label Text="&#xE707;"
+                       FontFamily="Segoe Fluent Icons"
+                       FontSize="{StaticResource FontSizeTitleMedium}"
+                       VerticalOptions="Center"
+                       TextColor="{StaticResource PrimaryDarkBlue}" />
+                <Label Grid.Column="1"
                        Text="{Binding PromptText}"
-                       Margin="24,16,24,0" />
+                       Style="{StaticResource TitleLabel}"
+                       FontSize="{StaticResource FontSizeTitleMedium}"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center" />
+            </Grid>
+        </Border>
 
         <!-- Room buttons grid -->
-        <ScrollView Grid.Row="2">
-            <FlexLayout BindableLayout.ItemsSource="{Binding AvailableRooms}"
-                        Wrap="Wrap"
-                        Direction="Row"
-                        JustifyContent="SpaceBetween"
-                        AlignItems="Start"
-                        AlignContent="Start"
-                        Padding="24,20">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="models:RoomButtonData">
-                        <c:NavRoomButton RoomName="{Binding RoomName}"
-                                         RoomKey="{Binding RoomKey}"
-                                         IsActive="{Binding Source={RelativeSource AncestorType={x:Type vm:NaviViewModel}}, Path=ActiveRoomKey, Converter={x:Static vm:EqualityConverter.Instance}, ConverterParameter={Binding RoomKey}}"
-                                         RoomSelected="OnRoomSelected"
-                                         IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type vm:NaviViewModel}}, Path=IsBusy, Converter={StaticResource InverseBooleanConverter}}"
-                                         Margin="0,0,0,5"
-                                         FlexLayout.Basis="32.5%" />
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </FlexLayout>
+        <ScrollView Grid.Row="2" Margin="0,10,0,0">
+            <Border Style="{StaticResource CardBorder}"
+                    Margin="8,0"
+                    Padding="12,14">
+                <FlexLayout BindableLayout.ItemsSource="{Binding AvailableRooms}"
+                            Wrap="Wrap"
+                            Direction="Row"
+                            JustifyContent="SpaceBetween"
+                            AlignItems="Start"
+                            AlignContent="Start">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:RoomButtonData">
+                            <c:NavRoomButton RoomName="{Binding RoomName}"
+                                             RoomKey="{Binding RoomKey}"
+                                             IsActive="{Binding Source={RelativeSource AncestorType={x:Type vm:NaviViewModel}}, Path=ActiveRoomKey, Converter={x:Static vm:EqualityConverter.Instance}, ConverterParameter={Binding RoomKey}}"
+                                             RoomSelected="OnRoomSelected"
+                                             IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type vm:NaviViewModel}}, Path=IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                                             Margin="0,0,0,12"
+                                             FlexLayout.Basis="31.5%" />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </Border>
         </ScrollView>
 
         <!-- Loading Overlay -->
@@ -76,6 +128,7 @@
               BackgroundColor="#80000000"
               ZIndex="102">
             <c:ErrorPopupView BindingContext="{Binding .}" />
+        </Grid>
         </Grid>
     </Grid>
 </controls:BaseContentPage>
