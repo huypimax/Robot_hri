@@ -9,8 +9,12 @@
     x:DataType="vm:MainViewModel"
     Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,Auto,*,Auto"
-          Padding="12,8,12,12">
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,Auto,*,Auto"
+              Padding="12,8,12,12">
 
         <!-- Header -->
         <c:HeaderLayout Grid.Row="0"
@@ -22,26 +26,33 @@
         <!-- Welcome banner -->
         <Border Grid.Row="1"
                 Style="{StaticResource CardBorder}"
-                Margin="8,14,8,0">
-            <Grid ColumnDefinitions="Auto,*"
-                  Padding="6">
+                Padding="18"
+                Margin="0,8,0,0">
+            <Grid ColumnDefinitions="Auto,*,Auto"
+                ColumnSpacing="18">
                 <Image Grid.Column="0"
-                       Source="robot_reception.png"
-                       WidthRequest="34"
-                       HeightRequest="34"
-                       Margin="0,0,12,0"
-                       VerticalOptions="Center"
-                       Aspect="AspectFit" />
+                    Source="robot_reception.png"
+                    WidthRequest="96"
+                    HeightRequest="96"
+                    Aspect="AspectFit"
+                    VerticalOptions="Center" />
                 <Label Grid.Column="1"
-                       Text="{Binding WelcomeText}"
-                       Style="{StaticResource SubtitleLabel}"
-                       FontSize="{StaticResource FontSizeSubtitle}"
-                       VerticalOptions="Center"
-                       HorizontalTextAlignment="Start" />
+                    x:Name="PromptLabel"
+                    Text="{Binding WelcomeText}"
+                    Style="{StaticResource SubtitleLabel}"
+                    FontSize="{StaticResource FontSizeTitleMedium}"
+                    VerticalOptions="Center"
+                    HorizontalTextAlignment="Center" />
+                <Image Grid.Column="2"
+                    Source="logo_fablab.png"
+                    WidthRequest="76"
+                    HeightRequest="76"
+                    Aspect="AspectFit"
+                    VerticalOptions="Center" />
             </Grid>
         </Border>
 
-        <!-- Navigation cards (1 × 2 to center the two remaining) -->
+            <!-- Navigation cards (1 × 2 to center the two remaining) -->
         <Grid Grid.Row="2"
               ColumnDefinitions="*,*"
               RowDefinitions="*"
@@ -122,5 +133,6 @@
                    HorizontalOptions="Center" />
         </VerticalStackLayout>
 
+        </Grid>
     </Grid>
 </controls:BaseContentPage>

@@ -3,34 +3,34 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <!-- ======== Brand Colors ======== -->
-    <!-- Changed to Thai Duong orange theme -->
-    <Color x:Key="PrimaryDarkBlue">#F37021</Color>
-    <Color x:Key="PrimaryDarkBlueSoft">#FFF1E8</Color>
-    <Color x:Key="LightBlue">#FFE5D9</Color>
-    <Color x:Key="HoverBg">#FFF0E6</Color>
-    <Color x:Key="PageBackground">#FFFDFB</Color>
-    <Color x:Key="PageBackgroundTop">#FFFFFFFF</Color>
-    <Color x:Key="PageBackgroundBottom">#FFF9F6</Color>
+    <!-- Industrial two-color scheme: orange + navy -->
+    <Color x:Key="PrimaryDarkBlue">#00294D</Color>
+    <Color x:Key="PrimaryDarkBlueSoft">#EAF0F6</Color>
+    <Color x:Key="LightBlue">#D4DEE8</Color>
+    <Color x:Key="HoverBg">#EEF3F8</Color>
+    <Color x:Key="PageBackground">#F5F7FA</Color>
+    <Color x:Key="PageBackgroundTop">#FFFFFF</Color>
+    <Color x:Key="PageBackgroundBottom">#EEF2F6</Color>
     <Color x:Key="White">#FFFFFF</Color>
     <Color x:Key="SuccessGreen">#2ECC71</Color>
     <Color x:Key="DangerRed">#AC0000</Color>
     <Color x:Key="AccentGreen">#69FF3D</Color>
 
     <!-- ======== Text Colors ======== -->
-    <Color x:Key="TextDark">#4A220A</Color>
-    <Color x:Key="TextMuted">#8A6B5D</Color>
+    <Color x:Key="TextDark">#1F2A37</Color>
+    <Color x:Key="TextMuted">#5B6B7C</Color>
     <Color x:Key="TextOnPrimary">#FFFFFF</Color>
-    <Color x:Key="TextColor">#4A220A</Color>
+    <Color x:Key="TextColor">#1F2A37</Color>
 
     <!-- ======== Shadow / Overlay ======== -->
     <Color x:Key="ShadowColor">#40000000</Color>
     <Color x:Key="OverlayLight">#1AFFFFFF</Color>
     <Color x:Key="BorderLight">#40FFFFFF</Color>
-    <Color x:Key="CardBorderColor">#33F37021</Color>
+    <Color x:Key="CardBorderColor">#1F00294D</Color>
 
     <!-- Brushes for shadows and borders -->
-    <SolidColorBrush x:Key="CardShadowBrush" Color="#20000000" />
-    <SolidColorBrush x:Key="ButtonShadowBrush" Color="#40000000" />
+    <SolidColorBrush x:Key="CardShadowBrush" Color="#1A00294D" />
+    <SolidColorBrush x:Key="ButtonShadowBrush" Color="#3300294D" />
     <SolidColorBrush x:Key="OverlayLightBrush" Color="{StaticResource OverlayLight}" />
     <SolidColorBrush x:Key="BorderLightBrush" Color="{StaticResource BorderLight}" />
     <SolidColorBrush x:Key="CardBorderBrush" Color="{StaticResource CardBorderColor}" />
@@ -47,6 +47,6 @@
 
     <!-- Semantic aliases -->
     <Color x:Key="Primary">#F37021</Color>
-    <Color x:Key="Secondary">#FFE5D9</Color>
-    <Color x:Key="Tertiary">#FFF0E6</Color>
+    <Color x:Key="Secondary">#00294D</Color>
+    <Color x:Key="Tertiary">#EAF0F6</Color>
 </ResourceDictionary>

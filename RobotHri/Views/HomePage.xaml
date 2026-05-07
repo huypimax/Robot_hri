@@ -3,42 +3,53 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:RobotHri.Controls.Base"
+    xmlns:c="clr-namespace:RobotHri.Controls"
     x:Class="RobotHri.Views.HomePage"
     Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*,Auto"
-          Padding="24,28">
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
 
-        <Grid>
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,Auto,*,Auto"
+              Padding="12,8,12,12">
+
+        <Grid Grid.RowSpan="4"
+              InputTransparent="True"
+              ZIndex="-1">
             <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
-                    WidthRequest="180"
-                    HeightRequest="180"
-                    HorizontalOptions="Start"
+                    WidthRequest="110"
+                    HeightRequest="110"
+                    HorizontalOptions="End"
                     VerticalOptions="Start"
-                    TranslationX="-60"
-                    TranslationY="-70"
-                    Opacity="0.55"
+                    TranslationX="-20"
+                    TranslationY="-28"
+                    Opacity="0.38"
                     StrokeThickness="0">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="90" />
+                    <RoundRectangle CornerRadius="55" />
                 </Border.StrokeShape>
             </Border>
             <Border BackgroundColor="{StaticResource LightBlue}"
-                    WidthRequest="120"
-                    HeightRequest="120"
+                    WidthRequest="90"
+                    HeightRequest="90"
                     HorizontalOptions="End"
                     VerticalOptions="End"
-                    TranslationX="36"
-                    TranslationY="45"
-                    Opacity="0.45"
+                    TranslationX="18"
+                    TranslationY="24"
+                    Opacity="0.35"
                     StrokeThickness="0">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="60" />
+                    <RoundRectangle CornerRadius="45" />
                 </Border.StrokeShape>
             </Border>
         </Grid>
 
-        <Border Grid.Row="0"
+        <c:HeaderLayout Grid.Row="0"
+                        x:Name="Header"
+                        ShowBackButton="False" />
+
+        <Border Grid.Row="1"
                 Style="{StaticResource CardBorder}"
                 Padding="18"
                 Margin="0,8,0,0">
@@ -51,6 +62,7 @@
                        Aspect="AspectFit"
                        VerticalOptions="Center" />
                 <Label Grid.Column="1"
+                       x:Name="PromptLabel"
                        Text="Do you need me to transport the goods for you?"
                        Style="{StaticResource TitleLabel}"
                        FontSize="{StaticResource FontSizeTitleMedium}"
@@ -65,7 +77,7 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="3"
               ColumnDefinitions="*,*"
               ColumnSpacing="24"
               HorizontalOptions="Center"
@@ -78,11 +90,13 @@
                 <VerticalStackLayout Spacing="8"
                                      HorizontalOptions="Center"
                                      VerticalOptions="Center">
-                    <Label Text="✔"
-                           FontSize="36"
+                    <Label Text="&#xE73E;"
+                           FontFamily="Segoe Fluent Icons"
+                           FontSize="32"
                            TextColor="{StaticResource PrimaryDarkBlue}"
                            HorizontalOptions="Center" />
                     <Button Text="YES"
+                            x:Name="YesButton"
                             Clicked="OnYesClicked"
                             Style="{StaticResource PrimaryButton}"
                             WidthRequest="112" />
@@ -97,17 +111,20 @@
                 <VerticalStackLayout Spacing="8"
                                      HorizontalOptions="Center"
                                      VerticalOptions="Center">
-                    <Label Text="✖"
-                           FontSize="36"
+                    <Label Text="&#xE711;"
+                           FontFamily="Segoe Fluent Icons"
+                           FontSize="32"
                            TextColor="{StaticResource DangerRed}"
                            HorizontalOptions="Center" />
                     <Button Text="NO, THANK YOU!"
+                            x:Name="NoButton"
                             Clicked="OnNoClicked"
                             Style="{StaticResource SoftButton}"
                             WidthRequest="118"
                             LineBreakMode="WordWrap" />
                 </VerticalStackLayout>
             </Border>
+        </Grid>
         </Grid>
     </Grid>
 </controls:BaseContentPage>

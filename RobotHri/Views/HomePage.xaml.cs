@@ -1,4 +1,5 @@
 using RobotHri.Controls.Base;
+using RobotHri.Languages;
 
 namespace RobotHri.Views
 {
@@ -7,6 +8,8 @@ namespace RobotHri.Views
         public HomePage()
         {
             InitializeComponent();
+            Header.LanguageToggled += (_, _) => Localization?.ToggleLanguage();
+            RefreshLocalizedText();
         }
 
         private async void OnYesClicked(object sender, EventArgs e)
@@ -26,7 +29,20 @@ namespace RobotHri.Views
                 return;
             }
 
-            await DisplayAlert("Info", "No problem. Let me know whenever you need help.", "OK");
+            await DisplayAlert(
+                StringIds.MAIN_HOME_NO_THANKS_TITLE.GetString(),
+                StringIds.MAIN_HOME_NO_THANKS_MESSAGE.GetString(),
+                StringIds.OK.GetString());
+        }
+
+        protected override void RefreshLocalizedText()
+        {
+            Header.Title = StringIds.COMMON_HOME.GetString();
+            Header.LanguageLabelText = Localization?.GetCurrentLanguageName() ?? "EN";
+
+            PromptLabel.Text = StringIds.MAIN_HOME_PROMPT.GetString();
+            YesButton.Text = StringIds.MAIN_HOME_YES.GetString();
+            NoButton.Text = StringIds.MAIN_HOME_NO_THANKS.GetString();
         }
     }
 }

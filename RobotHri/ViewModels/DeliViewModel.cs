@@ -122,6 +122,11 @@ namespace RobotHri.ViewModels
         public string StartDeliveryText => StringIds.DELI_START_DELIVERY.GetString();
         public string ReceivedText => StringIds.DELI_RECEIVED.GetString();
         public string ChooseDestinationText => StringIds.DELI_CHOOSE_DESTINATION.GetString();
+        public string FormSubtitle => StringIds.DELI_FORM_SUBTITLE.GetString();
+        public string ItemPlaceholder => StringIds.DELI_ITEM_PLACEHOLDER.GetString();
+        public string NotePlaceholder => StringIds.DELI_NOTE_PLACEHOLDER.GetString();
+        public string SenderPlaceholder => StringIds.DELI_SENDER_PLACEHOLDER.GetString();
+        public string ReceiverPlaceholder => StringIds.DELI_RECEIVER_PLACEHOLDER.GetString();
 
         public Command StartDeliveryCommand { get; }
         public Command ReceivedCommand { get; }
@@ -177,6 +182,11 @@ namespace RobotHri.ViewModels
             OnPropertyChanged(nameof(StartDeliveryText));
             OnPropertyChanged(nameof(ReceivedText));
             OnPropertyChanged(nameof(ChooseDestinationText));
+            OnPropertyChanged(nameof(FormSubtitle));
+            OnPropertyChanged(nameof(ItemPlaceholder));
+            OnPropertyChanged(nameof(NotePlaceholder));
+            OnPropertyChanged(nameof(SenderPlaceholder));
+            OnPropertyChanged(nameof(ReceiverPlaceholder));
         }
 
         private bool CanStartDelivery() =>
@@ -191,8 +201,8 @@ namespace RobotHri.ViewModels
             {
                 await Shell.Current.DisplayAlert(
                     TitleText,
-                    "Please fill in all required fields.",
-                    "OK");
+                    StringIds.DELI_REQUIRED_FIELDS_MESSAGE.GetString(),
+                    StringIds.OK.GetString());
                 return;
             }
 

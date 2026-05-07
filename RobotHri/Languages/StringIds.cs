@@ -21,6 +21,11 @@ namespace RobotHri.Languages
         public const string MAIN_LAB = "main_lab";
         public const string MAIN_DELIVERY = "main_delivery";
         public const string MAIN_CHECKIN = "main_checkin";
+        public const string MAIN_HOME_PROMPT = "main_home_prompt";
+        public const string MAIN_HOME_YES = "main_home_yes";
+        public const string MAIN_HOME_NO_THANKS = "main_home_no_thanks";
+        public const string MAIN_HOME_NO_THANKS_TITLE = "main_home_no_thanks_title";
+        public const string MAIN_HOME_NO_THANKS_MESSAGE = "main_home_no_thanks_message";
 
         // ==================== Q&A Page ====================
         public const string QNA_TITLE = "qna_title";
@@ -90,6 +95,12 @@ namespace RobotHri.Languages
         public const string DELI_SENDER_LABEL = "deli_sender_label";
         public const string DELI_NOTE_LABEL = "deli_note_label";
         public const string DELI_CHOOSE_DESTINATION = "deli_choose_destination";
+        public const string DELI_FORM_SUBTITLE = "deli_form_subtitle";
+        public const string DELI_ITEM_PLACEHOLDER = "deli_item_placeholder";
+        public const string DELI_NOTE_PLACEHOLDER = "deli_note_placeholder";
+        public const string DELI_SENDER_PLACEHOLDER = "deli_sender_placeholder";
+        public const string DELI_RECEIVER_PLACEHOLDER = "deli_receiver_placeholder";
+        public const string DELI_REQUIRED_FIELDS_MESSAGE = "deli_required_fields_message";
         public const string DELI_DELIVERING_NOW = "deli_delivering_now";
         public const string DELI_ITEM_ARRIVED = "deli_item_arrived";
         public const string DELI_GET_READY = "deli_get_ready";

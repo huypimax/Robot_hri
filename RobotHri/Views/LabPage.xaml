@@ -9,8 +9,12 @@
     x:DataType="vm:LabViewModel"
     Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*"
-          Padding="12,8,12,12">
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,*"
+              Padding="12,8,12,12">
 
         <!-- ── Header ── -->
         <c:HeaderLayout Grid.Row="0"
@@ -193,6 +197,7 @@
                 </Grid>
 
             </Grid>
+        </Grid>
         </Grid>
     </Grid>
 </controls:BaseContentPage>

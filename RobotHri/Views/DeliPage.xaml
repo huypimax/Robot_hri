@@ -9,8 +9,12 @@
     x:DataType="vm:DeliViewModel"
     Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,Auto,*"
-          Padding="14,10,14,14">
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,Auto,*"
+              Padding="14,10,14,14">
 
         <!-- Header -->
         <c:HeaderLayout Grid.Row="0"
@@ -48,7 +52,7 @@
                             <Label Text="{Binding FormTitle}"
                                    Style="{StaticResource TitleLabel}"
                                    FontSize="{StaticResource FontSizeTitleMedium}" />
-                            <Label Text="Fill all details before starting delivery."
+                            <Label Text="{Binding FormSubtitle}"
                                    Style="{StaticResource SubtitleLabel}"
                                    FontSize="{StaticResource FontSizeBody}" />
                         </VerticalStackLayout>
@@ -79,7 +83,7 @@
                                         IsEnabled="{Binding IsFormEnabled}">
                                     <Entry Text="{Binding Item}"
                                            Style="{StaticResource FormEntry}"
-                                           Placeholder="Package name" />
+                                           Placeholder="{Binding ItemPlaceholder}" />
                                 </Border>
                             </VerticalStackLayout>
 
@@ -90,7 +94,7 @@
                                         IsEnabled="{Binding IsFormEnabled}">
                                     <Entry Text="{Binding Note}"
                                            Style="{StaticResource FormEntry}"
-                                           Placeholder="Optional note" />
+                                           Placeholder="{Binding NotePlaceholder}" />
                                 </Border>
                             </VerticalStackLayout>
                         </Grid>
@@ -103,7 +107,7 @@
                                         IsEnabled="{Binding IsFormEnabled}">
                                     <Entry Text="{Binding SenderName}"
                                            Style="{StaticResource FormEntry}"
-                                           Placeholder="Sender name" />
+                                           Placeholder="{Binding SenderPlaceholder}" />
                                 </Border>
                             </VerticalStackLayout>
 
@@ -114,7 +118,7 @@
                                         IsEnabled="{Binding IsFormEnabled}">
                                     <Entry Text="{Binding ReceiverName}"
                                            Style="{StaticResource FormEntry}"
-                                           Placeholder="Receiver name" />
+                                           Placeholder="{Binding ReceiverPlaceholder}" />
                                 </Border>
                             </VerticalStackLayout>
                         </Grid>
@@ -174,5 +178,6 @@
                 </Border>
             </VerticalStackLayout>
         </ScrollView>
+        </Grid>
     </Grid>
 </controls:BaseContentPage>

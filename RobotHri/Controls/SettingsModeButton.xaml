@@ -16,6 +16,7 @@
 
         <!-- Icon -->
         <Label x:Name="IconLabel"
+               FontFamily="Segoe Fluent Icons"
                FontSize="28"
                HorizontalOptions="Center"
                VerticalOptions="Center"

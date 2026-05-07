@@ -9,8 +9,12 @@
     x:DataType="vm:QnaViewModel"
     Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*,Auto,Auto"
-          Padding="12,8,12,10">
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,*,Auto,Auto"
+              Padding="12,8,12,10">
 
         <!-- Header -->
         <c:HeaderLayout Grid.Row="0"
@@ -91,12 +95,14 @@
                     <DataTrigger TargetType="Label"
                                  Binding="{Binding IsListening}"
                                  Value="True">
-                        <Setter Property="Text" Value="⏹" />
+                        <Setter Property="Text" Value="&#xE769;" />
+                        <Setter Property="FontFamily" Value="Segoe Fluent Icons" />
                     </DataTrigger>
                     <DataTrigger TargetType="Label"
                                  Binding="{Binding IsListening}"
                                  Value="False">
-                        <Setter Property="Text" Value="🎤" />
+                        <Setter Property="Text" Value="&#xE720;" />
+                        <Setter Property="FontFamily" Value="Segoe Fluent Icons" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
@@ -107,12 +113,14 @@
                                HorizontalOptions="Center"
                                Spacing="16"
                                Margin="0,0,0,24">
-            <Label Text="🔊"
+            <Label Text="&#xE15D;"
+                   FontFamily="Segoe Fluent Icons"
                    FontSize="{StaticResource FontSizeTitleMedium}"
                    VerticalOptions="Center" />
             <Label Text="AIko is ready"
                    Style="{StaticResource SubtitleLabel}"
                    VerticalOptions="Center" />
         </HorizontalStackLayout>
+        </Grid>
     </Grid>
 </controls:BaseContentPage>

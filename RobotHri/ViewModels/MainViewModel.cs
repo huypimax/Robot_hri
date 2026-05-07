@@ -91,15 +91,15 @@ namespace RobotHri.ViewModels
 
         private string GetWelcomeGreeting()
         {
-            var hour = DateTime.Now.Hour;
-            string timeGreeting = hour switch
-            {
-                < 12 => StringIds.WELCOME_GOOD_MORNING.GetString(),
-                < 18 => StringIds.WELCOME_GOOD_AFTERNOON.GetString(),
-                _ => StringIds.WELCOME_GOOD_EVENING.GetString()
-            };
-            var greeting = StringIds.WELCOME_GREETING.GetString();
-            return $"{timeGreeting}! {greeting}";
+            //var hour = DateTime.Now.Hour;
+            //string timeGreeting = hour switch
+            //{
+            //    < 12 => StringIds.WELCOME_GOOD_MORNING.GetString(),
+            //    < 18 => StringIds.WELCOME_GOOD_AFTERNOON.GetString(),
+            //    _ => StringIds.WELCOME_GOOD_EVENING.GetString()
+            //};
+            var greeting = StringIds.MAIN_HOME_PROMPT.GetString();
+            return greeting;
         }
 
         private async Task NavigateSafeAsync(string route)

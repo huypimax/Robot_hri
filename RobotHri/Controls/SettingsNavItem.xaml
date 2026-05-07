@@ -23,11 +23,12 @@
             <HorizontalStackLayout Spacing="{StaticResource SettingsNavItemSpacing}"
                                    VerticalOptions="Center">
                 <Label x:Name="IconLabel"
+                       FontFamily="Segoe Fluent Icons"
                        FontSize="{StaticResource SettingsNavIconSize}"
                        WidthRequest="{StaticResource SettingsNavIconWidth}"
                        HorizontalTextAlignment="Center"
                        VerticalOptions="Center"
-                       TextColor="{StaticResource TextDark}" />
+                       TextColor="{StaticResource TextMuted}" />
                 <Label x:Name="TextLabel"
                        FontFamily="RobotoRegular"
                        FontSize="{StaticResource FontSizeBody}"

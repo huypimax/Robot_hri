@@ -15,12 +15,15 @@
         The sidebar contains the settings nav items and the exit button.
         The content area switches between Route, System, and placeholder panels.
     -->
-    <Grid Padding="12">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{StaticResource SetupSidebarWidth}" />
-            <ColumnDefinition Width="1" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1" Padding="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource SetupSidebarWidth}" />
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
         <!-- ════════════════════════════════════════════════
              LEFT SIDEBAR
@@ -45,62 +48,62 @@
             <ScrollView Grid.Row="1">
                 <VerticalStackLayout Spacing="0">
 
-                    <c:SettingsNavItem IconText="⊞"
+                    <c:SettingsNavItem IconText="&#xE713;"
                                        LabelText="{Binding NavBasicText}"
                                        IsSelected="{Binding IsBasicSelected}"
                                        Command="{Binding SelectBasicCommand}" />
 
-                    <c:SettingsNavItem IconText="🔊"
+                    <c:SettingsNavItem IconText="&#xE15D;"
                                        LabelText="{Binding NavSoundText}"
                                        IsSelected="{Binding IsSoundSelected}"
                                        Command="{Binding SelectSoundCommand}" />
 
-                    <c:SettingsNavItem IconText="🎙️"
+                    <c:SettingsNavItem IconText="&#xE720;"
                                        LabelText="{Binding NavVoiceText}"
                                        IsSelected="{Binding IsVoiceSelected}"
                                        Command="{Binding SelectVoiceCommand}" />
 
-                    <c:SettingsNavItem IconText="📋"
+                    <c:SettingsNavItem IconText="&#xE7BF;"
                                        LabelText="{Binding NavDeliveryText}"
                                        IsSelected="{Binding IsDeliverySelected}"
                                        Command="{Binding SelectDeliveryCommand}" />
 
-                    <c:SettingsNavItem IconText="🧭"
+                    <c:SettingsNavItem IconText="&#xE707;"
                                        LabelText="{Binding NavRouteText}"
                                        IsSelected="{Binding IsRouteSelected}"
                                        Command="{Binding SelectRouteCommand}" />
 
-                    <c:SettingsNavItem IconText="🕐"
+                    <c:SettingsNavItem IconText="&#xE823;"
                                        LabelText="{Binding NavTimeText}"
                                        IsSelected="{Binding IsTimeSelected}"
                                        Command="{Binding SelectTimeCommand}" />
 
-                    <c:SettingsNavItem IconText="🗺️"
+                    <c:SettingsNavItem IconText="&#xE7C3;"
                                        LabelText="{Binding NavMapText}"
                                        IsSelected="{Binding IsMapSelected}"
                                        Command="{Binding SelectMapCommand}" />
 
-                    <c:SettingsNavItem IconText="✨"
+                    <c:SettingsNavItem IconText="&#xE706;"
                                        LabelText="{Binding NavExpressionText}"
                                        IsSelected="{Binding IsExpressionSelected}"
                                        Command="{Binding SelectExpressionCommand}" />
 
-                    <c:SettingsNavItem IconText="ℹ️"
+                    <c:SettingsNavItem IconText="&#xE946;"
                                        LabelText="{Binding NavSystemText}"
                                        IsSelected="{Binding IsSystemSelected}"
                                        Command="{Binding SelectSystemCommand}" />
 
-                    <c:SettingsNavItem IconText="☰"
+                    <c:SettingsNavItem IconText="&#xE700;"
                                        LabelText="{Binding NavOtherText}"
                                        IsSelected="{Binding IsOtherSelected}"
                                        Command="{Binding SelectOtherCommand}" />
 
-                    <c:SettingsNavItem IconText="⬆"
+                    <c:SettingsNavItem IconText="&#xE74A;"
                                        LabelText="{Binding NavUpgradeText}"
                                        IsSelected="{Binding IsUpgradeSelected}"
                                        Command="{Binding SelectUpgradeCommand}" />
 
-                    <c:SettingsNavItem IconText="👤"
+                    <c:SettingsNavItem IconText="&#xE77B;"
                                        LabelText="{Binding NavDeveloperText}"
                                        IsSelected="{Binding IsDeveloperSelected}"
                                        Command="{Binding SelectDeveloperCommand}" />
@@ -113,7 +116,7 @@
                            ButtonStyle="Primary"
                            Command="{Binding SaveSettingsCommand}"
                            HeightRequest="{StaticResource ButtonHeight}"
-                           Margin="24,0,24,8" />
+                            Margin="{StaticResource SetupSidebarPadding}" />
 
             <!-- Exit button -->
             <c:RobotButton Grid.Row="3"
@@ -160,23 +163,23 @@
                     <HorizontalStackLayout HorizontalOptions="Center"
                                            Spacing="20"
                                            Margin="0,0,0,8">
-                        <c:SettingsModeButton IconText="⚡"
+                        <c:SettingsModeButton IconText="&#xE945;"
                                               LabelText="{Binding BasicModeFast}"
                                               IsSelected="{Binding IsFastModeSelected}"
                                               Command="{Binding SelectFastModeCommand}" />
-                        <c:SettingsModeButton IconText="⊞"
+                        <c:SettingsModeButton IconText="&#xE8FD;"
                                               LabelText="{Binding BasicModeMulti}"
                                               IsSelected="{Binding IsMultiModeSelected}"
                                               Command="{Binding SelectMultiModeCommand}" />
-                        <c:SettingsModeButton IconText="📍"
+                        <c:SettingsModeButton IconText="&#xE707;"
                                               LabelText="{Binding BasicModeDirect}"
                                               IsSelected="{Binding IsDirectModeSelected}"
                                               Command="{Binding SelectDirectModeCommand}" />
-                        <c:SettingsModeButton IconText="🗺️"
+                        <c:SettingsModeButton IconText="&#xE7C3;"
                                               LabelText="{Binding BasicModeRoute}"
                                               IsSelected="{Binding IsRouteModeSelected}"
                                               Command="{Binding SelectRouteModeCommand}" />
-                        <c:SettingsModeButton IconText="⚙️"
+                        <c:SettingsModeButton IconText="&#xE713;"
                                               LabelText="{Binding BasicModeCustom}"
                                               IsSelected="{Binding IsCustomModeSelected}"
                                               Command="{Binding SelectCustomModeCommand}" />
@@ -752,7 +755,8 @@
                                      HorizontalOptions="Center"
                                      Spacing="12"
                                      Margin="0,60,0,0">
-                    <Label Text="🚧"
+                    <Label Text="&#xE814;"
+                           FontFamily="Segoe Fluent Icons"
                            FontSize="{StaticResource FontSizeDisplay}"
                            HorizontalOptions="Center" />
                     <Label Text="{Binding ComingSoonText}"
@@ -765,5 +769,6 @@
             </ScrollView>
         </Border>
 
+        </Grid>
     </Grid>
 </controls:BaseContentPage>
