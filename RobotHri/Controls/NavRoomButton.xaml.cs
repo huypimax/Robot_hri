@@ -11,7 +11,12 @@ namespace RobotHri.Controls
                 propertyChanged: (b, o, n) => ((NavRoomButton)b).RoomLabel.Text = (string)n);
 
         public static readonly BindableProperty RoomKeyProperty =
-            BindableProperty.Create(nameof(RoomKey), typeof(string), typeof(NavRoomButton), string.Empty);
+            BindableProperty.Create(nameof(RoomKey), typeof(string), typeof(NavRoomButton), string.Empty,
+                propertyChanged: (b, o, n) =>
+                {
+                    var control = (NavRoomButton)b;
+                    control.UpdateActiveState(control.IsActive);
+                });
 
         public static readonly BindableProperty IconSourceProperty =
             BindableProperty.Create(nameof(IconSource), typeof(string), typeof(NavRoomButton), null,
@@ -69,15 +74,31 @@ namespace RobotHri.Controls
 
         private void UpdateActiveState(bool active)
         {
-            RoomBorder.BackgroundColor = active
-                ? Color.FromArgb("#F37021")
-                : Color.FromArgb("#FFF1E8");
-            RoomBorder.Stroke = active
-                ? Color.FromArgb("#F37021")
-                : Color.FromArgb("#33F37021");
-            RoomLabel.TextColor = active
-                ? Colors.White
-                : Color.FromArgb("#4A220A");
+            if (active)
+            {
+                RoomBorder.BackgroundColor = Color.FromArgb("#69FF3D");
+                RoomBorder.Stroke = Color.FromArgb("#4AA92A");
+                RoomLabel.TextColor = Color.FromArgb("#1B2F10");
+                return;
+            }
+
+            RoomBorder.BackgroundColor = GetPastelColor(RoomKey);
+            RoomBorder.Stroke = Color.FromArgb("#668D8D8D");
+            RoomLabel.TextColor = Color.FromArgb("#870002");
+        }
+
+        private static Color GetPastelColor(string? roomKey)
+        {
+            if (string.IsNullOrWhiteSpace(roomKey))
+                return Color.FromArgb("#C8FFD9F7");
+
+            var index = roomKey[^1];
+            return index switch
+            {
+                '1' or '4' or '7' => Color.FromArgb("#C8FFD9F7"),
+                '2' or '5' or '8' => Color.FromArgb("#C8C0FAFF"),
+                _ => Color.FromArgb("#C8FFD3C5")
+            };
         }
     }
 }

@@ -44,6 +44,15 @@ namespace RobotHri.Languages
         public const string NAV_ARRIVED_AT = "nav_arrived_at";
         public const string NAV_ARRIVED_READY = "nav_arrived_ready";
         public const string NAV_HOME = "nav_home";
+        public const string NAV_DEST_POINT_1 = "nav_dest_point_1";
+        public const string NAV_DEST_POINT_2 = "nav_dest_point_2";
+        public const string NAV_DEST_POINT_3 = "nav_dest_point_3";
+        public const string NAV_DEST_POINT_4 = "nav_dest_point_4";
+        public const string NAV_DEST_POINT_5 = "nav_dest_point_5";
+        public const string NAV_DEST_POINT_6 = "nav_dest_point_6";
+        public const string NAV_DEST_POINT_7 = "nav_dest_point_7";
+        public const string NAV_DEST_POINT_8 = "nav_dest_point_8";
+        public const string NAV_DEST_POINT_9 = "nav_dest_point_9";
         // B1 Rooms
         public const string NAV_ROOM_WATER_INTAKE = "nav_room_water_intake";
         public const string NAV_ROOM_CHEMISTRY_HALL = "nav_room_chemistry_hall";

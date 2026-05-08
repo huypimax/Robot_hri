@@ -151,7 +151,8 @@
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                 BackgroundColor="Transparent"
                 Stroke="Transparent"
-                Padding="{StaticResource NavRailItemPadding}">
+                Padding="{StaticResource NavRailItemPadding}"
+                IsVisible="False">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer x:Name="LabTap" />
                 </Border.GestureRecognizers>
@@ -176,6 +177,7 @@
                 <Border HeightRequest="{StaticResource NavRailItemHeight}"
                 BackgroundColor="Transparent"
                 Stroke="Transparent"
+                IsVisible="False"
                 Padding="{StaticResource NavRailItemPadding}">
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer x:Name="DeliTap" />

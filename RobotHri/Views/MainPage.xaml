@@ -11,7 +11,6 @@
 
     <Grid ColumnDefinitions="Auto,*">
 
-        <!-- ── Navigation Rail (full-height left column) ── -->
         <c:NavRail Grid.Column="0"
                    VerticalOptions="Fill"
                    QnaCommand="{Binding NavigateQnaCommand}"
@@ -22,184 +21,186 @@
                    NaviLabel="{Binding BtnNavigation}"
                    LabLabel="{Binding BtnLab}"
                    DeliLabel="{Binding BtnDelivery}" />
-        <!-- ── Right side: Header  +  Content  +  Footer ── -->
+
         <Grid Grid.Column="1"
-              RowDefinitions="Auto,Auto,*,Auto"
-              Padding="12,8,12,12">
+              RowDefinitions="Auto,Auto,*"
+              Padding="16,12,16,16">
 
-            <!-- Header (back button hidden — NavRail takes that role) -->
-            <c:HeaderLayout Grid.Row="0"
-                            x:Name="Header"
-                            Title="{Binding TitleText}"
-                            LanguageLabelText="{Binding LanguageLabel}"
-                            ShowBackButton="False" />
+            <Image Grid.RowSpan="3"
+           Source="lotus_bg.png"
+           Aspect="AspectFill"
+           Opacity="0.98"
+           InputTransparent="True" />
 
-            <!-- Welcome banner -->
+            <Image Grid.RowSpan="3"
+                   Source="main_bg.png"
+                   Aspect="AspectFill"
+                   Opacity="0.9"
+                   InputTransparent="True" />
+            <BoxView Grid.RowSpan="3"
+                     Color="#1A870002"
+                     InputTransparent="True" />
+
+            <Border Grid.Row="0"
+            BackgroundColor="#E6870002"
+            Stroke="#55FFFFFF"
+            StrokeThickness="1"
+            Margin="0,0,0,4">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <c:HeaderLayout x:Name="Header"
+            Title="{Binding TitleText}"
+            ShowBackButton="False"
+            LanguageLabelText="{Binding LanguageLabel}" />
+            </Border>
+
+            <!-- Welcome card — tighter margin -->
             <Border Grid.Row="1"
-                Style="{StaticResource CardBorder}"
-                Padding="18"
-                Margin="0,8,0,0">
-                <Grid ColumnDefinitions="Auto,*,Auto"
-                ColumnSpacing="18">
+                    BackgroundColor="#D9F8EDEA"
+                    Stroke="#66870002"
+                    StrokeThickness="1"
+                    Padding="16,14"
+                    Margin="8,0,8,8">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="14" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#22000000" Offset="0,3" Radius="10" Opacity="0.2" />
+                </Border.Shadow>
+                <Grid ColumnDefinitions="72,*,64"
+                      ColumnSpacing="14"
+                      VerticalOptions="Center">
                     <Image Grid.Column="0"
-                    Source="robot_reception.png"
-                    WidthRequest="96"
-                    HeightRequest="96"
-                    Aspect="AspectFit"
-                    VerticalOptions="Center" />
-
+                           Source="robot_reception.png"
+                           WidthRequest="72"
+                           HeightRequest="72"
+                           Aspect="AspectFit"
+                           VerticalOptions="Center" />
                     <Label Grid.Column="1"
-                    x:Name="PromptLabel"
-                    Text="{Binding WelcomeText}"
-                    Style="{StaticResource SubtitleLabel}"
-                    FontSize="{StaticResource FontSizeTitleLarge}"
-                    VerticalOptions="Center"
-                    HorizontalTextAlignment="Center" />
+                           x:Name="PromptLabel"
+                           Text="{Binding WelcomeText}"
+                           FontFamily="RobotoBold"
+                           FontSize="{StaticResource FontSizeSubtitle}"
+                           TextColor="{StaticResource WarmText}"
+                           LineBreakMode="WordWrap"
+                           MaxLines="3"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center" />
                     <Image Grid.Column="2"
-                    Source="logo_fablab.png"
-                    WidthRequest="76"
-                    HeightRequest="76"
-                    Aspect="AspectFit"
-                    VerticalOptions="Center" />
+                           Source="logo_fablab.png"
+                           WidthRequest="64"
+                           HeightRequest="64"
+                           Aspect="AspectFit"
+                           VerticalOptions="Center" />
                 </Grid>
             </Border>
 
-            <!-- Navigation cards (2 × 2) -->
+            <!-- Actions: 2 tiles full width, icon on top, text below -->
             <Grid Grid.Row="2"
-                  ColumnDefinitions="*,*"
-                  RowDefinitions="*,*"
-                  ColumnSpacing="8"
-                  RowSpacing="8"
-                  Padding="0,8,0,0">
+                  ColumnDefinitions="300,300"
+                  ColumnSpacing="16"
+                  Margin="8,50,8,0"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Center">
 
-                <!-- Q&A -->
-                <Border Grid.Row="0" Grid.Column="0"
-                        Style="{StaticResource CardBorder}">
+                <!-- Q&A tile -->
+                <Border Grid.Column="0"
+                        HorizontalOptions="Fill"
+                        MinimumHeightRequest="160"
+                        BackgroundColor="#E2F8EDE8"
+                        Stroke="#75870002"
+                        StrokeThickness="1"
+                        Padding="16,20,16,20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="14" />
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="#28000000" Offset="0,5" Radius="12" Opacity="0.18" />
+                    </Border.Shadow>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NavigateQnaCommand}" />
                     </Border.GestureRecognizers>
-                    <VerticalStackLayout VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Spacing="16"
-                        Padding="{StaticResource CardPadding}">
-                        <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
-                                WidthRequest="92"
-                                HeightRequest="92"
-                                StrokeThickness="0">    
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="46" />
-                        </Border.StrokeShape>
-                        <Image Source="icon_mic.png"
-                            WidthRequest="54"
-                            HeightRequest="54"
-                            Aspect="AspectFit"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center" />     
+
+                    <VerticalStackLayout Spacing="12"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Border HorizontalOptions="Center"
+                                BackgroundColor="{StaticResource DestinationPastelPink}"
+                                StrokeThickness="0"
+                                WidthRequest="72"
+                                HeightRequest="72">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="36" />
+                            </Border.StrokeShape>
+                            <Image Source="icon_mic.png"
+                                   WidthRequest="42"
+                                   HeightRequest="42"
+                                   Aspect="AspectFit"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
                         </Border>
                         <Label Text="{Binding BtnQna}"
-                        Style="{StaticResource TitleLabel}"
-                        FontSize="{StaticResource FontSizeTitleLarge}"
-                        HorizontalOptions="Center"
-                        HorizontalTextAlignment="Center" />
+                               FontFamily="RobotoBold"
+                               FontSize="{StaticResource FontSizeTitleMedium}"
+                               TextColor="{StaticResource WarmText}"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap"
+                               MaxLines="2" />
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- Navigation -->
-                <Border Grid.Row="0" Grid.Column="1"
-                        Style="{StaticResource CardBorder}">
+                <!-- Navigation tile -->
+                <Border Grid.Column="1"
+                        HorizontalOptions="Fill"
+                        MinimumHeightRequest="160"
+                        BackgroundColor="#E2F8EDE8"
+                        Stroke="#75870002"
+                        StrokeThickness="1"
+                        Padding="16,20,16,20">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="14" />
+                    </Border.StrokeShape>
+                    <Border.Shadow>
+                        <Shadow Brush="#28000000" Offset="0,5" Radius="12" Opacity="0.18" />
+                    </Border.Shadow>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NavigateNaviCommand}" />
                     </Border.GestureRecognizers>
-                    <VerticalStackLayout VerticalOptions="Center"
-                                     HorizontalOptions="Center"
-                                     Spacing="16"
-                                     Padding="{StaticResource CardPadding}">
-                        <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
-                            WidthRequest="92"
-                            HeightRequest="92"
-                            StrokeThickness="0">
+
+                    <VerticalStackLayout Spacing="12"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center">
+                        <Border HorizontalOptions="Center"
+                                BackgroundColor="{StaticResource DestinationPastelBlue}"
+                                StrokeThickness="0"
+                                WidthRequest="72"
+                                HeightRequest="72">
                             <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="46" />
+                                <RoundRectangle CornerRadius="36" />
                             </Border.StrokeShape>
                             <Image Source="icon_nav.png"
-                               WidthRequest="54"
-                               HeightRequest="54"
-                               Aspect="AspectFit"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
+                                   WidthRequest="42"
+                                   HeightRequest="42"
+                                   Aspect="AspectFit"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
                         </Border>
                         <Label Text="{Binding BtnNavigation}"
-                           Style="{StaticResource TitleLabel}"
-                           FontSize="{StaticResource FontSizeTitleLarge}"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <!-- Lab -->
-                <Border Grid.Row="1" Grid.Column="0"
-                        Style="{StaticResource CardBorder}">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateLabCommand}" />
-                    </Border.GestureRecognizers>
-                    <VerticalStackLayout VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Spacing="16"
-                        Padding="{StaticResource CardPadding}">
-                        <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
-                            WidthRequest="92"
-                            HeightRequest="92"
-                            StrokeThickness="0">
-                            <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="46" />
-                                </Border.StrokeShape>
-                            <Image Source="icon_nav.png"
-                                WidthRequest="54"
-                                HeightRequest="54"
-                                Aspect="AspectFit"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center" /> 
-                        </Border>
-                        <Label Text="{Binding BtnLab}"
-                            Style="{StaticResource TitleLabel}"
-                            FontSize="{StaticResource FontSizeTitleLarge}"
-                            HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center" />
-                    </VerticalStackLayout>
-                </Border>
-
-                <!-- Delivery -->
-                <Border Grid.Row="1" Grid.Column="1"
-                        Style="{StaticResource CardBorder}">
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NavigateDeliCommand}" />
-                    </Border.GestureRecognizers>
-                    <VerticalStackLayout VerticalOptions="Center"
-                                     HorizontalOptions="Center"
-                                     Spacing="16"
-                                     Padding="{StaticResource CardPadding}">
-                        <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
-                            WidthRequest="92"
-                            HeightRequest="92"
-                            StrokeThickness="0">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="46" />
-                            </Border.StrokeShape>
-                            <Label Text="📦"
-                               FontSize="40"
+                               FontFamily="RobotoBold"
+                               FontSize="{StaticResource FontSizeTitleMedium}"
+                               TextColor="{StaticResource WarmText}"
                                HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                        </Border>
-                        <Label Text="{Binding BtnDelivery}"
-                           Style="{StaticResource TitleLabel}"
-                           FontSize="{StaticResource FontSizeTitleLarge}"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center" />
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap"
+                               MaxLines="2" />
                     </VerticalStackLayout>
                 </Border>
 
             </Grid>
-        </Grid>
 
+        </Grid>
     </Grid>
 </controls:BaseContentPage>

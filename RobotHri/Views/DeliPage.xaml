@@ -64,7 +64,7 @@
                         Margin="0,2,0,8">
                     <VerticalStackLayout Spacing="10">
 
-                        <Label Text="Destination"
+                        <Label Text="{Binding DestinationLabel}"
                                Style="{StaticResource TitleLabel}"
                                FontSize="{StaticResource FontSizeBody}" />
                         <Border Style="{StaticResource FormFieldBorder}"

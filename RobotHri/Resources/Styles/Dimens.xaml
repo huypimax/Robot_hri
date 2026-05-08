@@ -40,9 +40,9 @@
     <x:Double x:Key="PopupButtonWidth">150</x:Double>
     <x:Double x:Key="PopupButtonHeight">40</x:Double>
 
-    <!-- Nav room button -->
-    <x:Double x:Key="NavRoomMinWidth">160</x:Double>
-    <x:Double x:Key="NavRoomMinHeight">65</x:Double>
+    <!-- Nav room button (grid sets width — no min width avoids horizontal clip) -->
+    <x:Double x:Key="NavRoomMinWidth">0</x:Double>
+    <x:Double x:Key="NavRoomMinHeight">126</x:Double>
     <x:Double x:Key="NavRoomImageSize">26</x:Double>
     <x:Double x:Key="NavRoomStrokeThickness">2</x:Double>
 

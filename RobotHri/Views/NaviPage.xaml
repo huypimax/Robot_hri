@@ -21,48 +21,42 @@
               RowDefinitions="Auto,Auto,*"
               Padding="12,8,12,10">
 
-        <!-- Decorative background -->
-        <Grid Grid.RowSpan="3" InputTransparent="True">
-            <Border BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
-                    WidthRequest="110"
-                    HeightRequest="110"
-                    HorizontalOptions="End"
-                    VerticalOptions="Start"
-                    TranslationX="-18"
-                    TranslationY="-24"
-                    Opacity="0.36"
-                    StrokeThickness="0">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="55" />
-                </Border.StrokeShape>
-            </Border>
-            <Border BackgroundColor="{StaticResource LightBlue}"
-                    WidthRequest="86"
-                    HeightRequest="86"
-                    HorizontalOptions="End"
-                    VerticalOptions="End"
-                    TranslationX="14"
-                    TranslationY="22"
-                    Opacity="0.32"
-                    StrokeThickness="0">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="43" />
-                </Border.StrokeShape>
-            </Border>
-        </Grid>
+        <Image Grid.RowSpan="3"
+               Source="lotus_bg.png"
+               Aspect="AspectFill"
+               Opacity="0.3"
+               InputTransparent="True" />
+
+        <Image Grid.Row="0"
+               Source="lotus_banner.png"
+               HeightRequest="78"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Start"
+               Margin="0,0,0,6"
+               InputTransparent="True" />
 
         <!-- Header -->
-        <c:HeaderLayout Grid.Row="0"
-                        x:Name="Header"
-                        Title="{Binding TitleText}"
-                        BackText="{Binding HomeText}"
-                        ShowBackButton="True"
-                        LanguageLabelText="{Binding LanguageLabel}"
-                        IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
+        <Border Grid.Row="0"
+                BackgroundColor="{StaticResource NavGlassDark}"
+                StrokeThickness="0"
+                Margin="0,0,0,4">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12" />
+            </Border.StrokeShape>
+            <c:HeaderLayout x:Name="Header"
+                            Title="{Binding TitleText}"
+                            BackText="{Binding HomeText}"
+                            ShowBackButton="True"
+                            LanguageLabelText="{Binding LanguageLabel}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
+        </Border>
 
         <!-- Prompt bar -->
         <Border Grid.Row="1"
                 Style="{StaticResource CardBorder}"
+                BackgroundColor="{StaticResource NavGlassLight}"
+                Stroke="#55FFFFFF"
                 Padding="14,10"
                 Margin="8,12,8,0">
             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
@@ -80,29 +74,39 @@
             </Grid>
         </Border>
 
-        <!-- Room buttons grid -->
-        <ScrollView Grid.Row="2" Margin="0,10,0,0">
+        <!-- Destinations: 3 columns × 3 rows -->
+        <ScrollView Grid.Row="2"
+                    Margin="0,8,0,4"
+                    IsClippedToBounds="False">
             <Border Style="{StaticResource CardBorder}"
+                    BackgroundColor="#42F8EDEE"
+                    Stroke="#55870002"
                     Margin="8,0"
-                    Padding="12,14">
-                <FlexLayout BindableLayout.ItemsSource="{Binding AvailableRooms}"
-                            Wrap="Wrap"
-                            Direction="Row"
-                            JustifyContent="SpaceBetween"
-                            AlignItems="Start"
-                            AlignContent="Start">
-                    <BindableLayout.ItemTemplate>
+                    Padding="10,12">
+                <CollectionView ItemsSource="{Binding AvailableRooms}"
+                                SelectionMode="None"
+                                BackgroundColor="Transparent">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="3"
+                                         HorizontalItemSpacing="8"
+                                         VerticalItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:RoomButtonData">
-                            <c:NavRoomButton RoomName="{Binding RoomName}"
-                                             RoomKey="{Binding RoomKey}"
-                                             IsActive="{Binding Source={RelativeSource AncestorType={x:Type vm:NaviViewModel}}, Path=ActiveRoomKey, Converter={x:Static vm:EqualityConverter.Instance}, ConverterParameter={Binding RoomKey}}"
-                                             RoomSelected="OnRoomSelected"
-                                             IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type vm:NaviViewModel}}, Path=IsBusy, Converter={StaticResource InverseBooleanConverter}}"
-                                             Margin="0,0,0,12"
-                                             FlexLayout.Basis="31.5%" />
+                            <Grid Padding="0,0,0,0">
+                                <c:NavRoomButton RoomName="{Binding RoomName}"
+                                                 RoomKey="{Binding RoomKey}"
+                                                 HorizontalOptions="Fill"
+                                                 VerticalOptions="Fill"
+                                                 IsActive="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ActiveRoomKey, Converter={x:Static vm:EqualityConverter.Instance}, ConverterParameter={Binding RoomKey}}"
+                                                 RoomSelected="OnRoomSelected"
+                                                 IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                                                 Margin="0,0,0,0" />
+                            </Grid>
                         </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </FlexLayout>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Border>
         </ScrollView>
 

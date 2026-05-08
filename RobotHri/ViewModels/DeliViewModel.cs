@@ -38,13 +38,15 @@ namespace RobotHri.ViewModels
         // Static key-to-StringId mapping (language-independent keys)
         private static readonly List<(string Key, string StringId)> DestinationMap = new()
         {
-            ("Water Intake",    StringIds.NAV_ROOM_WATER_INTAKE),
-            ("Chemistry Hall",  StringIds.NAV_ROOM_CHEMISTRY_HALL),
-            ("Restroom",        StringIds.NAV_ROOM_RESTROOM),
-            ("Stairs",          StringIds.NAV_ROOM_STAIRS),
-            ("Robotics Lab",    StringIds.NAV_ROOM_ROBOTICS_LAB),
-            ("Electrical Lab",  StringIds.NAV_ROOM_ELECTRICAL_LAB),
-            ("Home",  StringIds.NAV_ROOM_HOME),
+            ("DestinationPoint1", StringIds.NAV_DEST_POINT_1),
+            ("DestinationPoint2", StringIds.NAV_DEST_POINT_2),
+            ("DestinationPoint3", StringIds.NAV_DEST_POINT_3),
+            ("DestinationPoint4", StringIds.NAV_DEST_POINT_4),
+            ("DestinationPoint5", StringIds.NAV_DEST_POINT_5),
+            ("DestinationPoint6", StringIds.NAV_DEST_POINT_6),
+            ("DestinationPoint7", StringIds.NAV_DEST_POINT_7),
+            ("DestinationPoint8", StringIds.NAV_DEST_POINT_8),
+            ("DestinationPoint9", StringIds.NAV_DEST_POINT_9),
         };
 
         private List<DestinationItem> _destinations = new();

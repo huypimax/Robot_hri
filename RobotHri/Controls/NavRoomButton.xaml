@@ -4,12 +4,12 @@
              x:Class="RobotHri.Controls.NavRoomButton">
 
     <Border x:Name="RoomBorder"
-            BackgroundColor="{StaticResource PrimaryDarkBlueSoft}"
-            Stroke="{StaticResource CardBorderBrush}"
+            BackgroundColor="{StaticResource DestinationPastelPink}"
+            Stroke="#668D8D8D"
             StrokeThickness="1"
-            Padding="{StaticResource NavRoomPadding}"
-            MinimumWidthRequest="{StaticResource NavRoomMinWidth}"
-            MinimumHeightRequest="{StaticResource NavRoomMinHeight}">
+            Padding="12,14,12,14"
+            MinimumHeightRequest="{StaticResource NavRoomMinHeight}"
+            HorizontalOptions="Fill">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="{StaticResource CardCornerRadius}" />
         </Border.StrokeShape>
@@ -25,7 +25,7 @@
             <TapGestureRecognizer x:Name="RoomTap" />
         </Border.GestureRecognizers>
 
-        <VerticalStackLayout HorizontalOptions="Center"
+        <VerticalStackLayout HorizontalOptions="Fill"
                              VerticalOptions="Center"
                              Spacing="{StaticResource SmallSpacing}">
             <Image x:Name="RoomIcon"
@@ -34,9 +34,13 @@
                    HorizontalOptions="Center"
                    IsVisible="False" />
             <Label x:Name="RoomLabel"
-                   HorizontalOptions="Center"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Center"
                    HorizontalTextAlignment="Center"
-                   TextColor="{StaticResource PrimaryDarkBlue}"
+                   VerticalTextAlignment="Center"
+                   LineBreakMode="WordWrap"
+                   MaxLines="2"
+                   TextColor="{StaticResource WarmText}"
                    FontFamily="RobotoBold"
                    FontSize="{StaticResource FontSizeRoomLabel}" />
         </VerticalStackLayout>

@@ -16,15 +16,37 @@
               RowDefinitions="Auto,*,Auto,Auto"
               Padding="12,8,12,10">
 
-        <!-- Header -->
-        <c:HeaderLayout Grid.Row="0"
-                        x:Name="Header"
-                        Title="{Binding TitleText}"
-                        BackText="{Binding HomeText}"
-                        ShowBackButton="True"
-                        LanguageLabelText="{Binding LanguageLabel}" />
+            <Image Grid.RowSpan="3"
+               Source="lotus_bg.png"
+               Aspect="AspectFill"
+               Opacity="0.3"
+               InputTransparent="True" />
 
-        <!-- Robot avatar + Response area -->
+            <Image Grid.Row="0"
+               Source="lotus_banner.png"
+               HeightRequest="78"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Start"
+               Margin="0,0,0,6"
+               InputTransparent="True" />
+
+            <Border Grid.Row="0"
+            BackgroundColor="{StaticResource NavGlassDark}"
+            StrokeThickness="0"
+            Margin="0,0,0,4">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <c:HeaderLayout x:Name="Header"
+                    Title="{Binding TitleText}"
+                    BackText="{Binding HomeText}"
+                    ShowBackButton="True"
+                    LanguageLabelText="{Binding LanguageLabel}"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
+            </Border>
+
+            <!-- Robot avatar + Response area -->
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="18"
                                  Padding="12,18,12,12"

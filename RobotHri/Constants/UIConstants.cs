@@ -3,9 +3,9 @@ namespace RobotHri.Constants
     public static class UIConstants
     {
         // Color hex values (from src/utilities/colors.py)
-        public const string ColorDarkBlue = "#00294D";
-        public const string ColorLightBlue = "#D8E5FE";
-        public const string ColorHoverBg = "#F0F6FF";
+        public const string ColorDarkBlue = "#870002";
+        public const string ColorLightBlue = "#FAD8D8";
+        public const string ColorHoverBg = "#FFF1F1";
         public const string ColorWhite = "#FFFFFF";
         public const string ColorGreen = "#69FF3D";
         public const string ColorRed = "#AC0000";

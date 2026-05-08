@@ -3,21 +3,28 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <!-- ======== Brand Colors (from src/utilities/colors.py) ======== -->
-    <Color x:Key="PrimaryDarkBlue">#00294D</Color>
-    <Color x:Key="LightBlue">#D8E5FE</Color>
-    <Color x:Key="HoverBg">#F0F6FF</Color>
-    <Color x:Key="PageBackground">#EEF4FF</Color>
-    <Color x:Key="PrimaryDarkBlueSoft">#EAF0F6</Color>
-    <Color x:Key="PageBackgroundTop">#FFFFFF</Color>
-    <Color x:Key="PageBackgroundBottom">#EEF2F6</Color>
+    <Color x:Key="PrimaryDarkBlue">#870002</Color>
+    <Color x:Key="LightBlue">#FAD8D8</Color>
+    <Color x:Key="HoverBg">#FFF1F1</Color>
+    <Color x:Key="PageBackground">#F5EFDF</Color>
+    <Color x:Key="PrimaryDarkBlueSoft">#FBEAEA</Color>
+    <Color x:Key="PageBackgroundTop">#FFF9F2</Color>
+    <Color x:Key="PageBackgroundBottom">#F5EFDF</Color>
     <Color x:Key="White">#FFFFFF</Color>
     <Color x:Key="SuccessGreen">#2ECC71</Color>
     <Color x:Key="DangerRed">#AC0000</Color>
     <Color x:Key="AccentGreen">#69FF3D</Color>
+    <Color x:Key="WarmText">#870002</Color>
+    <Color x:Key="WarmCream">#F5EFDF</Color>
+    <Color x:Key="NavGlassDark">#96000000</Color>
+    <Color x:Key="NavGlassLight">#1F000000</Color>
+    <Color x:Key="DestinationPastelPink">#C8FFD9F7</Color>
+    <Color x:Key="DestinationPastelBlue">#C8C0FAFF</Color>
+    <Color x:Key="DestinationPastelPeach">#C8FFD3C5</Color>
 
     <!-- ======== Text Colors ======== -->
-    <Color x:Key="TextDark">#00294D</Color>
-    <Color x:Key="TextMuted">#6B7A8D</Color>
+    <Color x:Key="TextDark">#870002</Color>
+    <Color x:Key="TextMuted">#7F5A5A</Color>
     <Color x:Key="TextOnPrimary">#FFFFFF</Color>
     <Color x:Key="TextColor">#1F2A37</Color>
 
@@ -25,11 +32,11 @@
     <Color x:Key="ShadowColor">#40000000</Color>
     <Color x:Key="OverlayLight">#1AFFFFFF</Color>
     <Color x:Key="BorderLight">#40FFFFFF</Color>
-    <Color x:Key="CardBorderColor">#1F00294D</Color>
+    <Color x:Key="CardBorderColor">#33870002</Color>
 
     <!-- Brushes for shadows and borders -->
-    <SolidColorBrush x:Key="CardShadowBrush" Color="#1A00294D" />
-    <SolidColorBrush x:Key="ButtonShadowBrush" Color="#3300294D" />
+    <SolidColorBrush x:Key="CardShadowBrush" Color="#1F870002" />
+    <SolidColorBrush x:Key="ButtonShadowBrush" Color="#33870002" />
     <SolidColorBrush x:Key="OverlayLightBrush" Color="{StaticResource OverlayLight}" />
     <SolidColorBrush x:Key="BorderLightBrush" Color="{StaticResource BorderLight}" />
     <SolidColorBrush x:Key="CardBorderBrush" Color="{StaticResource CardBorderColor}" />
@@ -45,7 +52,7 @@
     <Color x:Key="TimeTabCustomColor">#00A896</Color>
 
     <!-- Semantic aliases -->
-    <Color x:Key="Primary">#00294D</Color>
-    <Color x:Key="Secondary">#D8E5FE</Color>
-    <Color x:Key="Tertiary">#F0F6FF</Color>
+    <Color x:Key="Primary">#870002</Color>
+    <Color x:Key="Secondary">#FAD8D8</Color>
+    <Color x:Key="Tertiary">#FFF1F1</Color>
 </ResourceDictionary>

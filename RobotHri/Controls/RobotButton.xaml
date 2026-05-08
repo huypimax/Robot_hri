@@ -4,7 +4,7 @@
              x:Class="RobotHri.Controls.RobotButton">
 
     <Border x:Name="ButtonBorder"
-            BackgroundColor="{StaticResource PrimaryDarkBlue}"
+            BackgroundColor="{StaticResource WarmText}"
             StrokeShape="RoundRectangle 18"
             Stroke="Transparent"
             Padding="0"

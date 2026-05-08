@@ -85,14 +85,14 @@ namespace RobotHri.Controls
             switch (style)
             {
                 case RobotButtonStyle.Primary:
-                    ButtonBorder.BackgroundColor = Color.FromArgb("#00294D");
+                    ButtonBorder.BackgroundColor = Color.FromArgb("#870002");
                     ButtonLabel.TextColor = Colors.White;
                     ButtonBorder.Stroke = Colors.Transparent;
                     break;
                 case RobotButtonStyle.Secondary:
-                    ButtonBorder.BackgroundColor = Colors.Transparent;
-                    ButtonLabel.TextColor = Color.FromArgb("#00294D");
-                    ButtonBorder.Stroke = Color.FromArgb("#00294D");
+                    ButtonBorder.BackgroundColor = Color.FromArgb("#F5EFDF");
+                    ButtonLabel.TextColor = Color.FromArgb("#870002");
+                    ButtonBorder.Stroke = Color.FromArgb("#870002");
                     break;
                 case RobotButtonStyle.Danger:
                     ButtonBorder.BackgroundColor = Color.FromArgb("#AC0000");
