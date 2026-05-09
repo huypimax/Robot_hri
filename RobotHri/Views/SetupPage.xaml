@@ -477,9 +477,10 @@
                                 Margin="0,14,0,14"
                                 LabelText="{Binding DeliverySpeedLbl}"
                                 DescriptionText="{Binding DeliverySpeedDesc}"
-                                Value="{Binding SpeedCmS, Mode=TwoWay}"
-                                MinValue="10" MaxValue="120" Unit="cm/s"
-                                MinLabel="10cm/s" MaxLabel="120cm/s" />
+                                Value="{Binding SpeedMS, Mode=TwoWay}"
+                                MinValue="0" MaxValue="5" Unit="m/s"
+                                DecimalPlaces="2"
+                                MinLabel="0m/s" MaxLabel="5m/s" />
                             <BoxView HeightRequest="1" Color="{StaticResource LightBlue}" />
 
                             <!-- Rough terrain speed slider -->
@@ -487,9 +488,10 @@
                                 Margin="0,14,0,14"
                                 LabelText="{Binding DeliveryCollisionDecelLbl}"
                                 DescriptionText="{Binding DeliveryCollisionDecelDesc}"
-                                Value="{Binding DeliverySpeed, Mode=TwoWay}"
-                                MinValue="10" MaxValue="120" Unit="cm/s"
-                                MinLabel="10cm/s" MaxLabel="120cm/s" />
+                                Value="{Binding RoughTerrainSpeedMS, Mode=TwoWay}"
+                                MinValue="0" MaxValue="5" Unit="m/s"
+                                DecimalPlaces="2"
+                                MinLabel="0m/s" MaxLabel="5m/s" />
                             <BoxView HeightRequest="1" Color="{StaticResource LightBlue}" />
 
                             <!-- Rotation speed slider (0–1.2, 1 decimal place) -->
@@ -612,9 +614,10 @@
                                 Margin="0,14,0,14"
                                 LabelText="{Binding RouteSpeedLbl}"
                                 DescriptionText="{Binding RouteSpeedDesc}"
-                                Value="{Binding SpeedCmS, Mode=TwoWay}"
-                                MinValue="10" MaxValue="120" Unit="cm/s"
-                                MinLabel="10cm/s" MaxLabel="120cm/s" />
+                                Value="{Binding SpeedMS, Mode=TwoWay}"
+                                MinValue="0" MaxValue="5" Unit="m/s"
+                                DecimalPlaces="2"
+                                MinLabel="0m/s" MaxLabel="5m/s" />
 
                         </VerticalStackLayout>
                     </Border>
