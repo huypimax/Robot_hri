@@ -10,6 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="90" />
         </Grid.ColumnDefinitions>
 
@@ -52,9 +53,35 @@
                FontSize="{StaticResource FontSizeHeaderTitle}"
                HorizontalTextAlignment="Center" />
 
+        <!-- Battery (%) -->
+        <Border x:Name="BatteryBadge"
+                Grid.Column="2"
+                BackgroundColor="{StaticResource OverlayLight}"
+                Padding="12,6"
+                Margin="0,0,8,0"
+                VerticalOptions="Center">
+            <Border.Stroke>
+                <SolidColorBrush Color="#33FFFFFF" />
+            </Border.Stroke>
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5" />
+            </Border.StrokeShape>
+            <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                <Label Text="🔋"
+                       FontSize="{StaticResource FontSizeLanguage}"
+                       VerticalOptions="Center" />
+                <Label x:Name="BatteryLabel"
+                       Text="—"
+                       TextColor="{StaticResource TextOnPrimary}"
+                       FontFamily="RobotoBold"
+                       FontSize="{StaticResource FontSizeLanguage}"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Border>
+
         <!-- Language button (right) -->
         <Border x:Name="LanguageButton"
-                Grid.Column="2"
+                Grid.Column="3"
                 BackgroundColor="{StaticResource OverlayLight}"
                 Padding="12,6"
                 VerticalOptions="Center">

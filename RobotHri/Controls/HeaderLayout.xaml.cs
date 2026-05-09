@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using RobotHri.Services;
+
 namespace RobotHri.Controls
 {
     /// <summary>
@@ -49,6 +52,8 @@ namespace RobotHri.Controls
         public event EventHandler? BackTapped;
         public event EventHandler? LanguageToggled;
 
+        private IBatteryStatusService? _batterySvc;
+
         public HeaderLayout()
         {
             InitializeComponent();
@@ -63,6 +68,48 @@ namespace RobotHri.Controls
 
             BackTap.Tapped += (s, e) => BackTapped?.Invoke(this, EventArgs.Empty);
             LanguageTap.Tapped += (s, e) => LanguageToggled?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected override void OnHandlerChanged()
+        {
+            base.OnHandlerChanged();
+            SubscribeBatteryService();
+        }
+
+        protected override void OnHandlerChanging(HandlerChangingEventArgs args)
+        {
+            base.OnHandlerChanging(args);
+            if (args.NewHandler is null)
+                UnsubscribeBatteryService();
+        }
+
+        private void SubscribeBatteryService()
+        {
+            UnsubscribeBatteryService();
+            if (Handler?.MauiContext?.Services.GetService(typeof(IBatteryStatusService)) is not IBatteryStatusService svc)
+                return;
+
+            _batterySvc = svc;
+            BatteryLabel.Text = svc.DisplayText;
+            svc.PropertyChanged += OnBatteryServicePropertyChanged;
+        }
+
+        private void UnsubscribeBatteryService()
+        {
+            if (_batterySvc is null)
+                return;
+            _batterySvc.PropertyChanged -= OnBatteryServicePropertyChanged;
+            _batterySvc = null;
+        }
+
+        private void OnBatteryServicePropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (sender is not IBatteryStatusService svc)
+                return;
+            if (e.PropertyName is not (nameof(IBatteryStatusService.DisplayText) or nameof(IBatteryStatusService.Percent)))
+                return;
+
+            MainThread.BeginInvokeOnMainThread(() => BatteryLabel.Text = svc.DisplayText);
         }
     }
 }

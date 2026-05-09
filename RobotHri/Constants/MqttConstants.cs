@@ -14,6 +14,8 @@ namespace RobotHri.Constants
         public const string TopicLocation = "robot/location";
         public const string TopicAttendance = "robot/attendance";
         public const string TopicStatus = "robot/status";
+        /// <summary>Subscribe: UTF-8 payload is a single battery percentage value (0–100), e.g. <c>87</c> or <c>87.5</c>.</summary>
+        public const string TopicBattery = "robot/status/battery";
         public const string TopicSpeedConfig = "robot/config/speed";
     }
 }
