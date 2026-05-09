@@ -5,6 +5,11 @@
     <!-- ======== Brand Colors ======== -->
     <!-- Industrial two-color scheme: orange + navy -->
     <Color x:Key="PrimaryDarkBlue">#00294D</Color>
+    <!-- Header bar background (HeaderLayout and related chrome; matches Shell nav styling) -->
+    <Color x:Key="WarmText">#00294D</Color>
+    <Color x:Key="LightBlue">#D8E5FE</Color>
+    <Color x:Key="HoverBg">#F0F6FF</Color>
+    <Color x:Key="PageBackground">#EEF4FF</Color>
     <Color x:Key="PrimaryDarkBlueSoft">#EAF0F6</Color>
     <Color x:Key="LightBlue">#D4DEE8</Color>
     <Color x:Key="HoverBg">#EEF3F8</Color>

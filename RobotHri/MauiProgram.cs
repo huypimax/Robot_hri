@@ -31,6 +31,7 @@ namespace RobotHri
 
             // ── Services ──────────────────────────────────────────
             builder.Services.AddSingleton<ILocalizationService, LocalizationService>();
+            builder.Services.AddSingleton<IBatteryStatusService, BatteryStatusService>();
             builder.Services.AddSingleton<IMqttService, MqttService>();
             builder.Services.AddSingleton<CommunityToolkit.Maui.Media.ISpeechToText>(
                 CommunityToolkit.Maui.Media.SpeechToText.Default);

@@ -3,6 +3,7 @@ using MQTTnet.Client;
 using RobotHri.Constants;
 using RobotHri.Models;
 using System.Diagnostics;
+using System.Globalization;
 using System.Text;
 using System.Text.Json;
 
@@ -12,8 +13,14 @@ namespace RobotHri.Services
     {
         private IMqttClient? _client;
         private readonly MqttFactory _factory = new MqttFactory();
+        private readonly IBatteryStatusService _batteryStatus;
 
         public bool IsConnected => _client?.IsConnected ?? false;
+
+        public MqttService(IBatteryStatusService batteryStatus)
+        {
+            _batteryStatus = batteryStatus;
+        }
 
         public event EventHandler<bool>? ArrivalReceived;
         public event EventHandler<LocationModel>? LocationUpdated;
@@ -53,6 +60,9 @@ namespace RobotHri.Services
 
                 Debug.WriteLine($"[MQTT] Subscribing to topic: {MqttConstants.TopicLocation}");
                 await _client.SubscribeAsync(MqttConstants.TopicLocation);
+
+                Debug.WriteLine($"[MQTT] Subscribing to topic: {MqttConstants.TopicBattery}");
+                await _client.SubscribeAsync(MqttConstants.TopicBattery);
 
                 return true;
             }
@@ -156,8 +166,50 @@ namespace RobotHri.Services
                     Debug.WriteLine($"[MQTT] Failed to deserialize location payload: {ex.Message}");
                 }
             }
+            else if (topic == MqttConstants.TopicBattery)
+            {
+                if (TryParseBatteryPercent(payload, out var percent))
+                {
+#if DEBUG
+                    Debug.WriteLine($"[MQTT] Battery topic: raw payload={payload.Trim()}, parsed={percent}%");
+#endif
+                    MainThread.BeginInvokeOnMainThread(() => _batteryStatus.SetPercent(percent));
+                }
+                else
+                    Debug.WriteLine($"[MQTT] Unrecognized battery payload: {payload}");
+            }
 
             return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Expects the payload to contain only a percentage value (0–100): plain text <c>87</c>, <c>87.5</c>, or JSON number.
+        /// </summary>
+        private static bool TryParseBatteryPercent(string payload, out double percent)
+        {
+            percent = 0;
+            var s = payload.Trim();
+            if (s.Length == 0)
+                return false;
+
+            if (double.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out percent))
+                return true;
+
+            try
+            {
+                using var doc = JsonDocument.Parse(s);
+                if (doc.RootElement.ValueKind == JsonValueKind.Number)
+                {
+                    percent = doc.RootElement.GetDouble();
+                    return true;
+                }
+            }
+            catch (JsonException)
+            {
+                // ignore
+            }
+
+            return false;
         }
 
         public void Dispose()
