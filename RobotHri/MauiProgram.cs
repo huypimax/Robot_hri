@@ -43,6 +43,9 @@ namespace RobotHri
             // ── ViewModels ────────────────────────────────────────
             builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<QnaViewModel>();
+            builder.Services.AddTransient<ProcedureViewModel>();
+            builder.Services.AddTransient<ProcedureDetailViewModel>();
+            builder.Services.AddTransient<ProcedureListViewModel>();
             builder.Services.AddTransient<NaviViewModel>();
             builder.Services.AddTransient<LabViewModel>();
             builder.Services.AddTransient<DeliViewModel>();
@@ -51,6 +54,9 @@ namespace RobotHri
             // ── Views / Pages ─────────────────────────────────────
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<QnaPage>();
+            builder.Services.AddTransient<ProcedurePage>();
+            builder.Services.AddTransient<ProcedureDetailPage>();
+            builder.Services.AddTransient<ProcedureListPage>();
             builder.Services.AddTransient<NaviPage>();
             builder.Services.AddTransient<LabPage>();
             builder.Services.AddTransient<DeliPage>();

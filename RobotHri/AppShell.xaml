@@ -27,6 +27,18 @@
             <ShellContent ContentTemplate="{DataTemplate views:QnaPage}" />
         </Tab>
 
+        <Tab Title="Procedure" Route="procedure">
+            <ShellContent ContentTemplate="{DataTemplate views:ProcedurePage}" />
+        </Tab>
+        
+        <Tab Title="Procedure Detail" Route="proceduredetail">
+            <ShellContent ContentTemplate="{DataTemplate views:ProcedureDetailPage}" />
+        </Tab>
+        
+        <Tab Title="Procedure List" Route="procedurelist">
+            <ShellContent ContentTemplate="{DataTemplate views:ProcedureListPage}" />
+        </Tab>
+
         <Tab Title="Navigation" Route="navi">
             <ShellContent ContentTemplate="{DataTemplate views:NaviPage}" />
         </Tab>

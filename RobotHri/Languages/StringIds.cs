@@ -21,6 +21,7 @@ namespace RobotHri.Languages
         public const string MAIN_LAB = "main_lab";
         public const string MAIN_DELIVERY = "main_delivery";
         public const string MAIN_CHECKIN = "main_checkin";
+        public const string MAIN_PROCEDURE = "main_procedure";
         public const string MAIN_HOME_PROMPT = "main_home_prompt";
         public const string MAIN_HOME_YES = "main_home_yes";
         public const string MAIN_HOME_NO_THANKS = "main_home_no_thanks";
@@ -77,6 +78,59 @@ namespace RobotHri.Languages
         public const string NAV_MAP_CLOSE = "nav_map_close";
         public const string NAV_MAP_PAN_HINT = "nav_map_pan_hint";
         public const string NAV_MAP_WAITING_POSE = "nav_map_waiting_pose";
+
+        // ==================== Procedure Lookup Page ====================
+        public const string PROCEDURE_TITLE = "procedure_title";
+        public const string PROCEDURE_PROMPT = "procedure_prompt";
+        public const string PROCEDURE_SELECT_HINT = "procedure_select_hint";
+        public const string PROCEDURE_REQUIRED_DOCS = "procedure_required_docs";
+        public const string PROCEDURE_PROCESSING_COUNTER = "procedure_processing_counter";
+        public const string PROCEDURE_NOTE = "procedure_note";
+        public const string PROCEDURE_START_NAV = "procedure_start_nav";
+        public const string PROCEDURE_LIST_BUTTON = "procedure_list_button";
+        public const string PROCEDURE_SUPPORTED_LIST_BUTTON = "procedure_supported_list_button";
+        public const string PROCEDURE_SUPPORTED_LIST_TITLE = "procedure_supported_list_title";
+        public const string PROCEDURE_COL_STT = "procedure_col_stt";
+        public const string PROCEDURE_COL_NAME = "procedure_col_name";
+        public const string PROCEDURE_COL_COUNTER = "procedure_col_counter";
+        public const string PROCEDURE_COL_DOCS = "procedure_col_docs";
+        public const string PROCEDURE_COL_NOTE = "procedure_col_note";
+        public const string PROCEDURE_NAME_1 = "procedure_name_1";
+        public const string PROCEDURE_NAME_2 = "procedure_name_2";
+        public const string PROCEDURE_NAME_3 = "procedure_name_3";
+        public const string PROCEDURE_NAME_4 = "procedure_name_4";
+        public const string PROCEDURE_NAME_5 = "procedure_name_5";
+        public const string PROCEDURE_NAME_6 = "procedure_name_6";
+        public const string PROCEDURE_NAME_7 = "procedure_name_7";
+        public const string PROCEDURE_NAME_8 = "procedure_name_8";
+        public const string PROCEDURE_NAME_9 = "procedure_name_9";
+        public const string PROCEDURE_POINT_1_DOCS = "procedure_point_1_docs";
+        public const string PROCEDURE_POINT_2_DOCS = "procedure_point_2_docs";
+        public const string PROCEDURE_POINT_3_DOCS = "procedure_point_3_docs";
+        public const string PROCEDURE_POINT_4_DOCS = "procedure_point_4_docs";
+        public const string PROCEDURE_POINT_5_DOCS = "procedure_point_5_docs";
+        public const string PROCEDURE_POINT_6_DOCS = "procedure_point_6_docs";
+        public const string PROCEDURE_POINT_7_DOCS = "procedure_point_7_docs";
+        public const string PROCEDURE_POINT_8_DOCS = "procedure_point_8_docs";
+        public const string PROCEDURE_POINT_9_DOCS = "procedure_point_9_docs";
+        public const string PROCEDURE_POINT_1_COUNTER = "procedure_point_1_counter";
+        public const string PROCEDURE_POINT_2_COUNTER = "procedure_point_2_counter";
+        public const string PROCEDURE_POINT_3_COUNTER = "procedure_point_3_counter";
+        public const string PROCEDURE_POINT_4_COUNTER = "procedure_point_4_counter";
+        public const string PROCEDURE_POINT_5_COUNTER = "procedure_point_5_counter";
+        public const string PROCEDURE_POINT_6_COUNTER = "procedure_point_6_counter";
+        public const string PROCEDURE_POINT_7_COUNTER = "procedure_point_7_counter";
+        public const string PROCEDURE_POINT_8_COUNTER = "procedure_point_8_counter";
+        public const string PROCEDURE_POINT_9_COUNTER = "procedure_point_9_counter";
+        public const string PROCEDURE_POINT_1_NOTE = "procedure_point_1_note";
+        public const string PROCEDURE_POINT_2_NOTE = "procedure_point_2_note";
+        public const string PROCEDURE_POINT_3_NOTE = "procedure_point_3_note";
+        public const string PROCEDURE_POINT_4_NOTE = "procedure_point_4_note";
+        public const string PROCEDURE_POINT_5_NOTE = "procedure_point_5_note";
+        public const string PROCEDURE_POINT_6_NOTE = "procedure_point_6_note";
+        public const string PROCEDURE_POINT_7_NOTE = "procedure_point_7_note";
+        public const string PROCEDURE_POINT_8_NOTE = "procedure_point_8_note";
+        public const string PROCEDURE_POINT_9_NOTE = "procedure_point_9_note";
 
         // ==================== Lab Page ====================
         public const string LAB_TITLE = "lab_title";

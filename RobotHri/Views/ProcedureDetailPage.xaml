@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RobotHri.Controls.Base"
+    xmlns:c="clr-namespace:RobotHri.Controls"
+    xmlns:vm="clr-namespace:RobotHri.ViewModels"
+    x:Class="RobotHri.Views.ProcedureDetailPage"
+    x:DataType="vm:ProcedureDetailViewModel"
+    Shell.NavBarIsVisible="False">
+
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,*,Auto"
+              Padding="12,8,12,12">
+
+            <Image Grid.RowSpan="3"
+                   Source="lotus_bg.png"
+                   Aspect="AspectFill"
+                   Opacity="0.3"
+                   InputTransparent="True" />
+
+            <Border Grid.Row="0"
+                    BackgroundColor="{StaticResource NavGlassDark}"
+                    StrokeThickness="0"
+                    Margin="0,0,0,8">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <c:HeaderLayout x:Name="Header"
+                                Title="{Binding TitleText}"
+                                BackText="{Binding HomeText}"
+                                ShowBackButton="True"
+                                LanguageLabelText="{Binding LanguageLabel}" />
+            </Border>
+
+            <Border Grid.Row="1"
+                    BackgroundColor="#E6F8EDE8"
+                    Stroke="#55870002"
+                    StrokeThickness="1"
+                    Padding="16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="10">
+                    <Border BackgroundColor="#FFFDF6"
+                            Stroke="#CC870002"
+                            StrokeThickness="1"
+                            Padding="10,8"
+                            HorizontalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <Label Text="{Binding SelectedProcedure.Name}"
+                               FontFamily="RobotoBold"
+                               FontSize="{StaticResource FontSizeTitleMedium}"
+                               TextColor="{StaticResource WarmText}" />
+                    </Border>
+
+                    <Label Text="{Binding RequiredDocsTitle}"
+                           FontFamily="RobotoBold"
+                           FontSize="{StaticResource FontSizeTitleMedium}"
+                           TextColor="{StaticResource WarmText}" />
+                    <Label Text="{Binding SelectedProcedure.RequiredDocs}"
+                           FontFamily="RobotoRegular"
+                           FontSize="{StaticResource FontSizeBody}"
+                           TextColor="{StaticResource WarmText}"
+                           LineBreakMode="WordWrap" />
+
+                    <Label Text="{Binding CounterTitle}"
+                           FontFamily="RobotoBold"
+                           FontSize="{StaticResource FontSizeTitleMedium}"
+                           TextColor="{StaticResource WarmText}" />
+                    <Label Text="{Binding SelectedProcedure.CounterName}"
+                           FontFamily="RobotoRegular"
+                           FontSize="{StaticResource FontSizeBody}"
+                           TextColor="{StaticResource WarmText}" />
+
+                    <Label Text="{Binding NoteTitle}"
+                           FontFamily="RobotoBold"
+                           FontSize="{StaticResource FontSizeTitleMedium}"
+                           TextColor="{StaticResource WarmText}" />
+                    <Label Text="{Binding SelectedProcedure.Note}"
+                           FontFamily="RobotoRegular"
+                           FontSize="{StaticResource FontSizeBody}"
+                           TextColor="{StaticResource WarmText}"
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid Grid.Row="2"
+                  ColumnDefinitions="Auto,*"
+                  Margin="0,10,0,0">
+                <Border Grid.Column="0"
+                        HorizontalOptions="Start"
+                        BackgroundColor="#A0870002"
+                        StrokeThickness="0"
+                        Padding="16,10">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenListCommand}" />
+                    </Border.GestureRecognizers>
+                    <Label Text="{Binding ListButtonText}"
+                           FontFamily="RobotoBold"
+                           FontSize="{StaticResource FontSizeBody}"
+                           TextColor="{StaticResource TextOnPrimary}" />
+                </Border>
+
+                <Border Grid.Column="1"
+                        HorizontalOptions="End"
+                        BackgroundColor="{StaticResource PrimaryDarkBlue}"
+                        StrokeThickness="0"
+                        Padding="18,10">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToCounterCommand}" />
+                    </Border.GestureRecognizers>
+                    <Label Text="{Binding NavigateButtonText}"
+                           FontFamily="RobotoBold"
+                           FontSize="{StaticResource FontSizeBody}"
+                           TextColor="{StaticResource TextOnPrimary}" />
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</controls:BaseContentPage>

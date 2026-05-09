@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RobotHri.Controls.Base"
+    xmlns:c="clr-namespace:RobotHri.Controls"
+    xmlns:vm="clr-namespace:RobotHri.ViewModels"
+    x:Class="RobotHri.Views.ProcedurePage"
+    x:DataType="vm:ProcedureViewModel"
+    Shell.NavBarIsVisible="False">
+
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,*,Auto"
+              Padding="12,8,12,12">
+
+            <Image Grid.RowSpan="3"
+                   Source="lotus_bg.png"
+                   Aspect="AspectFill"
+                   Opacity="0.3"
+                   InputTransparent="True" />
+
+            <Border Grid.Row="0"
+                    BackgroundColor="{StaticResource NavGlassDark}"
+                    StrokeThickness="0"
+                    Margin="0,0,0,8">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <c:HeaderLayout x:Name="Header"
+                                Title="{Binding TitleText}"
+                                BackText="{Binding HomeText}"
+                                ShowBackButton="True"
+                                LanguageLabelText="{Binding LanguageLabel}" />
+            </Border>
+
+            <Border Grid.Row="1"
+                    BackgroundColor="#E6F8EDE8"
+                    Stroke="#55870002"
+                    StrokeThickness="1"
+                    Padding="16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <Grid RowDefinitions="Auto,*"
+                      RowSpacing="12">
+                    <Label Grid.Row="0"
+                           Text="{Binding TitleText}"
+                           FontFamily="RobotoBold"
+                           FontSize="{StaticResource FontSizeTitleLarge}"
+                           TextColor="{StaticResource WarmText}"
+                           HorizontalTextAlignment="Center" 
+                           IsVisible="False"/>
+
+                    <CollectionView Grid.Row="1"
+                                    ItemsSource="{Binding Procedures}"
+                                    SelectionMode="None">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                                             Span="3"
+                                             HorizontalItemSpacing="10"
+                                             VerticalItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="vm:ProcedureItem">
+                                <Border BackgroundColor="#FFFDF6"
+                                        Stroke="#CC870002"
+                                        StrokeThickness="1"
+                                        Padding="10,10"
+                                        MinimumHeightRequest="66">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type controls:BaseContentPage}}, Path=BindingContext.OpenProcedureCommand}"
+                                                              CommandParameter="{Binding .}" />
+                                    </Border.GestureRecognizers>
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="10" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding Name}"
+                                           FontFamily="RobotoBold"
+                                           FontSize="{StaticResource FontSizeBody}"
+                                           TextColor="{StaticResource WarmText}"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           LineBreakMode="WordWrap"
+                                           MaxLines="2" />
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="2"
+                    HorizontalOptions="End"
+                    BackgroundColor="{StaticResource PrimaryDarkBlue}"
+                    StrokeThickness="0"
+                    Padding="16,10"
+                    Margin="0,10,0,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenSupportedListCommand}" />
+                </Border.GestureRecognizers>
+                <Label Text="{Binding SupportedListButtonText}"
+                       FontFamily="RobotoBold"
+                       FontSize="{StaticResource FontSizeBody}"
+                       TextColor="{StaticResource TextOnPrimary}" />
+            </Border>
+        </Grid>
+    </Grid>
+</controls:BaseContentPage>

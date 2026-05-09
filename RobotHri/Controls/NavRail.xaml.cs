@@ -21,6 +21,8 @@ namespace RobotHri.Controls
 
         public static readonly BindableProperty NaviCommandProperty =
             BindableProperty.Create(nameof(NaviCommand), typeof(ICommand), typeof(NavRail));
+        public static readonly BindableProperty ProcedureCommandProperty =
+            BindableProperty.Create(nameof(ProcedureCommand), typeof(ICommand), typeof(NavRail));
 
         public static readonly BindableProperty LabCommandProperty =
             BindableProperty.Create(nameof(LabCommand), typeof(ICommand), typeof(NavRail));
@@ -44,6 +46,9 @@ namespace RobotHri.Controls
         public static readonly BindableProperty NaviLabelProperty =
             BindableProperty.Create(nameof(NaviLabel), typeof(string), typeof(NavRail), "Navigation",
                 propertyChanged: (b, _, n) => ((NavRail)b).NaviText.Text = (string)n);
+        public static readonly BindableProperty ProcedureLabelProperty =
+            BindableProperty.Create(nameof(ProcedureLabel), typeof(string), typeof(NavRail), "Procedure",
+                propertyChanged: (b, _, n) => ((NavRail)b).ProcedureText.Text = (string)n);
 
         public static readonly BindableProperty LabLabelProperty =
             BindableProperty.Create(nameof(LabLabel), typeof(string), typeof(NavRail), "Lab",
@@ -62,6 +67,7 @@ namespace RobotHri.Controls
         public ICommand? QnaCommand     { get => (ICommand?)GetValue(QnaCommandProperty);     set => SetValue(QnaCommandProperty, value); }
         public ICommand? MainCommand    { get => (ICommand?)GetValue(MainCommandProperty);    set => SetValue(MainCommandProperty, value); }
         public ICommand? NaviCommand    { get => (ICommand?)GetValue(NaviCommandProperty);    set => SetValue(NaviCommandProperty, value); }
+        public ICommand? ProcedureCommand { get => (ICommand?)GetValue(ProcedureCommandProperty); set => SetValue(ProcedureCommandProperty, value); }
         public ICommand? LabCommand     { get => (ICommand?)GetValue(LabCommandProperty);     set => SetValue(LabCommandProperty, value); }
         public ICommand? DeliCommand    { get => (ICommand?)GetValue(DeliCommandProperty);    set => SetValue(DeliCommandProperty, value); }
 
@@ -71,6 +77,7 @@ namespace RobotHri.Controls
         public string MainLabel    { get => (string)GetValue(MainLabelProperty);    set => SetValue(MainLabelProperty, value); }
         public string QnaLabel     { get => (string)GetValue(QnaLabelProperty);     set => SetValue(QnaLabelProperty, value); }
         public string NaviLabel    { get => (string)GetValue(NaviLabelProperty);    set => SetValue(NaviLabelProperty, value); }
+        public string ProcedureLabel { get => (string)GetValue(ProcedureLabelProperty); set => SetValue(ProcedureLabelProperty, value); }
         public string LabLabel     { get => (string)GetValue(LabLabelProperty);     set => SetValue(LabLabelProperty, value); }
         public string DeliLabel    { get => (string)GetValue(DeliLabelProperty);    set => SetValue(DeliLabelProperty, value); }
         public string SetupLabel   { get => (string)GetValue(SetupLabelProperty);   set => SetValue(SetupLabelProperty, value); }
@@ -108,6 +115,7 @@ namespace RobotHri.Controls
             MenuTap.Tapped    += OnMenuTapped;
             MainTap.Tapped    += async (_, _) => await ExecuteOrNavigateAsync(MainCommand, "//main");
             NaviTap.Tapped    += async (_, _) => await ExecuteOrNavigateAsync(NaviCommand, "//navi");
+            ProcedureTap.Tapped += async (_, _) => await ExecuteOrNavigateAsync(ProcedureCommand, "//procedure");
             DeliTap.Tapped    += async (_, _) => await ExecuteOrNavigateAsync(DeliCommand, "//deli");
             QnaTap.Tapped += async (_, _) => await ExecuteOrNavigateAsync(QnaCommand, "//qna");
             LabTap.Tapped += async (_, _) => await ExecuteOrNavigateAsync(LabCommand, "//lab");
@@ -150,6 +158,7 @@ namespace RobotHri.Controls
             MainPageText.IsVisible    = visible;
             QnaText.IsVisible     = visible;
             NaviText.IsVisible    = visible;
+            ProcedureText.IsVisible = visible;
             LabText.IsVisible     = visible;
             DeliText.IsVisible    = visible;
             MenuText.IsVisible = visible;
@@ -187,6 +196,7 @@ namespace RobotHri.Controls
             MenuText.Text = "Menu";
             MainPageText.Text = StringIds.MAIN_TITLE.GetString();
             NaviText.Text = StringIds.MAIN_NAVIGATION.GetString();
+            ProcedureText.Text = StringIds.MAIN_PROCEDURE.GetString();
             DeliText.Text = StringIds.MAIN_DELIVERY.GetString();
             SetupText.Text = StringIds.SETUP_TITLE.GetString();
             QnaText.Text = StringIds.MAIN_QNA.GetString();

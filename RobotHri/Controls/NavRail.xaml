@@ -122,6 +122,31 @@
                     </HorizontalStackLayout>
                 </Border>
 
+                <!-- Procedure -->
+            <Border HeightRequest="{StaticResource NavRailItemHeight}"
+                    BackgroundColor="Transparent"
+                    Stroke="Transparent"
+                    Padding="{StaticResource NavRailItemPadding}">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="ProcedureTap" />
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
+                                       VerticalOptions="Center">
+                    <Label Text="&#xE70F;"
+                           FontFamily="Segoe Fluent Icons"
+                           FontSize="{StaticResource NavRailIconSize}"
+                           WidthRequest="{StaticResource NavRailIconWidth}"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Center" />
+                    <Label x:Name="ProcedureText"
+                           TextColor="{StaticResource TextOnPrimary}"
+                           FontFamily="RobotoRegular"
+                           FontSize="{StaticResource FontSizeBody}"
+                           VerticalOptions="Center"
+                           IsVisible="False" />
+                </HorizontalStackLayout>
+            </Border>
+
                 <!-- Navigation -->
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                     BackgroundColor="Transparent"

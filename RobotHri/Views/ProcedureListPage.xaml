@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:RobotHri.Controls.Base"
+    xmlns:c="clr-namespace:RobotHri.Controls"
+    xmlns:vm="clr-namespace:RobotHri.ViewModels"
+    x:Class="RobotHri.Views.ProcedureListPage"
+    x:DataType="vm:ProcedureListViewModel"
+    Shell.NavBarIsVisible="False">
+
+    <Grid ColumnDefinitions="Auto,*">
+        <c:NavRail Grid.Column="0" />
+
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto,*"
+              Padding="12,8,12,12">
+
+            <Image Grid.RowSpan="2"
+                   Source="lotus_bg.png"
+                   Aspect="AspectFill"
+                   Opacity="0.3"
+                   InputTransparent="True" />
+
+            <Border Grid.Row="0"
+                    BackgroundColor="{StaticResource NavGlassDark}"
+                    StrokeThickness="0"
+                    Margin="0,0,0,8">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <c:HeaderLayout x:Name="Header"
+                                Title="{Binding TitleText}"
+                                BackText="{Binding HomeText}"
+                                ShowBackButton="True"
+                                LanguageLabelText="{Binding LanguageLabel}" />
+            </Border>
+
+            <Border Grid.Row="1"
+                    BackgroundColor="#E6F8EDE8"
+                    Stroke="#55870002"
+                    StrokeThickness="1"
+                    Padding="16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="16" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="{Binding ListTitleText}"
+                           FontFamily="RobotoBold"
+                           FontSize="{StaticResource FontSizeTitleLarge}"
+                           TextColor="{StaticResource WarmText}"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding SubtitleText}"
+                           FontFamily="RobotoRegular"
+                           FontSize="{StaticResource FontSizeBody}"
+                           TextColor="{StaticResource WarmText}"
+                           HorizontalTextAlignment="Center" />
+
+                    <Grid ColumnDefinitions="56,2*,2.3*,4*,3*"
+                          ColumnSpacing="1"
+                          BackgroundColor="#77A00000"
+                          Padding="1">
+                        <Label Grid.Column="0" Text="{Binding ColSttText}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFF6EFE6" Padding="6,6" FontFamily="RobotoBold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="1" Text="{Binding ColNameText}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFF6EFE6" Padding="8,6" FontFamily="RobotoBold" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="2" Text="{Binding ColCounterText}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFF6EFE6" Padding="8,6" FontFamily="RobotoBold" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="3" Text="{Binding ColDocsText}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFF6EFE6" Padding="8,6" FontFamily="RobotoBold" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="4" Text="{Binding ColNoteText}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFF6EFE6" Padding="8,6" FontFamily="RobotoBold" VerticalTextAlignment="Center" />
+                    </Grid>
+
+                    <CollectionView ItemsSource="{Binding Rows}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="vm:ProcedureTableRow">
+                                <Grid ColumnDefinitions="56,2*,2.3*,4*,3*"
+                                      ColumnSpacing="1"
+                                      BackgroundColor="#55A00000"
+                                      Padding="1"
+                                      Margin="0,1,0,0">
+                                    <Label Grid.Column="0" Text="{Binding Index}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFFFFBF5" Padding="6,8" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                    <Label Grid.Column="1" Text="{Binding ProcedureName}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFFFFBF5" Padding="8,8" LineBreakMode="WordWrap" />
+                                    <Label Grid.Column="2" Text="{Binding Counter}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFFFFBF5" Padding="8,8" LineBreakMode="WordWrap" />
+                                    <Label Grid.Column="3" Text="{Binding RequiredDocs}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFFFFBF5" Padding="8,8" LineBreakMode="WordWrap" />
+                                    <Label Grid.Column="4" Text="{Binding Note}" TextColor="{StaticResource WarmText}" BackgroundColor="#FFFFFBF5" Padding="8,8" LineBreakMode="WordWrap" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+</controls:BaseContentPage>

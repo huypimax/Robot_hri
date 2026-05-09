@@ -11,6 +11,7 @@ namespace RobotHri.ViewModels
         private string _btnNavigation = string.Empty;
         private string _btnLab = string.Empty;
         private string _btnDelivery = string.Empty;
+        private string _btnProcedure = string.Empty;
         private string _btnCheckin = string.Empty;
         private string _languageLabel = "VI";
 
@@ -49,6 +50,11 @@ namespace RobotHri.ViewModels
             get => _btnCheckin;
             set => SetProperty(ref _btnCheckin, value);
         }
+        public string BtnProcedure
+        {
+            get => _btnProcedure;
+            set => SetProperty(ref _btnProcedure, value);
+        }
         public string LanguageLabel
         {
             get => _languageLabel;
@@ -61,6 +67,7 @@ namespace RobotHri.ViewModels
         public Command NavigateLabCommand { get; }
         public Command NavigateDeliCommand { get; }
         public Command NavigateCheckinCommand { get; }
+        public Command NavigateProcedureCommand { get; }
         public Command NavigateSetupCommand { get; }
 
         public MainViewModel(ILocalizationService localization) : base(localization)
@@ -70,6 +77,7 @@ namespace RobotHri.ViewModels
             NavigateNaviCommand   = new Command(async () => await NavigateSafeAsync("//navi"));
             NavigateLabCommand    = new Command(async () => await NavigateSafeAsync("//lab"));
             NavigateDeliCommand   = new Command(async () => await NavigateSafeAsync("//deli"));
+            NavigateProcedureCommand = new Command(async () => await NavigateSafeAsync("//procedure"));
             NavigateCheckinCommand = new Command(async () =>
                 await Shell.Current.DisplayAlert("Check-in", "Coming soon", "OK"));
             NavigateSetupCommand  = new Command(async () => await NavigateSafeAsync("//setup"));
@@ -81,10 +89,11 @@ namespace RobotHri.ViewModels
         {
             WelcomeText = GetWelcomeGreeting();
             TitleText = StringIds.MAIN_TITLE.GetString();
-            BtnQna = StringIds.MAIN_QNA.GetString();
-            BtnNavigation = StringIds.MAIN_NAVIGATION.GetString();
+            BtnQna = StringIds.MAIN_QNA.GetString().ToUpper();
+            BtnNavigation = StringIds.MAIN_NAVIGATION.GetString().ToUpper();
             BtnLab = StringIds.MAIN_LAB.GetString();
             BtnDelivery = StringIds.MAIN_DELIVERY.GetString();
+            BtnProcedure = StringIds.MAIN_PROCEDURE.GetString().ToUpper();
             BtnCheckin = StringIds.MAIN_CHECKIN.GetString();
             LanguageLabel = Localization.GetCurrentLanguageName();
         }
