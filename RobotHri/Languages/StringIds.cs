@@ -53,6 +53,13 @@ namespace RobotHri.Languages
         public const string NAV_ROOM_ELECTRICAL_LAB = "nav_room_electrical_lab";
         public const string NAV_ROOM_HOME = "nav_room_home";
 
+        // ThaiDuong
+        public const string NAV_TABLE_1 = "nav_table_1";
+        public const string NAV_TABLE_2 = "nav_table_2";
+        public const string NAV_TABLE_3 = "nav_table_3";
+        public const string NAV_TABLE_4 = "nav_table_4";
+        public const string NAV_TABLE_5 = "nav_table_5";
+
         // B2 Rooms (Add these to JSON files later if needed, returning defaults for now)
         public const string NAV_ROOM_HOME_2 = "nav_room_home_2";
         public const string NAV_ROOM_LIB = "nav_room_lib";

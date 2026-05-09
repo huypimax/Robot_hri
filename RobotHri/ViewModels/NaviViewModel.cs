@@ -230,26 +230,32 @@ namespace RobotHri.ViewModels
         {
             AvailableRooms.Clear();
 
-            if (RobotMapAssets.CurrentMapName == "B2")
-            {
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomHome2", RoomName = GetLocalizedRoomName("RoomHome2") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomLib", RoomName = GetLocalizedRoomName("RoomLib") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomYouthUnionOffice", RoomName = GetLocalizedRoomName("RoomYouthUnionOffice") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomBioLab", RoomName = GetLocalizedRoomName("RoomBioLab") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomCEPPLab", RoomName = GetLocalizedRoomName("RoomCEPPLab") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomChemistryHall", RoomName = GetLocalizedRoomName("RoomChemistryHall") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomHome", RoomName = GetLocalizedRoomName("RoomHome") });
-            }
-            else
-            {
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomWaterIntake", RoomName = GetLocalizedRoomName("RoomWaterIntake") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomChemistryHall", RoomName = GetLocalizedRoomName("RoomChemistryHall") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomRestroom", RoomName = GetLocalizedRoomName("RoomRestroom") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomStairs", RoomName = GetLocalizedRoomName("RoomStairs") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomRoboticsLab", RoomName = GetLocalizedRoomName("RoomRoboticsLab") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomElectricalLab", RoomName = GetLocalizedRoomName("RoomElectricalLab") });
-                AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomHome", RoomName = GetLocalizedRoomName("RoomHome") });
-            }
+            AvailableRooms.Add(new RoomButtonData { RoomKey = "Table 1", RoomName = GetLocalizedRoomName("Table1") });
+            AvailableRooms.Add(new RoomButtonData { RoomKey = "Table 2", RoomName = GetLocalizedRoomName("Table2") });
+            AvailableRooms.Add(new RoomButtonData { RoomKey = "Table 3", RoomName = GetLocalizedRoomName("Table3") });
+            AvailableRooms.Add(new RoomButtonData { RoomKey = "Table 4", RoomName = GetLocalizedRoomName("Table4") });
+            AvailableRooms.Add(new RoomButtonData { RoomKey = "Table 5", RoomName = GetLocalizedRoomName("Table5") });
+            AvailableRooms.Add(new RoomButtonData { RoomKey = "Home", RoomName = GetLocalizedRoomName("Home") });
+            //if (RobotMapAssets.CurrentMapName == "B2")
+            //{
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomHome2", RoomName = GetLocalizedRoomName("RoomHome2") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomLib", RoomName = GetLocalizedRoomName("RoomLib") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomYouthUnionOffice", RoomName = GetLocalizedRoomName("RoomYouthUnionOffice") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomBioLab", RoomName = GetLocalizedRoomName("RoomBioLab") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomCEPPLab", RoomName = GetLocalizedRoomName("RoomCEPPLab") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomChemistryHall", RoomName = GetLocalizedRoomName("RoomChemistryHall") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomHome", RoomName = GetLocalizedRoomName("RoomHome") });
+            //}
+            //else
+            //{
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomWaterIntake", RoomName = GetLocalizedRoomName("RoomWaterIntake") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomChemistryHall", RoomName = GetLocalizedRoomName("RoomChemistryHall") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomRestroom", RoomName = GetLocalizedRoomName("RoomRestroom") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomStairs", RoomName = GetLocalizedRoomName("RoomStairs") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomRoboticsLab", RoomName = GetLocalizedRoomName("RoomRoboticsLab") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomElectricalLab", RoomName = GetLocalizedRoomName("RoomElectricalLab") });
+            //    AvailableRooms.Add(new RoomButtonData { RoomKey = "RoomHome", RoomName = GetLocalizedRoomName("RoomHome") });
+            //}
         }
 
         private async void OnRoomSelected(string roomKey)
@@ -544,18 +550,12 @@ namespace RobotHri.ViewModels
 
         private static string GetLocalizedRoomName(string roomKey) => roomKey switch
         {
-            "RoomWaterIntake" => StringIds.NAV_ROOM_WATER_INTAKE.GetString(),
-            "RoomChemistryHall" => StringIds.NAV_ROOM_CHEMISTRY_HALL.GetString(),
-            "RoomRestroom" => StringIds.NAV_ROOM_RESTROOM.GetString(),
-            "RoomStairs" => StringIds.NAV_ROOM_STAIRS.GetString(),
-            "RoomRoboticsLab" => StringIds.NAV_ROOM_ROBOTICS_LAB.GetString(),
-            "RoomElectricalLab" => StringIds.NAV_ROOM_ELECTRICAL_LAB.GetString(),
-            "RoomHome" => StringIds.NAV_ROOM_HOME.GetString(),
-            "RoomHome2" => StringIds.NAV_ROOM_HOME_2.GetString(),
-            "RoomLib" => StringIds.NAV_ROOM_LIB.GetString(),
-            "RoomYouthUnionOffice" => StringIds.NAV_ROOM_VPDOAN.GetString(),
-            "RoomBioLab" => StringIds.NAV_ROOM_BIO_LAB.GetString(),
-            "RoomCEPPLab" => StringIds.NAV_ROOM_LAB_CEPP.GetString(),
+            "Table1" => StringIds.NAV_TABLE_1.GetString(),
+            "Table2" => StringIds.NAV_TABLE_2.GetString(),
+            "Table3" => StringIds.NAV_TABLE_3.GetString(),
+            "Table4" => StringIds.NAV_TABLE_4.GetString(),
+            "Table5" => StringIds.NAV_TABLE_5.GetString(),
+            "Home" => StringIds.NAV_ROOM_HOME.GetString(),
             _ => roomKey
         };
 
