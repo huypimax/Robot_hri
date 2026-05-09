@@ -22,11 +22,15 @@ namespace RobotHri.Models
 
         // Route
         public double WaitTimeSeconds { get; set; } = 120;
-        public double SpeedCmS { get; set; } = 100;
+
+        [Column("SpeedCmS")]
+        public double SpeedMS { get; set; } = 1.0;
 
         // Delivery
         public double DeliveryWaitTime { get; set; } = 107;
-        public double DeliverySpeed { get; set; } = 100;
+
+        [Column("DeliverySpeed")]
+        public double RoughTerrainSpeedMS { get; set; } = 1.0;
         public double CollisionDecelFactor { get; set; } = 0.8;
         public bool IsCollisionDecelEnabled { get; set; } = true;
         public double RotationSpeed { get; set; } = 1.2;
