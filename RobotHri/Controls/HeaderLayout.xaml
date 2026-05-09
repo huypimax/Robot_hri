@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RobotHri.Controls.HeaderLayout">
 
-    <Grid BackgroundColor="{StaticResource PrimaryDarkBlue}"
+    <Grid BackgroundColor="{StaticResource WarmText}"
           HeightRequest="{StaticResource HeaderHeight}"
           Padding="{StaticResource HeaderPadding}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="90" />
         </Grid.ColumnDefinitions>
 
         <!-- Back / Home button (left) -->
@@ -62,7 +62,7 @@
                 <SolidColorBrush Color="#33FFFFFF" />
             </Border.Stroke>
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="20" />
+                <RoundRectangle CornerRadius="5" />
             </Border.StrokeShape>
 
             <Border.GestureRecognizers>
@@ -71,7 +71,8 @@
             <Label x:Name="LanguageLabel"
                    TextColor="{StaticResource TextOnPrimary}"
                    FontFamily="RobotoBold"
-                   FontSize="{StaticResource FontSizeLanguage}" />
+                   FontSize="{StaticResource FontSizeLanguage}"
+                   HorizontalOptions="Center"/>
         </Border>
     </Grid>
 </ContentView>
