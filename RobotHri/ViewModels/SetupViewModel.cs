@@ -142,8 +142,8 @@ namespace RobotHri.ViewModels
         private double _waitTimeSeconds = 120;
         public double WaitTimeSeconds { get => _waitTimeSeconds; set => SetProperty(ref _waitTimeSeconds, value); }
 
-        private double _speedCmS = 100;
-        public double SpeedCmS    { get => _speedCmS;           set => SetProperty(ref _speedCmS, value); }
+        private double _speedMS = 1.0;
+        public double SpeedMS    { get => _speedMS;           set => SetProperty(ref _speedMS, value); }
 
         // ─── System info ──────────────────────────────────────────────────────────
 
@@ -235,7 +235,7 @@ namespace RobotHri.ViewModels
         // ─── Delivery settings ────────────────────────────────────────────────────
 
         private double _deliveryWaitTime     = 107;
-        private double _deliverySpeed        = 100;
+        private double _roughTerrainSpeedMS = 1.0;
         private double _collisionDecelFactor = 0.8;
         private bool   _isCollisionDecelEnabled = true;
         private double _rotationSpeed        = 1.2;
@@ -244,7 +244,7 @@ namespace RobotHri.ViewModels
         private bool   _isVoiceCountdownEnabled = false;
 
         public double DeliveryWaitTime          { get => _deliveryWaitTime;          set => SetProperty(ref _deliveryWaitTime, value); }
-        public double DeliverySpeed             { get => _deliverySpeed;             set => SetProperty(ref _deliverySpeed, value); }
+        public double RoughTerrainSpeedMS             { get => _roughTerrainSpeedMS;             set => SetProperty(ref _roughTerrainSpeedMS, value); }
         public double CollisionDecelFactor      { get => _collisionDecelFactor;      set => SetProperty(ref _collisionDecelFactor, value); }
         public bool   IsCollisionDecelEnabled   { get => _isCollisionDecelEnabled;   set => SetProperty(ref _isCollisionDecelEnabled, value); }
         public double RotationSpeed             { get => _rotationSpeed;             set => SetProperty(ref _rotationSpeed, value); }
@@ -798,9 +798,9 @@ namespace RobotHri.ViewModels
                 if (_mqtt.IsConnected)
                 {
                     await _mqtt.PublishSpeedSettingsAsync(
-                        normalSpeed: snapshot.SpeedCmS,
+                        normalSpeed: snapshot.SpeedMS * 100.0,
                         rotationSpeed: snapshot.RotationSpeed,
-                        roughTerrainSpeed: snapshot.DeliverySpeed);
+                        roughTerrainSpeed: snapshot.RoughTerrainSpeedMS * 100.0);
                 }
             }
             catch
@@ -826,9 +826,9 @@ namespace RobotHri.ViewModels
             ObstacleVolume = settings.ObstacleVolume;
             SelectedMusic = settings.SelectedMusic;
             WaitTimeSeconds = settings.WaitTimeSeconds;
-            SpeedCmS = settings.SpeedCmS;
+            SpeedMS = settings.SpeedMS;
             DeliveryWaitTime = settings.DeliveryWaitTime;
-            DeliverySpeed = settings.DeliverySpeed;
+            RoughTerrainSpeedMS = settings.RoughTerrainSpeedMS;
             CollisionDecelFactor = settings.CollisionDecelFactor;
             IsCollisionDecelEnabled = settings.IsCollisionDecelEnabled;
             RotationSpeed = settings.RotationSpeed;
@@ -852,9 +852,9 @@ namespace RobotHri.ViewModels
                 ObstacleVolume = ObstacleVolume,
                 SelectedMusic = SelectedMusic,
                 WaitTimeSeconds = WaitTimeSeconds,
-                SpeedCmS = SpeedCmS,
+                SpeedMS = SpeedMS,
                 DeliveryWaitTime = DeliveryWaitTime,
-                DeliverySpeed = DeliverySpeed,
+                RoughTerrainSpeedMS = RoughTerrainSpeedMS,
                 CollisionDecelFactor = CollisionDecelFactor,
                 IsCollisionDecelEnabled = IsCollisionDecelEnabled,
                 RotationSpeed = RotationSpeed,
@@ -879,9 +879,9 @@ namespace RobotHri.ViewModels
                 ObstacleVolume = source.ObstacleVolume,
                 SelectedMusic = source.SelectedMusic,
                 WaitTimeSeconds = source.WaitTimeSeconds,
-                SpeedCmS = source.SpeedCmS,
+                SpeedMS = source.SpeedMS,
                 DeliveryWaitTime = source.DeliveryWaitTime,
-                DeliverySpeed = source.DeliverySpeed,
+                RoughTerrainSpeedMS = source.RoughTerrainSpeedMS,
                 CollisionDecelFactor = source.CollisionDecelFactor,
                 IsCollisionDecelEnabled = source.IsCollisionDecelEnabled,
                 RotationSpeed = source.RotationSpeed,
@@ -914,9 +914,9 @@ namespace RobotHri.ViewModels
                 current.ObstacleVolume != _savedSettings.ObstacleVolume ||
                 current.SelectedMusic != _savedSettings.SelectedMusic ||
                 Math.Abs(current.WaitTimeSeconds - _savedSettings.WaitTimeSeconds) > 0.0001 ||
-                Math.Abs(current.SpeedCmS - _savedSettings.SpeedCmS) > 0.0001 ||
+                Math.Abs(current.SpeedMS - _savedSettings.SpeedMS) > 0.0001 ||
                 Math.Abs(current.DeliveryWaitTime - _savedSettings.DeliveryWaitTime) > 0.0001 ||
-                Math.Abs(current.DeliverySpeed - _savedSettings.DeliverySpeed) > 0.0001 ||
+                Math.Abs(current.RoughTerrainSpeedMS - _savedSettings.RoughTerrainSpeedMS) > 0.0001 ||
                 Math.Abs(current.CollisionDecelFactor - _savedSettings.CollisionDecelFactor) > 0.0001 ||
                 current.IsCollisionDecelEnabled != _savedSettings.IsCollisionDecelEnabled ||
                 Math.Abs(current.RotationSpeed - _savedSettings.RotationSpeed) > 0.0001 ||

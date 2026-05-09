@@ -23,7 +23,11 @@ namespace RobotHri.Services
                 .FirstOrDefaultAsync();
 
             if (settings is not null)
+            {
+                if (MigrateLegacySpeedUnits(settings))
+                    await _connection.InsertOrReplaceAsync(settings);
                 return settings;
+            }
 
             settings = new SetupSettingsEntity { Id = 1 };
             await _connection.InsertAsync(settings);
@@ -44,6 +48,42 @@ namespace RobotHri.Services
 
             await _connection.CreateTableAsync<SetupSettingsEntity>();
             _initialized = true;
+        }
+
+        /// <summary>
+        /// Older builds stored linear speeds as cm/s (typically 10–120). Values greater than 5 are treated as legacy cm/s and converted to m/s.
+        /// </summary>
+        private static bool MigrateLegacySpeedUnits(SetupSettingsEntity s)
+        {
+            bool changed = false;
+
+            if (s.SpeedMS > 5.01)
+            {
+                s.SpeedMS /= 100.0;
+                changed = true;
+            }
+
+            if (s.RoughTerrainSpeedMS > 5.01)
+            {
+                s.RoughTerrainSpeedMS /= 100.0;
+                changed = true;
+            }
+
+            var clampedSpeed = Math.Clamp(s.SpeedMS, 0, 5);
+            var clampedRough = Math.Clamp(s.RoughTerrainSpeedMS, 0, 5);
+            if (Math.Abs(clampedSpeed - s.SpeedMS) > 1e-9)
+            {
+                s.SpeedMS = clampedSpeed;
+                changed = true;
+            }
+
+            if (Math.Abs(clampedRough - s.RoughTerrainSpeedMS) > 1e-9)
+            {
+                s.RoughTerrainSpeedMS = clampedRough;
+                changed = true;
+            }
+
+            return changed;
         }
     }
 }
