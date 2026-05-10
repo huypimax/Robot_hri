@@ -19,10 +19,6 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
 
-        <Tab Title="Home" Route="home">
-            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
-        </Tab>
-
         <Tab Title="Main" Route="main">
             <ShellContent ContentTemplate="{DataTemplate views:MainPage}" />
         </Tab>

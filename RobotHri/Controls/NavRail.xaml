@@ -51,7 +51,8 @@
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                     BackgroundColor="Transparent"
                     Stroke="Transparent"
-                    Padding="{StaticResource NavRailItemPadding}">
+                    Padding="{StaticResource NavRailItemPadding}"
+                    IsVisible="False">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer x:Name="HomeTap" />
                 </Border.GestureRecognizers>
