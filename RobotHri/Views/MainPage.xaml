@@ -103,21 +103,20 @@
             <!-- Actions: Q&A + Procedure stacked on left, Navigation on right -->
             <Grid Grid.Row="2"
                   ColumnDefinitions="*,*"
-                  RowDefinitions="Auto,Auto"
                   ColumnSpacing="24"
                   RowSpacing="18"
                   Margin="32,0,32,0"
                   VerticalOptions="Center"
-                  HorizontalOptions="Fill">
+                  HorizontalOptions="Fill" >
 
                 <!-- Q&A tile -->
                 <Border Grid.Column="0"
-                        Grid.Row="0"
                         HorizontalOptions="Fill"
                         MinimumHeightRequest="128"
                         BackgroundColor="#F0E6C0"
                         StrokeThickness="0"
-                        Padding="24,22">
+                        Padding="24,22"
+                        IsVisible="False">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20" />
                     </Border.StrokeShape>
@@ -171,7 +170,6 @@
 
                 <!-- Procedure tile -->
                 <Border Grid.Column="0"
-                        Grid.Row="1"
                         HorizontalOptions="Fill"
                         MinimumHeightRequest="128"
                         BackgroundColor="#F0E6C0"
@@ -200,9 +198,8 @@
 
                 <!-- Navigation tile -->
                 <Border Grid.Column="1"
-                        Grid.RowSpan="2"
                         HorizontalOptions="Fill"
-                        MinimumHeightRequest="280"
+                        MinimumHeightRequest="128"
                         BackgroundColor="#F0E6C0"
                         StrokeThickness="0"
                         Padding="24,22">

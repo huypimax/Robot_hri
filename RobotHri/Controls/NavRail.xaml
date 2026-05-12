@@ -101,7 +101,8 @@
             <Border HeightRequest="{StaticResource NavRailItemHeight}"
                 BackgroundColor="Transparent"
                 Stroke="Transparent"
-                Padding="{StaticResource NavRailItemPadding}">
+                Padding="{StaticResource NavRailItemPadding}"
+                IsVisible="False">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer x:Name="QnaTap" />
                 </Border.GestureRecognizers>
@@ -148,29 +149,34 @@
             </Border>
 
                 <!-- Navigation -->
-            <Border HeightRequest="{StaticResource NavRailItemHeight}"
-                    BackgroundColor="Transparent"
-                    Stroke="Transparent"
-                    Padding="{StaticResource NavRailItemPadding}">
-                <Border.GestureRecognizers>
-                    <TapGestureRecognizer x:Name="NaviTap" />
-                </Border.GestureRecognizers>
-                <HorizontalStackLayout Spacing="{StaticResource NavRailItemSpacing}"
-                                       VerticalOptions="Center">
-                    <Label Text="&#xE707;"
-                           FontFamily="Segoe Fluent Icons"
-                           FontSize="{StaticResource NavRailIconSize}"
-                           WidthRequest="{StaticResource NavRailIconWidth}"
-                           HorizontalTextAlignment="Center"
-                           VerticalOptions="Center" />
-                    <Label x:Name="NaviText"
-                           TextColor="{StaticResource TextOnPrimary}"
-                           FontFamily="RobotoRegular"
-                           FontSize="{StaticResource FontSizeBody}"
-                           VerticalOptions="Center"
-                           IsVisible="False" />
-                </HorizontalStackLayout>
-            </Border>
+                <Border HeightRequest="{StaticResource NavRailItemHeight}"
+            BackgroundColor="Transparent"
+            Stroke="Transparent"
+            Padding="{StaticResource NavRailItemPadding}">  
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="NaviTap" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="Auto,*"
+          ColumnSpacing="{StaticResource NavRailItemSpacing}"
+          VerticalOptions="Center">
+                        <Label Grid.Column="0"
+               Text="&#xE707;"
+               FontFamily="Segoe Fluent Icons"
+               FontSize="{StaticResource NavRailIconSize}"
+               WidthRequest="{StaticResource NavRailIconWidth}"
+               HorizontalTextAlignment="Center"
+               VerticalOptions="Center" />
+                        <Label Grid.Column="1"
+               x:Name="NaviText"
+               TextColor="{StaticResource TextOnPrimary}"
+               FontFamily="RobotoRegular"
+               FontSize="{StaticResource FontSizeBody}"
+               VerticalOptions="Center"
+               MaxLines="2"
+               LineBreakMode="WordWrap"
+               IsVisible="False" />
+                    </Grid>
+                </Border>
 
              <!-- Lab -->
             <Border HeightRequest="{StaticResource NavRailItemHeight}"

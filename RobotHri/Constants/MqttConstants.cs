@@ -8,13 +8,13 @@ namespace RobotHri.Constants
         public const string Password = "viam1234";
 
         // Topics
-        public const string TopicDestinationPoint = "robot/destination_point";
+        public const string TopicDestinationPoint = "robot2/goal";
         public const string TopicGoal = TopicDestinationPoint;
-        public const string TopicWaypoints = "robot/waypoints";
-        public const string TopicArrival = "robot/arrival";
-        public const string TopicLocation = "robot/location";
-        public const string TopicAttendance = "robot/attendance";
-        public const string TopicStatus = "robot/status";
-        public const string TopicSpeedConfig = "robot/config/speed";
+        public const string TopicWaypoints = "robot2/waypoints";
+        public const string TopicArrival = "robot2/arrival";
+        public const string TopicLocation = "robot2/location";
+        public const string TopicAttendance = "robot2/attendance";
+        public const string TopicStatus = "robot2/status";
+        public const string TopicSpeedConfig = "robot2/config/speed";
     }
 }
