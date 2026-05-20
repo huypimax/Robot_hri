@@ -44,50 +44,64 @@
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="16" />
                 </Border.StrokeShape>
-                <VerticalStackLayout Spacing="10">
-                    <Border BackgroundColor="#FFFDF6"
-                            Stroke="#CC870002"
-                            StrokeThickness="1"
-                            Padding="10,8"
-                            HorizontalOptions="Center">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10" />
-                        </Border.StrokeShape>
-                        <Label Text="{Binding SelectedProcedure.Name}"
+                <ScrollView VerticalScrollBarVisibility="Default">
+                    <VerticalStackLayout Spacing="10">
+                        <Border BackgroundColor="#FFFDF6"
+                                Stroke="#CC870002"
+                                StrokeThickness="1"
+                                Padding="10,8"
+                                HorizontalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <Label Text="{Binding SelectedProcedure.Name}"
+                                   FontFamily="RobotoBold"
+                                   FontSize="{StaticResource FontSizeTitleMedium}"
+                                   TextColor="{StaticResource WarmText}"
+                                   HorizontalTextAlignment="Center"
+                                   LineBreakMode="WordWrap" />
+                        </Border>
+
+                        <Label Text="{Binding DossierSectionTitle}"
                                FontFamily="RobotoBold"
                                FontSize="{StaticResource FontSizeTitleMedium}"
                                TextColor="{StaticResource WarmText}" />
-                    </Border>
+                        <Label Text="{Binding DossierBody}"
+                               FontFamily="RobotoRegular"
+                               FontSize="{StaticResource FontSizeBody}"
+                               TextColor="{StaticResource WarmText}"
+                               LineBreakMode="WordWrap" />
 
-                    <Label Text="{Binding RequiredDocsTitle}"
-                           FontFamily="RobotoBold"
-                           FontSize="{StaticResource FontSizeTitleMedium}"
-                           TextColor="{StaticResource WarmText}" />
-                    <Label Text="{Binding SelectedProcedure.RequiredDocs}"
-                           FontFamily="RobotoRegular"
-                           FontSize="{StaticResource FontSizeBody}"
-                           TextColor="{StaticResource WarmText}"
-                           LineBreakMode="WordWrap" />
+                        <Label Text="{Binding ImplementationSectionTitle}"
+                               FontFamily="RobotoBold"
+                               FontSize="{StaticResource FontSizeTitleMedium}"
+                               TextColor="{StaticResource WarmText}" />
+                        <Label Text="{Binding ImplementationBody}"
+                               FontFamily="RobotoRegular"
+                               FontSize="{StaticResource FontSizeBody}"
+                               TextColor="{StaticResource WarmText}"
+                               LineBreakMode="WordWrap" />
 
-                    <Label Text="{Binding CounterTitle}"
-                           FontFamily="RobotoBold"
-                           FontSize="{StaticResource FontSizeTitleMedium}"
-                           TextColor="{StaticResource WarmText}" />
-                    <Label Text="{Binding SelectedProcedure.CounterName}"
-                           FontFamily="RobotoRegular"
-                           FontSize="{StaticResource FontSizeBody}"
-                           TextColor="{StaticResource WarmText}" />
+                        <Label Text="{Binding CounterTitle}"
+                               FontFamily="RobotoBold"
+                               FontSize="{StaticResource FontSizeTitleMedium}"
+                               TextColor="{StaticResource WarmText}" />
+                        <Label Text="{Binding SelectedProcedure.CounterName}"
+                               FontFamily="RobotoRegular"
+                               FontSize="{StaticResource FontSizeBody}"
+                               TextColor="{StaticResource WarmText}" />
 
-                    <Label Text="{Binding NoteTitle}"
-                           FontFamily="RobotoBold"
-                           FontSize="{StaticResource FontSizeTitleMedium}"
-                           TextColor="{StaticResource WarmText}" />
-                    <Label Text="{Binding SelectedProcedure.Note}"
-                           FontFamily="RobotoRegular"
-                           FontSize="{StaticResource FontSizeBody}"
-                           TextColor="{StaticResource WarmText}"
-                           LineBreakMode="WordWrap" />
-                </VerticalStackLayout>
+                        <Label Text="{Binding NoteTitle}"
+                               FontFamily="RobotoBold"
+                               FontSize="{StaticResource FontSizeTitleMedium}"
+                               TextColor="{StaticResource WarmText}" />
+                        <Label Text="{Binding SelectedProcedure.Note}"
+                               FontFamily="RobotoRegular"
+                               FontSize="{StaticResource FontSizeBody}"
+                               TextColor="{StaticResource WarmText}"
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </ScrollView>
             </Border>
 
             <Grid Grid.Row="2"

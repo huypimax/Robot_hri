@@ -71,6 +71,8 @@
   "procedure_prompt": "Danh sách thông tin 1 số thủ tục để demo",
   "procedure_select_hint": "Hãy chọn thủ tục bạn cần xem chi tiết",
   "procedure_required_docs": "Giấy tờ cần chuẩn bị:",
+  "procedure_section_dossier": "Thành phần hồ sơ:",
+  "procedure_section_implementation": "Cách thức thực hiện:",
   "procedure_processing_counter": "Tên quầy thực hiện:",
   "procedure_note": "Lưu ý:",
   "procedure_start_nav": "Dẫn tôi tới quầy này",

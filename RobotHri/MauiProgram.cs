@@ -1,3 +1,4 @@
+using System.Text;
 using CommunityToolkit.Maui;
 using Plugin.Maui.Audio;
 using Microsoft.Extensions.Logging;
@@ -29,8 +30,11 @@ namespace RobotHri
                     fonts.AddFont("OpenSans-Semibold.ttf", "RobotoBold");
                 });
 
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
             // ── Services ──────────────────────────────────────────
             builder.Services.AddSingleton<ILocalizationService, LocalizationService>();
+            builder.Services.AddSingleton<IProcedureDocumentExtractor, ProcedureDocumentExtractor>();
             builder.Services.AddSingleton<IMqttService, MqttService>();
             builder.Services.AddSingleton<CommunityToolkit.Maui.Media.ISpeechToText>(
                 CommunityToolkit.Maui.Media.SpeechToText.Default);

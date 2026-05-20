@@ -22,6 +22,10 @@ namespace RobotHri.Controls
             BindableProperty.Create(nameof(LanguageLabelText), typeof(string), typeof(HeaderLayout), "VI",
                 propertyChanged: (b, o, n) => ((HeaderLayout)b).LanguageLabel.Text = (string)n);
 
+        public static readonly BindableProperty BatteryStatusTextProperty =
+            BindableProperty.Create(nameof(BatteryStatusText), typeof(string), typeof(HeaderLayout), "100%",
+                propertyChanged: (b, o, n) => ((HeaderLayout)b).BatteryStatusLabel.Text = (string)n);
+
         public string Title
         {
             get => (string)GetValue(TitleProperty);
@@ -46,6 +50,12 @@ namespace RobotHri.Controls
             set => SetValue(LanguageLabelTextProperty, value);
         }
 
+        public string BatteryStatusText
+        {
+            get => (string)GetValue(BatteryStatusTextProperty);
+            set => SetValue(BatteryStatusTextProperty, value);
+        }
+
         public event EventHandler? BackTapped;
         public event EventHandler? LanguageToggled;
 
@@ -57,6 +67,7 @@ namespace RobotHri.Controls
             // MAUI's propertyChanged callback only fires on VALUE CHANGE, so when the bound
             // ViewModel value equals the BindableProperty default the label is never updated.
             LanguageLabel.Text = LanguageLabelText;
+            BatteryStatusLabel.Text = BatteryStatusText;
             TitleLabel.Text = Title;
             BackLabel.Text = BackText;
             BackButton.IsVisible = ShowBackButton;

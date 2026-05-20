@@ -27,14 +27,11 @@ namespace RobotHri.ViewModels
 #endif
 
         private CancellationTokenSource? _autoDismissCts;
-        private CancellationTokenSource? _locationInfoDismissCts;
 
         private bool _isNotificationPopupVisible;
         private string _notificationMessage = string.Empty;
         private string _notificationTitle = string.Empty;
         private string _okButtonText = string.Empty;
-        private bool _isShowingLocationInfo;
-        private string? _lastArrivedRoomKey;
 
         private bool _isErrorPopupVisible;
         private string _errorMessage = string.Empty;
@@ -153,19 +150,8 @@ namespace RobotHri.ViewModels
 
             DismissNotificationCommand = new Command(() =>
             {
-                if (!_isShowingLocationInfo)
-                {
-                    CancelAutoDismiss();
-                    ShowLocationInfoPopup();
-                }
-                else
-                {
-                    // If we were showing the location info, just dismiss it and cancel its 2m timer
-                    CancelLocationInfoAutoDismiss();
-                    IsNotificationPopupVisible = false;
-                    _isShowingLocationInfo = false;
-                    _lastArrivedRoomKey = null;
-                }
+                CancelAutoDismiss();
+                IsNotificationPopupVisible = false;
             });
 
             DismissErrorPopupCommand = new Command(() => IsErrorPopupVisible = false);
@@ -254,9 +240,6 @@ namespace RobotHri.ViewModels
             // Clear any active popups or timers when starting a new navigation
             IsNotificationPopupVisible = false;
             CancelAutoDismiss();
-            CancelLocationInfoAutoDismiss();
-            _isShowingLocationInfo = false;
-            _lastArrivedRoomKey = null;
 
             IsBusy = true;
             ActiveRoomKey = roomKey;
@@ -367,12 +350,9 @@ namespace RobotHri.ViewModels
 #endif
             IsBusy = false;
             ActiveRoomKey = null;
-            _lastArrivedRoomKey = null;
-            _isShowingLocationInfo = false;
             IsNotificationPopupVisible = false;
 
             CancelAutoDismiss();
-            CancelLocationInfoAutoDismiss();
 
             LoadingMessage = string.Empty;
             PromptText = StringIds.NAV_WHERE_TO_GO.GetString();
@@ -391,10 +371,7 @@ namespace RobotHri.ViewModels
             PromptText = StringIds.NAV_WHERE_TO_GO.GetString();
             IsNotificationPopupVisible = false;
             IsErrorPopupVisible = false;
-            _isShowingLocationInfo = false;
-            _lastArrivedRoomKey = null;
             CancelAutoDismiss();
-            CancelLocationInfoAutoDismiss();
         }
 
         private async void OnArrivalReceived(object? sender, bool arrived)
@@ -411,16 +388,14 @@ namespace RobotHri.ViewModels
             await MainThread.InvokeOnMainThreadAsync(async () =>
             {
                 IsBusy = false;
-                _lastArrivedRoomKey = ActiveRoomKey; 
 
-                var roomName = GetLocalizedRoomName(_lastArrivedRoomKey ?? string.Empty);
+                var roomName = GetLocalizedRoomName(ActiveRoomKey ?? string.Empty);
                 var arrivedMsg = StringIds.NAV_ARRIVED_READY.GetString()
                     .Format(("place", roomName));
 
                 PromptText = arrivedMsg;
                 LoadingMessage = string.Empty;
 
-                _isShowingLocationInfo = false;
                 NotificationTitle = StringIds.NAV_ARRIVAL_TITLE.GetString();
                 NotificationMessage = arrivedMsg;
                 IsNotificationPopupVisible = true;
@@ -430,24 +405,6 @@ namespace RobotHri.ViewModels
 
                 StartAutoDismissTimer();
             });
-        }
-
-        private void ShowLocationInfoPopup()
-        {
-            if (string.IsNullOrEmpty(_lastArrivedRoomKey))
-            {
-                IsNotificationPopupVisible = false;
-                return;
-            }
-
-            _isShowingLocationInfo = true;
-
-            NotificationTitle = GetLocalizedRoomName(_lastArrivedRoomKey);
-            NotificationMessage = GetRoomDescription(_lastArrivedRoomKey);
-
-            IsNotificationPopupVisible = true;
-
-            StartLocationInfoAutoDismissTimer();
         }
 
         private void CancelAutoDismiss()
@@ -478,47 +435,7 @@ namespace RobotHri.ViewModels
                     {
                         await MainThread.InvokeOnMainThreadAsync(() =>
                         {
-                            ShowLocationInfoPopup();
-                        });
-                    }
-                }
-                catch (OperationCanceledException)
-                {
-                }
-            }, ct);
-        }
-
-        private void CancelLocationInfoAutoDismiss()
-        {
-            try
-            {
-                _locationInfoDismissCts?.Cancel();
-            }
-            catch (ObjectDisposedException) { /* ignore */ }
-
-            _locationInfoDismissCts?.Dispose();
-            _locationInfoDismissCts = null;
-        }
-
-        private void StartLocationInfoAutoDismissTimer()
-        {
-            CancelLocationInfoAutoDismiss();
-            _locationInfoDismissCts = new CancellationTokenSource();
-            var ct = _locationInfoDismissCts.Token;
-
-            Task.Run(async () =>
-            {
-                try
-                {
-                    await Task.Delay(TimeSpan.FromMinutes(2), ct);
-
-                    if (!ct.IsCancellationRequested)
-                    {
-                        await MainThread.InvokeOnMainThreadAsync(() =>
-                        {
                             IsNotificationPopupVisible = false;
-                            _isShowingLocationInfo = false;
-                            _lastArrivedRoomKey = null;
                         });
                     }
                 }
@@ -556,13 +473,5 @@ namespace RobotHri.ViewModels
             _ => roomKey
         };
 
-        private static string GetRoomDescription(string roomKey) => roomKey switch
-        {
-            "RoomRoboticsLab" => StringIds.LAB_DEVICE_PLC.GetString(),
-            "RoomElectricalLab" => StringIds.LAB_DEVICE_IFM.GetString(),
-            "RoomChemistryHall" => StringIds.LAB_DEVICE_STEP.GetString(),
-            "RoomWaterIntake" => StringIds.LAB_DEVICE_HMI.GetString(),
-            _ => StringIds.LAB_PROMPT.GetString()
-        };
     }
 }

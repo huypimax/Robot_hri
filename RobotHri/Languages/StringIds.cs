@@ -84,6 +84,8 @@ namespace RobotHri.Languages
         public const string PROCEDURE_PROMPT = "procedure_prompt";
         public const string PROCEDURE_SELECT_HINT = "procedure_select_hint";
         public const string PROCEDURE_REQUIRED_DOCS = "procedure_required_docs";
+        public const string PROCEDURE_SECTION_DOSSIER = "procedure_section_dossier";
+        public const string PROCEDURE_SECTION_IMPLEMENTATION = "procedure_section_implementation";
         public const string PROCEDURE_PROCESSING_COUNTER = "procedure_processing_counter";
         public const string PROCEDURE_NOTE = "procedure_note";
         public const string PROCEDURE_START_NAV = "procedure_start_nav";
